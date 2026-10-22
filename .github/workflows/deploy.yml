@@ -1,9 +1,17 @@
 name: Deploy naar Hostinger
 
-# Draait alleen als je hem handmatig start (Actions → Deploy naar Hostinger → Run workflow).
-# Zo komt er niets live voordat je dat zelf besluit.
+# Draait automatisch bij elke wijziging op main, en handmatig via
+# Actions → Deploy naar Hostinger → Run workflow.
+# LET OP: zolang de FTP-secrets naar het testadres (nieuw.alieke.design) wijzen
+# is dat veilig. Zet 'push' weer uit vóór de overstap naar alieke.design.
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
 
 jobs:
   deploy:

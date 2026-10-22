@@ -36,7 +36,7 @@ Open daarna http://localhost:4321.
 
 ## Live zetten (Hostinger)
 
-De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Hij draait alleen als je hem zelf start.
+De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Tijdens de testfase draait hij automatisch bij elke wijziging op `main` (naar `nieuw.alieke.design`); je kunt hem ook handmatig starten.
 
 Eenmalig instellen in GitHub → Settings → Secrets and variables → Actions:
 
