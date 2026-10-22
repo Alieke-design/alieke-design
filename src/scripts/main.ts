@@ -163,6 +163,18 @@ $$<HTMLButtonElement>('[data-copy]').forEach((btn) => {
   });
 });
 
+// De lijst met aanbevelingen is alleen focusbaar als hij horizontaal scrolt (mobiel).
+const reviewList = document.querySelector<HTMLElement>('.reviews');
+const updateReviewFocus = () => {
+  if (!reviewList) return;
+  const scrollable = reviewList.scrollWidth > reviewList.clientWidth + 1;
+  reviewList.classList.toggle('is-scrollable', scrollable);
+  if (scrollable) reviewList.setAttribute('tabindex', '0');
+  else reviewList.removeAttribute('tabindex');
+};
+updateReviewFocus();
+window.addEventListener('resize', updateReviewFocus);
+
 // Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.body.classList.add('tips-dismissed');

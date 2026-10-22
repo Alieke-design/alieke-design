@@ -8,7 +8,7 @@ import untire from '../assets/img/Untire-app-design-1800x1228.jpg';
 export const projects = [
   {
     image: beschikbaarheidswijzer,
-    imageAlt: '',
+    imageAlt: 'Vrouw achter een computerscherm met het beheersysteem van de Beschikbaarheidswijzer',
     logo: '/img/logos/logo-beschikbaarheidswijzer.svg',
     logoAlt: 'Logo Beschikbaarheidswijzer',
     title: 'Sneller passende zorg door heldere flows',
@@ -23,7 +23,7 @@ export const projects = [
   },
   {
     image: evi,
-    imageAlt: '',
+    imageAlt: 'Hand met een telefoon waarop de Evi-app de planning voor slaap en voeding toont',
     logo: '/img/logos/logo-evi-dark.png',
     logoAlt: 'Logo Evi app',
     title: 'Slim inzicht in slaap en voeding van baby’s',
@@ -60,9 +60,9 @@ export const projects = [
     imageAlt: 'Design van het Vandaag scherm van de app Untire Now',
     logo: '/img/logos/Logo-Untire.svg',
     logoAlt: 'Logo van de app Untire',
-    title: 'Intuïtieve app voor vermoeide (ex)kankerpatiënten',
+    title: 'Intuïtieve app voor vermoeide (ex)kanker\u00ADpatiënten', // \u00AD = afbreekpunt op smalle schermen
     intro:
-      'Volledig redesign <a href="https://apps.apple.com/nl/app/untire-now/id1661118356" target="_blank" rel="noopener">Untire Now app</a> / ⭐️⭐️⭐️⭐️⭐️ in AppStore',
+      'Volledig redesign <a href="https://apps.apple.com/nl/app/untire-now/id1661118356" target="_blank" rel="noopener">Untire Now app<span class="visually-hidden"> (opent in nieuw venster)</span></a> / <span role="img" aria-label="5 sterren">⭐️⭐️⭐️⭐️⭐️</span> in AppStore',
     deliverables: [
       'Research',
       'Usability tests',
