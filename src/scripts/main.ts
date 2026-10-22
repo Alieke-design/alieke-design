@@ -175,6 +175,51 @@ const updateReviewFocus = () => {
 updateReviewFocus();
 window.addEventListener('resize', updateReviewFocus);
 
+// Mobiel menu: native <dialog> (focus blijft in het menu, Escape sluit, focus gaat terug naar de knop).
+const menu = document.querySelector<HTMLDialogElement>('#mobile-menu');
+const menuOpen = document.querySelector<HTMLButtonElement>('[data-menu-open]');
+if (menu && menuOpen) {
+  const markCurrent = () => {
+    const sections = $$('main section[id]');
+    const y = window.scrollY + window.innerHeight / 3;
+    let current = sections[0]?.id;
+    sections.forEach((s) => { if (s.offsetTop <= y) current = s.id; });
+    menu.querySelectorAll<HTMLAnchorElement>('a[data-section]').forEach((a) => {
+      if (a.dataset.section === current) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const unlock = () => {
+    menuOpen.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+    lenis?.start();
+  };
+  menuOpen.addEventListener('click', () => {
+    markCurrent();
+    menu.showModal();
+    menuOpen.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+    lenis?.stop();
+  });
+  menu.querySelector('[data-menu-close]')?.addEventListener('click', () => menu.close());
+  menu.addEventListener('close', () => {
+    unlock();
+    // Vangnet: focus terug naar de menuknop als de browser dat niet zelf deed.
+    requestAnimationFrame(() => {
+      if (!document.activeElement || document.activeElement === document.body) menuOpen.focus();
+    });
+  });
+  // Eerst sluiten en ontgrendelen, daarna scrolt de gewone ankerlink naar de sectie.
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a[href^="#"]')) {
+      menu.close();
+      unlock();
+    }
+  }, true);
+  // Menu dicht als het scherm breder wordt dan mobiel.
+  window.matchMedia('(min-width: 751px)').addEventListener('change', (e) => { if (e.matches && menu.open) menu.close(); });
+}
+
 // Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.body.classList.add('tips-dismissed');
