@@ -3,7 +3,6 @@ import '../styles/theme.css';
 import '../styles/site.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import CookieBanner from '../components/CookieBanner.astro';
 import { site } from '../config';
 
 interface Props { title?: string; description?: string; noindex?: boolean }
@@ -51,10 +50,8 @@ const jsonLd = {
       </main>
     </div>
     <Footer />
-    <CookieBanner />
     <script>
       import '../scripts/main';
-      import '../scripts/cookies';
     </script>
   </body>
 </html>

@@ -8,9 +8,4 @@ export const site = {
   linkedin: 'https://linkedin.com/in/aliekezelhorst',
   kvk: '72899107',
   address: 'Hooghiemstraplein 67, Utrecht',
-
-  // Google Analytics-meet-ID (bv. 'G-XXXXXXX').
-  // Leeg laten = geen Analytics en dus ook geen cookiemelding.
-  // Ingevuld = Analytics laadt pas nadat de bezoeker op "Akkoord" klikt.
-  googleAnalyticsId: '',
 };

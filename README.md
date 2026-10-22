@@ -11,7 +11,7 @@ Bijna alle tekst staat in een paar overzichtelijke bestanden:
 | Projecten (Werk) | `src/data/projects.ts` |
 | Aanbevelingen | `src/data/aanbevelingen.ts` |
 | Ervaring, opleiding, tools, werkwijze, resultaat, voor wie | `src/data/skills.ts` |
-| E-mailadres, KvK, adres, LinkedIn, Google Analytics | `src/config.ts` |
+| E-mailadres, KvK, adres, LinkedIn | `src/config.ts` |
 | Hero (Hi! 👋) | `src/components/Hero.astro` |
 | Contacttekst | `src/components/Contact.astro` |
 
@@ -29,9 +29,8 @@ Open daarna http://localhost:4321.
 ## Opbouw
 
 - `src/styles/theme.css` – de CSS van het oude WordPress-thema (niet aanpassen).
-- `src/styles/site.css` – aanvullingen: aanbevelingen, contact, cookiemelding, focusstijlen en de "Extra CSS" uit WordPress.
+- `src/styles/site.css` – aanvullingen: aanbevelingen, contact, focusstijlen en de "Extra CSS" uit WordPress.
 - `src/scripts/main.ts` – animaties: smooth scroll (Lenis), parallax en scroll-effecten (GSAP ScrollTrigger). Respecteert "verminder beweging" van het besturingssysteem.
-- `src/scripts/cookies.ts` – cookiemelding. Verschijnt alleen als `googleAnalyticsId` in `src/config.ts` is ingevuld; Analytics laadt pas na toestemming.
 - `public/.htaccess` – https, 404-pagina en caching op Hostinger.
 
 ## Live zetten (Hostinger)
