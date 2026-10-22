@@ -16,14 +16,14 @@ export const opleiding = [
 ];
 
 export const tools = [
-  { src: '/img/logos/Logo-Figma.svg', alt: 'Logo van de tool Figma' },
-  { src: '/img/logos/logo-claude.svg', alt: 'Logo van de AI tool Claude' },
-  { src: '/img/logos/logo-lovable.svg', alt: 'Logo van de AI tool Lovable' },
-  { src: '/img/logos/logo-base44.svg', alt: 'Logo van de AI tool Base44' },
-  { src: '/img/logos/logo-slack.svg', alt: 'Logo van de tool Slack' },
-  { src: '/img/logos/logo-notion.svg', alt: 'Logo van de tool Notion' },
-  { src: '/img/logos/Logo-Miro.svg', alt: 'Logo van de tool Miro' },
-  { src: '/img/logos/logo-adobe-creative-suite.svg', alt: 'Adobe Creative Suite: Photoshop, Illustrator, Indesign' },
+  { name: 'Figma', src: '/img/logos/Logo-Figma.svg', alt: 'Logo van de tool Figma' },
+  { name: 'Claude', src: '/img/logos/logo-claude.svg', alt: 'Logo van de AI tool Claude' },
+  { name: 'Lovable', src: '/img/logos/logo-lovable.svg', alt: 'Logo van de AI tool Lovable' },
+  { name: 'Base44', src: '/img/logos/logo-base44.svg', alt: 'Logo van de AI tool Base44' },
+  { name: 'Slack', src: '/img/logos/logo-slack.svg', alt: 'Logo van de tool Slack' },
+  { name: 'Notion', src: '/img/logos/logo-notion.svg', alt: 'Logo van de tool Notion' },
+  { name: 'Miro', src: '/img/logos/Logo-Miro.svg', alt: 'Logo van de tool Miro' },
+  { name: 'Adobe Creative Suite', src: '/img/logos/logo-adobe-creative-suite.svg', alt: 'Adobe Creative Suite: Photoshop, Illustrator, Indesign' },
 ];
 
 // Lijsten in "Over mij". Gebruik <b>…</b> voor vetgedrukte woorden.

@@ -25,7 +25,12 @@ import { ervaring, opleiding, tools } from '../data/skills';
     <div class="content-repeater__content">
       <h2 class="large-heading color--dblue">Tools</h2>
       <div class="logos">
-        {tools.map((tool) => <img alt={tool.alt} decoding="async" src={tool.src} />)}
+        {tools.map((tool) => (
+          <span class="tip tool-logo">
+            <img alt={tool.alt} decoding="async" src={tool.src} />
+            <span class="tip__bubble" aria-hidden="true">{tool.name}</span>
+          </span>
+        ))}
       </div>
     </div>
   </div>

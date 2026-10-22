@@ -123,7 +123,8 @@
   transition: opacity 0.15s ease-out, visibility 0.15s;
 }
 .tip:hover .tip__bubble,
-.tip:focus-visible .tip__bubble { opacity: 1; visibility: visible; transition-delay: 0.3s; }
+.tip:focus-visible .tip__bubble { opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0.3s; }
+.tool-logo { display: inline-flex; }
 .tips-dismissed .tip__bubble { opacity: 0 !important; visibility: hidden !important; }
 .review__text { color: var(--ink); font-size: 1rem; line-height: 1.5; display: grid; gap: 0.75em; }
 .review__text.is-clamped {
@@ -151,7 +152,11 @@
 
 /* Contact zonder formulier: één knop die het e-mailadres kopieert ------- */
 .contact-copy { position: relative; margin-top: 1.77em; }
-.contact-copy .button__icon svg { width: 0.875em; height: 0.875em; fill: currentColor; display: block; }
+.contact-copy { align-items: center; gap: 0.6em; }
+.contact-copy__icon { display: grid; place-items: center; height: auto; margin-block: -0.25em; }
+.contact-copy__icon svg { width: 1.375em; height: 1.375em; max-width: none; fill: currentColor; display: block; }
+.contact-copy:hover .contact-copy__icon,
+.contact-copy:focus-visible .contact-copy__icon { transform: scale(1.1); transition: transform 0.2s ease-out; }
 .contact-copy .tip__bubble { line-height: 1.2; }
 .contact-copy.is-copied .tip__bubble { opacity: 1; visibility: visible; transition-delay: 0s; }
 /* Houdt het contactblok even hoog als in de oude versie */
