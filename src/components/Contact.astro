@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config';
+const dots: [number, number][] = [];
+for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push([x, y]);
+---
+<section class="form is-footer-layout background--dlightblue" id="contact">
+  <div class="form__inner">
+    <div class="form__svg" data-scroll-offset-y="top bottom" data-scroll-translate data-target="parent" data-translate-y="2" aria-hidden="true">
+      <svg viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#FFC518">{dots.map(([cx, cy]) => <circle cx={cx} cy={cy} r="4" />)}</g>
+      </svg>
+    </div>
+    <div class="form__text">
+      <p class="label background--dyellow font-semibold">Contact</p>
+      <h2 class="large-heading color--dblue">Vertel..</h2>
+      <div class="default-body p">
+        <p>Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.</p>
+      </div>
+      <p class="contact-mail default-body">
+        <a class="contact-mail__link" href={`mailto:${site.email}`}>{site.email}</a>
+      </p>
+      <a class="button" href={`mailto:${site.email}`}>
+        <span class="button__text">Mail mij</span>
+        <span class="button__icon is-arrow-right"><Icon name="arrow-right" /></span>
+      </a>
+    </div>
+  </div>
+</section>

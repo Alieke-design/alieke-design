@@ -1,0 +1,32 @@
+---
+import DoubleArrows from './DoubleArrows.astro';
+import { ervaring, opleiding, tools } from '../data/skills';
+---
+<section class="content-repeater" data-scroll-var data-start="top bottom" id="skills">
+  <div class="content-repeater__inner">
+    <DoubleArrows />
+    <div class="content-repeater__content">
+      <p class="label background--dyellow font-semibold">Skills</p>
+      <h2 class="large-heading color--dblue">Ervaring</h2>
+      <div class="default-body p description-list">
+        {ervaring.map(([label, value]) => (
+          <p class="row"><span class="description-label color--dblue">{label}</span> <span class="description-value">{value}</span></p>
+        ))}
+      </div>
+    </div>
+    <div class="content-repeater__content">
+      <h2 class="large-heading color--dblue">Opleiding</h2>
+      <div class="default-body p description-list">
+        {opleiding.map(([label, value]) => (
+          <p class="row"><span class="description-label color--dblue">{label}</span> <span class="description-value">{value}</span></p>
+        ))}
+      </div>
+    </div>
+    <div class="content-repeater__content">
+      <h2 class="large-heading color--dblue">Tools</h2>
+      <div class="logos">
+        {tools.map((tool) => <img alt={tool.alt} decoding="async" src={tool.src} />)}
+      </div>
+    </div>
+  </div>
+</section>

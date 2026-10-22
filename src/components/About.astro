@@ -1,0 +1,33 @@
+---
+import DoubleArrows from './DoubleArrows.astro';
+import Icon from './Icon.astro';
+import { werkwijze, resultaat, voorWie } from '../data/skills';
+const blocks = [
+  { title: 'Werkwijze', items: werkwijze, icon: 'arrow-right' as const, label: 'Over mij' },
+  { title: 'Resultaat', items: resultaat, icon: 'check' as const },
+  { title: 'Voor wie', items: voorWie, icon: 'arrow-right' as const },
+];
+---
+<section class="content-repeater" data-scroll-var data-start="top bottom" id="over-mij">
+  <div class="content-repeater__inner">
+    <DoubleArrows />
+    {blocks.map((block) => (
+      <div class="content-repeater__content">
+        {block.label && <p class="label background--dyellow font-semibold">{block.label}</p>}
+        <h2 class="large-heading color--dblue">{block.title}</h2>
+        <div class="kpis">
+          <ul class="kpis__list default-body custom-icon">
+            {block.items.map((item) => (
+              <li>
+                <span>
+                  <span class="icon color--dblue"><Icon name={block.icon} /></span>
+                  <span set:html={item} />
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

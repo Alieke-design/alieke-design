@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import { projects } from '../data/projects';
+import DotGrid from './DotGrid.astro';
+---
+<section class="projects background--dlightblue" id="werk">
+  <div class="projects__inner">
+    <div class="svg-dot-grid" data-scroll-offset-y="top bottom" data-scroll-translate data-target="parent" data-translate-y="0.5" aria-hidden="true">
+      <DotGrid />
+    </div>
+    <div class="projects__text">
+      <p class="label background--dyellow font-semibold">Werk</p>
+      <h2 class="large-heading color--dblue">Projecten</h2>
+      <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">Een selectie</p>
+    </div>
+    <div class="projects__list">
+      {projects.map((project) => (
+        <article class="project" data-end="top center" data-scroll data-scroll-start="top 60%" data-scroll-var data-start="top bottom">
+          <div class="project__media">
+            <Image
+              src={project.image}
+              alt={project.imageAlt}
+              widths={[600, 900, 1324]}
+              sizes="(max-width: 1024px) 100vw, 662px"
+              loading="lazy"
+              data-lazy-load
+              style={`--ratio:${project.image.height / project.image.width}`}
+            />
+          </div>
+          <div class="project__text background--light">
+            <div class="project__logo">
+              <img alt={project.logoAlt} decoding="async" src={project.logo} />
+            </div>
+            <h3 class="small-heading color--ddarkblue">{project.title}</h3>
+            <div class="p"><p set:html={project.intro} /></div>
+            <ul>
+              {project.deliverables.map((item) => <li><span set:html={item} /></li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+---
+const items = [
+  { href: '#hi', label: 'Hi 👋' },
+  { href: '#werk', label: 'Werk' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#aanbevelingen', label: 'Aanbevelingen' },
+  { href: '#over-mij', label: 'Over mij' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<header class="header color--ddarkblue">
+  <div class="header__inner">
+    <nav aria-label="Hoofdmenu" class="header__nav nav--top">
+      <a class="header__logo" href="/">
+        <img alt="Alieke.design logo" src="/img/logos/alieke-logo.svg" width="165" height="26" />
+      </a>
+      <ul class="header__list default-body">
+        {items.map((item) => (
+          <li class="header__item">
+            <div class="header__text-container">
+              <a class="header__link" href={item.href}>
+                <span class="header__text">{item.label}</span>
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>

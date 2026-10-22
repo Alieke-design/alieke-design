@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { aanbevelingen } from '../data/aanbevelingen';
+---
+<section class="widget-block background--dlightblue" data-scroll-var data-start="top bottom" id="aanbevelingen">
+  <div class="widget-block__inner">
+    <p class="label background--dblue font-semibold">Aanbevelingen</p>
+    <h2 class="large-heading color--ddarkblue">Opdrachtgevers</h2>
+    <p class="text-image__subtitle xsmall-heading font-regular color--dblue">Over mij</p>
+    <ul class="reviews" role="list" aria-label="Aanbevelingen van opdrachtgevers" tabindex="0">
+      {aanbevelingen.map((review, i) => (
+        <li class="review" lang={review.lang}>
+          <div class="review__author">
+            <Image src={review.photo} alt="" width={48} height={48} densities={[1, 2]} class="review__photo" loading="lazy" />
+            <div>
+              <p class="review__name">{review.name}</p>
+              <p class="review__role">{review.role}</p>
+            </div>
+          </div>
+          <div class="review__text" id={`review-${i}`}>
+            {review.text.split(/\n\s*\n/).map((para) => <p>{para}</p>)}
+          </div>
+          <button class="review__toggle" type="button" aria-expanded="false" aria-controls={`review-${i}`} hidden>
+            <span class="review__toggle-more" lang="nl">Lees meer</span>
+            <span class="review__toggle-less" lang="nl">Minder tonen</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

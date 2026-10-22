@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../config';
+const year = new Date().getFullYear();
+---
+<footer class="footer background--ddarkblue">
+  <div class="inner">
+    <div class="column">
+      <p class="default-body"><strong>Copyright</strong></p>
+      <div class="p"><p><Icon name="copyright" /> {year} Alieke.design</p></div>
+    </div>
+    <div class="column">
+      <p class="default-body"><strong>KvK</strong></p>
+      <div class="p"><p><Icon name="hash" /> {site.kvk}</p></div>
+    </div>
+    <div class="column">
+      <p class="default-body"><strong>Kantoor</strong></p>
+      <div class="p"><p><Icon name="building" /> {site.address}</p></div>
+    </div>
+    <div class="column">
+      <p class="default-body"><strong>Contact</strong></p>
+      <div class="p"><p><Icon name="mail" /> <a href={`mailto:${site.email}`}>{site.email}</a></p></div>
+    </div>
+    <div class="column">
+      <p class="default-body"><strong>LinkedIn</strong></p>
+      <div class="p"><p><Icon name="linkedin" /> <a href={site.linkedin} rel="noopener" target="_blank">in/aliekezelhorst</a></p></div>
+    </div>
+  </div>
+  {site.googleAnalyticsId && (
+    <div class="footer__cookies"><button type="button" class="footer__cookie-link" data-cookie-settings>Cookie-instellingen</button></div>
+  )}
+</footer>
