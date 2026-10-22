@@ -1,5 +1,4 @@
 ---
-import Icon from './Icon.astro';
 import { site } from '../config';
 const dots: [number, number][] = [];
 for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push([x, y]);
@@ -20,10 +19,7 @@ for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push(
       <p class="contact-mail default-body">
         <a class="contact-mail__link" href={`mailto:${site.email}`}>{site.email}</a>
       </p>
-      <a class="button" href={`mailto:${site.email}`}>
-        <span class="button__text">Mail mij</span>
-        <span class="button__icon is-arrow-right"><Icon name="arrow-right" /></span>
-      </a>
+      <div class="contact-spacer" aria-hidden="true"></div>
     </div>
   </div>
 </section>

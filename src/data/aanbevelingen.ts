@@ -2,6 +2,7 @@
 // 1. zet een vierkante foto in src/assets/img/aanbevelingen/
 // 2. importeer hem hieronder en voeg een blok toe aan de lijst.
 // Lege regel in de tekst = nieuwe alinea.
+// linkedin: de URL van hun LinkedIn-profiel. Leeg laten = link naar jouw aanbevelingen op LinkedIn.
 import rik from '../assets/img/aanbevelingen/rik.webp';
 import bas from '../assets/img/aanbevelingen/bas.webp';
 import ajay from '../assets/img/aanbevelingen/ajay.webp';
@@ -11,6 +12,7 @@ import aron from '../assets/img/aanbevelingen/aron.webp';
 export const aanbevelingen = [
   {
     name: 'Rik van Duijn',
+    linkedin: '',
     role: 'React Native Developer @ Tired of Cancer',
     photo: rik,
     lang: 'en',
@@ -18,6 +20,7 @@ export const aanbevelingen = [
   },
   {
     name: 'Bas Tromp',
+    linkedin: '',
     role: 'Owner @ Opreis.nl',
     photo: bas,
     lang: 'nl',
@@ -25,6 +28,7 @@ export const aanbevelingen = [
   },
   {
     name: 'Ajay Kharade',
+    linkedin: '',
     role: 'Seasoned Agile Leader @ Heineken',
     photo: ajay,
     lang: 'en',
@@ -38,6 +42,7 @@ Wishing you the best, Alieke.`,
   },
   {
     name: 'Bob Hennis',
+    linkedin: '',
     role: 'Informatieanalist @ Zorg en Zekerheid',
     photo: bob,
     lang: 'nl',
@@ -51,6 +56,7 @@ Daarnaast is Alieke ook gewoon een hele gezellige collega, ook zeker niet onbela
   },
   {
     name: 'Aron Schilder',
+    linkedin: '',
     role: 'Founder @ Recruit Robin',
     photo: aron,
     lang: 'en',
@@ -59,3 +65,5 @@ The result of our collaboration? When we ask users feedback on our product, they
 @Alieke: we hope to have you back on board one day and wish you all the best for the future!`,
   },
 ];
+
+export const recommendationsUrl = 'https://www.linkedin.com/in/aliekezelhorst/details/recommendations/';

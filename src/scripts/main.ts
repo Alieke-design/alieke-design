@@ -131,4 +131,12 @@ $$('.review').forEach((review) => {
   });
 });
 
+// Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') document.body.classList.add('tips-dismissed');
+});
+const resetTips = () => document.body.classList.remove('tips-dismissed');
+document.addEventListener('mousemove', resetTips, { passive: true });
+document.addEventListener('focusin', resetTips);
+
 window.addEventListener('load', () => ScrollTrigger.refresh());
