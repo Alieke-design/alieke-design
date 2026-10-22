@@ -131,6 +131,38 @@ $$('.review').forEach((review) => {
   });
 });
 
+// E-mailadres kopiëren
+$$<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+  const label = btn.querySelector<HTMLElement>('[data-copy-label]');
+  const status = btn.parentElement?.querySelector<HTMLElement>('[data-copy-status]');
+  let timer: number | undefined;
+  btn.addEventListener('click', async () => {
+    const value = btn.dataset.copy || '';
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const ta = Object.assign(document.createElement('textarea'), { value });
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+    }
+    document.body.classList.remove('tips-dismissed');
+    if (label) label.textContent = 'Gekopieerd';
+    if (status) status.textContent = 'E-mailadres gekopieerd';
+    btn.classList.add('is-copied');
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => {
+      btn.classList.remove('is-copied');
+      if (label) label.textContent = 'Kopiëren';
+      if (status) status.textContent = '';
+    }, 2000);
+  });
+});
+
 // Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.body.classList.add('tips-dismissed');
