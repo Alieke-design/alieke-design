@@ -1,5 +1,5 @@
-/* Aanvullingen op het thema (theme.css): toegankelijkheid, aanbevelingen,
-   contact zonder formulier en de cookiemelding. Kleuren uit het design system. */
+/* Aanvullingen op het thema (theme.css): toegankelijkheid, aanbevelingen
+   en contact zonder formulier. Kleuren uit het design system. */
 
 :root {
   --brand-blue: #0049dc;
@@ -85,7 +85,7 @@
 .review__name a:hover { text-decoration: underline; }
 .review__verified { position: relative; display: inline-flex; flex: none; width: 14px; height: 14px; }
 .review__verified svg { width: 14px; height: 14px; }
-.review__role { margin-top: 0.15rem; font-size: 0.75rem; line-height: 1.33; color: #585858; }
+.review__role { margin-top: 0.15rem; font-size: 0.75rem; line-height: 1.33; color: var(--ink); }
 .review__badge {
   justify-self: start;
   display: inline-flex;
@@ -93,8 +93,8 @@
   gap: 4px;
   padding: 4px;
   border-radius: 4px;
-  background: rgba(17, 85, 178, 0.1);
-  color: #1155b2;
+  background: var(--surface-tint);
+  color: var(--brand-blue);
   font-size: 0.75rem;
   line-height: 1.17;
 }
@@ -110,7 +110,7 @@
   transform: translateX(-50%);
   padding: 6px 8px;
   border-radius: 4px;
-  background: #111;
+  background: var(--brand-navy);
   color: #fff;
   font-size: 13px;
   font-weight: 400;
@@ -161,57 +161,6 @@
 .contact-copy.is-copied .tip__bubble { opacity: 1; visibility: visible; transition-delay: 0s; }
 /* Houdt het contactblok even hoog als in de oude versie */
 .contact-spacer { height: 3.125rem; }
-
-/* Footer: link naar cookie-instellingen ---------------------------------- */
-.footer__cookies { max-width: var(--max-width); margin: 0 auto; padding: 0 3.125vw 1.5rem; }
-@media only screen and (max-width: 1024px) { .footer__cookies { padding: 0 1rem 1.5rem; } }
-.footer__cookie-link {
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  font-size: 0.875rem;
-  color: #fff;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-/* Cookiemelding ----------------------------------------------------------- */
-.cookie-banner {
-  position: fixed;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 50;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-}
-.cookie-banner[hidden] { display: none; }
-.cookie-banner__inner {
-  pointer-events: auto;
-  max-width: 40rem;
-  background: #fff;
-  color: var(--ink);
-  border: 2px solid var(--brand-navy);
-  border-radius: 0.5rem;
-  padding: 1.25rem 1.5rem;
-  display: grid;
-  gap: 1rem;
-  box-shadow: 0.22em -0.22em 0 0 var(--ink);
-}
-.cookie-banner__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; }
-.cookie-banner__decline {
-  padding: 0;
-  border: 0;
-  background: none;
-  font: inherit;
-  font-weight: 600;
-  color: var(--brand-blue);
-  text-decoration: underline;
-  text-underline-offset: 0.2em;
-  cursor: pointer;
-}
 
 /* Uit "Extra CSS" van WordPress (Customizer) ------------------------------ */
 @media only screen and (min-width: 1440px) {
