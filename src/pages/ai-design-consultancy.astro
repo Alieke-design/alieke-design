@@ -1,0 +1,128 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import DoubleArrows from '../components/DoubleArrows.astro';
+import DotGrid from '../components/DotGrid.astro';
+import Contact from '../components/Contact.astro';
+import portrait from '../assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png';
+import { eenmalig, doorlopend, consultancyResultaat, consultancyVoorWie } from '../data/consultancy';
+---
+<Base
+  title="AI Design Consultancy - Alieke.design"
+  description="Eén designbasis voor de hele organisatie, klaar om zelf met AI mee te werken. Met beheer en controle door een senior UX/UI designer en WCAG specialist."
+>
+  <section class="text-image" data-scroll-var data-start="top top" id="hi">
+    <div class="text-image__inner">
+      <div class="text-image__text">
+        <p class="label background--dblue font-semibold">Consultancy</p>
+        <h1 class="large-heading color--ddarkblue">AI Design Consultancy</h1>
+        <div class="default-body p">
+          <blockquote>
+            <p>AI maakt snel een 7. Ik zorg voor de <span class="highlight">basis</span> en de <span class="highlight">controle</span> die er een 9 van maken.”</p>
+          </blockquote>
+          <ul>
+            <li><span><strong>Eén designbasis</strong> voor de hele organisatie</span></li>
+            <li><span><strong>Klaar om zelf</strong> met AI mee te werken</span></li>
+            <li><span><strong>Beheer en controle</strong> door een expert</span></li>
+          </ul>
+        </div>
+        <a class="button button--anchor" href="#aanpak">
+          <span class="button__text">Bekijk de aanpak</span>
+          <span class="button__icon is-arrow-down"><Icon name="arrow-down" /></span>
+        </a>
+      </div>
+      <div class="text-image__media" style="--ratio: 514/408">
+        <svg class="clippie" style="--ratio: 408/514" viewBox="0 0 408 514" aria-hidden="true">
+          <clipPath clipPathUnits="objectBoundingBox" id="image-shape">
+            <path d="M0,0 L408,0 L408,310 C408,422.666089 316.666089,514 204,514 C91.333911,514 0,422.666089 0,310 L0,0 Z" fill="#000000"></path>
+          </clipPath>
+        </svg>
+        <Image
+          src={portrait}
+          alt="Foto van Alieke Zelhorst"
+          widths={[400, 600, 800]}
+          sizes="(max-width: 750px) 80vw, 336px"
+          loading="eager"
+          fetchpriority="high"
+          style="--ratio:1"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="widget-block consultancy-why background--dlightblue" id="waarom">
+    <div class="widget-block__inner">
+      <div class="svg-dot-grid" data-scroll-offset-y="top bottom" data-scroll-translate data-target="parent" data-translate-y="0.5" aria-hidden="true">
+        <DotGrid />
+      </div>
+      <p class="label background--dyellow font-semibold">Waarom</p>
+      <h2 class="large-heading color--dblue">AI vermenigvuldigt</h2>
+      <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">Ook wat er niet klopt</p>
+      <div class="default-body p consultancy-why__text">
+        <p>Met AI-tools maakt iedereen in een paar minuten een pagina, een flow of een hele app. Die tools bouwen voort op wat er al ligt. Is de basis rommelig of verspreid over afdelingen en bestanden, dan wordt die rommel razendsnel overal herhaald.</p>
+        <p>Met één goede basis en iemand die meekijkt, maakt iedereen werk dat klopt: consistent, toegankelijk en prettig in gebruik.</p>
+        <p><strong>Een voorbeeld:</strong> je merkkleur wordt één keer vastgelegd, met de juiste contrastregels. De website, de app en wat een collega met AI maakt, gebruiken daarna allemaal precies dezelfde kleur, en die is voor iedereen goed leesbaar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-repeater" data-scroll-var data-start="top bottom" id="aanpak">
+    <div class="content-repeater__inner">
+      <DoubleArrows />
+      <div class="content-repeater__content">
+        <p class="label background--dyellow font-semibold">Aanpak</p>
+        <h2 class="large-heading color--dblue">Opzetten</h2>
+        <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">Eenmalig traject</p>
+        <ol class="steps default-body" start="1">
+          {eenmalig.map((step, i) => (
+            <li class="steps__item">
+              <span class="steps__number" aria-hidden="true">{i + 1}</span>
+              <div>
+                <h3 class="steps__title color--dblue">{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="content-repeater__content">
+        <h2 class="large-heading color--dblue">Doorlopend</h2>
+        <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">Los of samen af te nemen</p>
+        <ol class="steps default-body" start={eenmalig.length + 1}>
+          {doorlopend.map((step, i) => (
+            <li class="steps__item">
+              <span class="steps__number" aria-hidden="true">{eenmalig.length + i + 1}</span>
+              <div>
+                <h3 class="steps__title color--dblue">{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="content-repeater__content">
+        <h2 class="large-heading color--dblue">Resultaat</h2>
+        <div class="kpis">
+          <ul class="kpis__list default-body custom-icon">
+            {consultancyResultaat.map((item) => (
+              <li><span><span class="icon color--dblue"><Icon name="check" /></span><span set:html={item} /></span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div class="content-repeater__content">
+        <h2 class="large-heading color--dblue">Voor wie</h2>
+        <div class="kpis">
+          <ul class="kpis__list default-body custom-icon">
+            {consultancyVoorWie.map((item) => (
+              <li><span><span class="icon color--dblue"><Icon name="arrow-right" /></span><span set:html={item} /></span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Contact text="Benieuwd wat dit voor jouw organisatie kan betekenen? Ik begin graag met een kort gesprek over wat er nu ligt. Ik reageer binnen een werkdag." />
+</Base>

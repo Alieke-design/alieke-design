@@ -1,5 +1,7 @@
 ---
 import { site } from '../config';
+interface Props { text?: string }
+const { text = 'Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.' } = Astro.props;
 const dots: [number, number][] = [];
 for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push([x, y]);
 ---
@@ -14,7 +16,7 @@ for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push(
       <p class="label background--dyellow font-semibold">Contact</p>
       <h2 class="large-heading color--dblue">Vertel..</h2>
       <div class="default-body p">
-        <p>Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.</p>
+        <p>{text}</p>
       </div>
       <p class="contact-mail default-body">
         <a class="contact-mail__link" href={`mailto:${site.email}`}>{site.email}</a>

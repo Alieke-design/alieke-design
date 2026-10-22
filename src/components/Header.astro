@@ -1,12 +1,15 @@
 ---
+// Menu. Links naar de secties van de homepage werken ook vanaf andere pagina's.
+// "Hi 👋" staat er niet meer in: het logo linkt al naar de bovenkant van de homepage.
 const items = [
-  { href: '#hi', label: 'Hi 👋' },
-  { href: '#werk', label: 'Werk' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#aanbevelingen', label: 'Aanbevelingen' },
-  { href: '#over-mij', label: 'Over mij' },
-  { href: '#contact', label: 'Contact' },
+  { href: '/#werk', label: 'Werk' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#aanbevelingen', label: 'Aanbevelingen' },
+  { href: '/#over-mij', label: 'Over mij' },
+  { href: '/ai-design-consultancy/', label: 'AI Design Consultancy' },
+  { href: '/#contact', label: 'Contact' },
 ];
+const current = Astro.url.pathname.replace(/\/?$/, '/');
 ---
 <header class="header color--ddarkblue">
   <div class="header__inner">
@@ -18,7 +21,7 @@ const items = [
         {items.map((item) => (
           <li class="header__item">
             <div class="header__text-container">
-              <a class="header__link" href={item.href}>
+              <a class="header__link" href={item.href} aria-current={item.href === current ? 'page' : undefined}>
                 <span class="header__text">{item.label}</span>
               </a>
             </div>
