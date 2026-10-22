@@ -283,3 +283,23 @@ html { scroll-padding-top: 5rem; }
 @media only screen and (min-width: 751px) {
   .mobile-menu { display: none !important; }
 }
+
+/* Vloeiendere animaties -------------------------------------------------- */
+.project__media img, .project__media video { transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+[data-lazy-load] { transition: opacity 0.8s ease-out; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js :is(.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)) {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  html.js :is(.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)).is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media print {
+  html.js * { opacity: 1 !important; transform: none !important; }
+}

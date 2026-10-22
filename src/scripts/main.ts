@@ -21,8 +21,7 @@ $$<HTMLImageElement>('img[data-lazy-load]').forEach((img) => {
 let lenis: Lenis | null = null;
 if (!reduceMotion) {
   lenis = new Lenis({
-    duration: 1,
-    easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+    lerp: 0.1, // glijdt mee met de scrollsnelheid (natuurlijker op een trackpad)
     smoothWheel: window.innerWidth > 1024,
   });
   lenis.on('scroll', ScrollTrigger.update);
@@ -38,7 +37,13 @@ $$<HTMLAnchorElement>('a[href*="#"]').forEach((link) => {
     const target = document.querySelector<HTMLElement>(url.hash);
     if (!target) return;
     e.preventDefault();
-    if (lenis) lenis.scrollTo(target, { offset: 0, duration: 1 });
+    if (lenis) {
+      // Duur hangt af van de afstand (0,8–1,6 s), met een zachte start en stop.
+      const distance = Math.abs(target.getBoundingClientRect().top);
+      const duration = Math.min(1.6, Math.max(0.8, 0.6 + distance / 4000));
+      const easeInOutCubic = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+      lenis.scrollTo(target, { offset: 0, duration, easing: easeInOutCubic });
+    }
     else target.scrollIntoView();
     history.pushState(null, '', url.hash);
     target.setAttribute('tabindex', '-1');
@@ -67,7 +72,7 @@ if (reduceMotion) {
         trigger: targetOf(el),
         start: el.dataset.scrollOffsetY || 'top-=1',
         end: el.dataset.scrollDistance || 'bottom',
-        scrub: true,
+        scrub: 0.6, // korte naloop: zachter meebewegen
       },
       y: `${(100 / 24) * Number(el.dataset.translateY)}vw`,
     });
@@ -80,7 +85,7 @@ if (reduceMotion) {
         trigger: targetOf(el),
         start: el.dataset.scrollOffsetY ? `top-=${el.dataset.scrollOffsetY}` : 'top-=1',
         end: el.dataset.scrollDistance ? `top+=${el.dataset.scrollDistance}` : 'bottom',
-        scrub: true,
+        scrub: 0.6, // korte naloop: zachter meebewegen
       },
       x: `${(100 / 24) * Number(el.dataset.translateX)}vw`,
     });
@@ -218,6 +223,25 @@ if (menu && menuOpen) {
   }, true);
   // Menu dicht als het scherm breder wordt dan mobiel.
   window.matchMedia('(min-width: 751px)').addEventListener('change', (e) => { if (e.matches && menu.open) menu.close(); });
+}
+
+// Koppen, teksten en kaarten zacht laten verschijnen zodra ze in beeld komen.
+const revealTargets = $$(
+  '.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)',
+);
+if (reduceMotion || !('IntersectionObserver' in window)) {
+  revealTargets.forEach((el) => el.classList.add('is-revealed'));
+} else {
+  const io = new IntersectionObserver((entries) => {
+    let i = 0;
+    entries.filter((e) => e.isIntersecting).forEach((e) => {
+      const el = e.target as HTMLElement;
+      el.style.setProperty('--reveal-delay', `${Math.min(i++, 4) * 80}ms`);
+      el.classList.add('is-revealed');
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
+  revealTargets.forEach((el) => io.observe(el));
 }
 
 // Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
