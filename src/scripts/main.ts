@@ -227,7 +227,7 @@ if (menu && menuOpen) {
 
 // Koppen, teksten en kaarten zacht laten verschijnen zodra ze in beeld komen.
 const revealTargets = $$(
-  '.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)',
+  '.text-image__text > *, .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.contact-spacer):not(.visually-hidden)',
 );
 if (reduceMotion || !('IntersectionObserver' in window)) {
   revealTargets.forEach((el) => el.classList.add('is-revealed'));
