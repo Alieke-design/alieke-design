@@ -1,0 +1,277 @@
+---
+import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
+
+const nav = [
+  { href: '#waarom', label: 'Waarom' },
+  { href: '#aanpak', label: 'Aanpak' },
+  { href: '#resultaat', label: 'Resultaat' },
+  { href: '#voor-wie', label: 'Voor wie' },
+  { href: '#contact', label: 'Contact' },
+];
+---
+<Base
+  title="AI Design Consultancy - Alieke.design"
+  description="Eén designbasis voor de hele organisatie, klaar om zelf met AI mee te werken. Met beheer en controle door een expert."
+  nav={nav}
+  menuNote="Je krijgt binnen een werkdag reactie."
+>
+<div class="consultancy">
+  <section id="hi" style="max-width: 1120px; margin: 0 auto; padding: clamp(40px, 6vw, 96px) 16px clamp(64px, 8vw, 117px); display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px;">
+    <div style="flex: 1 1 460px; min-width: 0; max-width: 616px;">
+      <p style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; font-weight: 600; line-height: 1.4;">Nieuw</p>
+      <h1 style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0d0064;">AI Design Consultancy</h1>
+      <ul style="margin: 40px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; font-size: 18px; line-height: 1.4;">
+        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span><strong style="font-weight: 600;">Eén designbasis</strong> voor de hele organisatie</span></li>
+        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span><strong style="font-weight: 600;">Klaar om zelf</strong> met AI mee te werken</span></li>
+        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span><strong style="font-weight: 600;">Beheer en controle</strong> door een expert</span></li>
+      </ul>
+      <a href="#aanpak" style="display: inline-flex; align-items: center; gap: 10px; margin-top: 32px; padding: 17.8px 28.3px; border-radius: 14.08px; background: #0049dc; color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none; box-shadow: 3.52px -3.52px 0 0 #232323;">Bekijk de aanpak<svg viewBox="0 0 14 15" aria-hidden="true" style="width: 13px; height: 14px; fill: #ffffff;"><path d="M6.28125 13.7188L1.28125 8.71875C0.875 8.34375 0.875 7.6875 1.28125 7.3125C1.65625 6.90625 2.3125 6.90625 2.6875 7.3125L6 10.5938V1C6 0.46875 6.4375 0 7 0C7.53125 0 8 0.46875 8 1V10.5938L11.2812 7.3125C11.6562 6.90625 12.3125 6.90625 12.6875 7.3125C13.0938 7.6875 13.0938 8.34375 12.6875 8.71875L7.6875 13.7188C7.3125 14.125 6.65625 14.125 6.28125 13.7188Z"></path></svg></a>
+    </div>
+
+    <div style="flex: 1 1 320px; max-width: 440px; margin: 0 auto;">
+      <svg viewBox="0 0 440 440" aria-hidden="true" style="display: block; width: 100%; height: auto;">
+        <circle cx="236" cy="232" r="176" fill="none" stroke="#0049dc" stroke-width="3"></circle>
+        <circle cx="210" cy="220" r="176" fill="#ffc518"></circle>
+        <g fill="none" stroke="#0d0064" stroke-width="3" stroke-linejoin="round">
+          <rect x="22" y="34" width="44" height="44" rx="6" transform="rotate(-14 44 56)"></rect>
+          <rect x="92" y="6" width="30" height="30" rx="15"></rect>
+        </g>
+        <rect x="44" y="104" width="26" height="26" rx="4" fill="#0049dc" transform="rotate(18 57 117)"></rect>
+        <text x="132" y="74" font-family="Poppins, sans-serif" font-size="26" font-weight="600" fill="#0d0064" transform="rotate(-10 150 66)">Aa</text>
+        <g stroke="#0d0064" stroke-width="3" stroke-linecap="round" fill="none" stroke-dasharray="2 9">
+          <path d="M82 96 C 104 120 112 132 122 146"></path>
+          <path d="M168 84 C 176 104 182 116 188 128"></path>
+        </g>
+        <rect x="100" y="134" width="252" height="224" rx="8" fill="#ffffff"></rect>
+        <text x="124" y="194" font-family="Poppins, sans-serif" font-size="42" font-weight="600" fill="#0d0064">Aa</text>
+        <circle cx="250" cy="180" r="15" fill="#0049dc"></circle>
+        <circle cx="288" cy="180" r="15" fill="#0d0064"></circle>
+        <circle cx="326" cy="180" r="15" fill="#ffc518" stroke="#0d0064" stroke-width="2"></circle>
+        <rect x="128" y="218" width="118" height="40" rx="10" fill="#232323"></rect>
+        <rect x="124" y="222" width="118" height="40" rx="10" fill="#0049dc"></rect>
+        <rect x="144" y="238" width="62" height="8" rx="4" fill="#ffffff"></rect>
+        <rect x="124" y="286" width="204" height="10" rx="5" fill="#e3f0ff"></rect>
+        <rect x="124" y="308" width="150" height="10" rx="5" fill="#e3f0ff"></rect>
+        <circle cx="352" cy="352" r="34" fill="#0049dc"></circle>
+        <path d="M336 352 l11 11 l22 -22" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </div>
+  </section>
+
+  <section id="waarom" style="background: #e3f0ff; position: relative;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(64px, 8vw, 117px) 16px calc(clamp(96px, 10vw, 140px) + 40px); position: relative;">
+      <svg class="why-dots" viewBox="0 0 132 93" aria-hidden="true" style="position: absolute; right: 16px; top: clamp(64px, 8vw, 117px); width: 132px; height: 93px; fill: #ffc518;"><g><circle cx="6.6" cy="6.6" r="6.6"></circle><circle cx="46.2" cy="6.6" r="6.6"></circle><circle cx="85.8" cy="6.6" r="6.6"></circle><circle cx="125.4" cy="6.6" r="6.6"></circle><circle cx="6.6" cy="46.2" r="6.6"></circle><circle cx="46.2" cy="46.2" r="6.6"></circle><circle cx="85.8" cy="46.2" r="6.6"></circle><circle cx="125.4" cy="46.2" r="6.6"></circle><circle cx="6.6" cy="85.8" r="6.6"></circle><circle cx="46.2" cy="85.8" r="6.6"></circle><circle cx="85.8" cy="85.8" r="6.6"></circle><circle cx="125.4" cy="85.8" r="6.6"></circle></g></svg>
+      <p style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #0d0064; color: #ffffff; font-size: 16px; font-weight: 600; line-height: 1.4;">Waarom</p>
+      <h2 style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">AI vermenigvuldigt</h2>
+      <p style="margin: 12px 0 0; font-size: clamp(24px, 1.875vw, 27px); line-height: 1.1; font-weight: 400; color: #0d0064;">Ook wat er niet klopt</p>
+      <div style="max-width: 630px; margin-top: 40px; font-size: 18px; line-height: 1.6; display: grid; gap: 18px;">
+        <p style="margin: 0;">Met AI-tools maakt iedereen in een paar minuten een pagina, een flow of een hele app. Die tools bouwen voort op wat er al ligt. Is de basis rommelig of verspreid over afdelingen en bestanden, dan wordt die rommel razendsnel overal herhaald.</p>
+        <p style="margin: 0;">Met één goede basis en een senior designer die meekijkt, maakt iedereen werk dat klopt: consistent, toegankelijk en prettig in gebruik.</p>
+      </div>
+    </div>
+    <svg viewBox="0 0 295 157" aria-hidden="true" style="position: absolute; left: max(16px, calc(50% - 560px + 48px)); bottom: -78px; width: 220px; height: auto; z-index: 1;">
+      <g transform="translate(5, 2)">
+        <path fill="#ffc518" d="M167.1583,154.20702 L288.8703,22.67922 C289.4633,22.03892 289.0083,21.00002 288.1363,21.00002 L44.7122,21.00002 C43.8398,21.00002 43.3857,22.03892 43.9782,22.67922 L165.6903,154.20702 C166.0863,154.63502 166.7623,154.63502 167.1583,154.20702 Z"></path>
+        <path fill="#0d0064" d="M243.423978,-2 L240.316226,1.35837881 L120.892226,130.413399 L119.424302,131.999705 L117.956376,130.413401 L-1.46792439,1.35838065 L-4.57568617,-2 L243.423978,-2 Z M234.273,2 L4.574,2 L119.424,126.11 L234.273,2 Z"></path>
+      </g>
+    </svg>
+  </section>
+
+  <section id="aanpak" style="max-width: 1120px; margin: 0 auto; padding: clamp(140px, 12.5vw, 180px) 16px clamp(80px, 8vw, 117px);">
+    <p style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; font-weight: 600; line-height: 1.4;">Aanpak</p>
+    <h2 style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">In vijf stappen</h2>
+    <p style="margin: 12px 0 0; font-size: clamp(24px, 1.875vw, 27px); line-height: 1.1; font-weight: 400; color: #0d0064;">Van losse onderdelen naar één basis</p>
+
+    <ol class="steps" data-steps aria-label="Vijf stappen" style="list-style: none; margin: 96px 0 0; padding: 0;">
+      <li style="scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center;" aria-hidden="true"><span style="flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 26px; font-weight: 600;">1</span><span style="flex: 1; height: 3px; margin-right: -24px; background: #0d0064;"></span></div>
+        <h3 style="margin: 8px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Scan</h3>
+        <p style="align-self: flex-start; margin: 0; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Eenmalig</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5;">In kaart brengen wat er al ligt: wat klopt, wat dubbel is en wat ontbreekt.</p>
+      </li>
+      <li style="scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center;" aria-hidden="true"><span style="flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 26px; font-weight: 600;">2</span><span style="flex: 1; height: 3px; margin-right: -24px; background: #0d0064;"></span></div>
+        <h3 style="margin: 8px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Fundament</h3>
+        <p style="align-self: flex-start; margin: 0; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Eenmalig</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5;">Eén bron van waarheid: een design system met regels, gekoppeld aan je AI-tools.</p>
+      </li>
+      <li style="scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center;" aria-hidden="true"><span style="flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 26px; font-weight: 600;">3</span><span style="flex: 1; height: 3px; margin-right: -24px; background: #0d0064;"></span></div>
+        <h3 style="margin: 8px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Overdracht</h3>
+        <p style="align-self: flex-start; margin: 0; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Eenmalig</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5;">Je team leert werken met de basis en de AI-tools.</p>
+      </li>
+      <li style="scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center;" aria-hidden="true"><span style="flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #ffffff; color: #0049dc; box-shadow: inset 0 0 0 3px #0049dc; font-size: 26px; font-weight: 600;">4</span><span style="flex: 1; position: relative; height: 0; margin: 0 -18px 0 6px; border-top: 3px dashed #0049dc;"><svg viewBox="0 0 10 14" aria-hidden="true" style="position: absolute; right: -4px; top: -8.5px; width: 10px; height: 14px; fill: #0049dc;"><path d="M10 7 L0 0 L0 14 Z"></path></svg></span></div>
+        <h3 style="margin: 8px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Beheer</h3>
+        <p style="align-self: flex-start; margin: 0; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Doorlopend</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5;">Wijzigingen lopen via één vast punt, zodat de bron blijft kloppen.</p>
+      </li>
+      <li style="scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; min-width: 0;">
+        <div style="display: flex; align-items: center;" aria-hidden="true"><span style="flex: none; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: #ffffff; color: #0049dc; box-shadow: inset 0 0 0 3px #0049dc; font-size: 26px; font-weight: 600;">5</span></div>
+        <h3 style="margin: 8px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Review</h3>
+        <p style="align-self: flex-start; margin: 0; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Doorlopend</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.5;">Wat met AI gemaakt is, wordt gecheckt op UI én UX voordat het live gaat.</p>
+      </li>
+      <li class="steps-loop" aria-hidden="true" style="position: absolute; top: -40px; left: calc((100% - 96px) / 5 * 3 + 72px + 32px); width: calc((100% - 96px) / 5 + 24px); height: 36px; list-style: none; pointer-events: none;">
+        <span style="position: absolute; inset: 0; border: 3px dashed #0049dc; border-bottom: 0; border-radius: 28px 28px 0 0;"></span>
+        <svg viewBox="0 0 14 10" style="position: absolute; left: -6.5px; bottom: -6px; width: 16px; height: 11px; fill: #0049dc;"><path d="M7 10 L0 0 L14 0 Z"></path></svg>
+      </li>
+    </ol>
+    <div class="steps-mobile" aria-hidden="true" style="align-items: center; justify-content: center; gap: 16px; margin-top: 24px;">
+      <div style="display: flex; align-items: center; gap: 6px;">
+        <span data-dot style="display: block; height: 8px; border-radius: 4px; width: 28px; background: #0049dc; transition: width .25s, background .25s;"></span><span data-dot style="display: block; height: 8px; border-radius: 4px; width: 8px; background: #c7ddff; transition: width .25s, background .25s;"></span><span data-dot style="display: block; height: 8px; border-radius: 4px; width: 8px; background: #c7ddff; transition: width .25s, background .25s;"></span><span data-dot style="display: block; height: 8px; border-radius: 4px; width: 8px; background: #c7ddff; transition: width .25s, background .25s;"></span><span data-dot style="display: block; height: 8px; border-radius: 4px; width: 8px; background: #c7ddff; transition: width .25s, background .25s;"></span>
+      </div>
+    </div>
+
+    <div style="margin-top: 96px; padding: clamp(24px, 3vw, 40px); border-radius: 8px; background: #e3f0ff; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px;">
+      <svg viewBox="0 0 150 120" aria-hidden="true" style="flex: none; width: 150px; height: 120px;">
+        <rect x="6" y="10" width="96" height="96" rx="20" fill="none" stroke="#0d0064" stroke-width="3" transform="rotate(10 54 58)"/>
+        <rect x="16" y="14" width="96" height="96" rx="20" fill="#0049dc" transform="rotate(-6 64 62)"/>
+        <rect x="34" y="22" width="84" height="76" rx="8" fill="#ffffff"/>
+        <circle cx="76" cy="38" r="6" fill="#0d0064"/>
+        <path d="M56 50 L96 50" stroke="#0d0064" stroke-width="6" stroke-linecap="round"/>
+        <path d="M76 50 L76 64 L66 82 M76 64 L86 82" fill="none" stroke="#0d0064" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="122" cy="94" r="18" fill="#ffc518"/>
+        <path d="M114 94 l6 6 l11 -12" fill="none" stroke="#0d0064" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="flex: 1 1 420px; min-width: 0;">
+        <p style="display: inline-block; margin: 0; padding: 2px 10px; border-radius: 48px; background: #ffffff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">Optioneel</p>
+        <h3 style="margin: 12px 0 0; font-size: clamp(24px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Toegankelijk volgens WCAG</h3>
+        <p style="margin: 8px 0 0; font-size: 18px; line-height: 1.6;">Een gecertificeerd WCAG-specialist toetst de basis en de reviews op toegankelijkheid. Zo is wat je maakt bruikbaar voor iedereen en voldoet het aan de WCAG-normen.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="resultaat" style="background: #e3f0ff;">
+   <div style="max-width: 1120px; margin: 0 auto; padding: clamp(64px, 8vw, 117px) 16px clamp(80px, 8vw, 117px); display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px;">
+    <div style="flex: 1 1 460px; min-width: 0;">
+      <p style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #0d0064; color: #ffffff; font-size: 16px; font-weight: 600; line-height: 1.4;">Resultaat</p>
+      <h2 style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">Wat het oplevert</h2>
+      <ul style="margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; font-size: 18px; line-height: 1.4;">
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><strong style="font-weight: 600;">Een bron van waarheid</strong> waar iedereen vanuit werkt</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><strong style="font-weight: 600;">Consistente designs</strong>, ook wat met AI gemaakt is</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><strong style="font-weight: 600;">Een team</strong> dat zelfstandig met AI werkt</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><strong style="font-weight: 600;">Controle</strong> op wat er live gaat</span></li>
+        </ul>
+    </div>
+    <div style="flex: 1 1 320px; max-width: 420px; margin: 0 auto;">
+        <svg viewBox="0 0 440 400" aria-hidden="true" style="display: block; width: 100%; height: auto;">
+          <rect x="52" y="34" width="300" height="300" rx="40" fill="none" stroke="#ffc518" stroke-width="4" transform="rotate(-8 202 184)"/>
+          <rect x="86" y="62" width="300" height="300" rx="40" fill="#0d0064" transform="rotate(-8 236 212)"/>
+          <g transform="rotate(-3 200 210)">
+            <rect x="62" y="112" width="262" height="196" rx="12" fill="#ffffff"/>
+            <circle cx="82" cy="130" r="5" fill="#e3f0ff"/><circle cx="98" cy="130" r="5" fill="#e3f0ff"/><circle cx="114" cy="130" r="5" fill="#e3f0ff"/>
+            <rect x="62" y="144" width="262" height="2" fill="#e3f0ff"/>
+            <rect x="80" y="160" width="226" height="70" rx="8" fill="#e3f0ff"/>
+            <text x="96" y="204" font-family="Poppins, sans-serif" font-size="30" font-weight="600" fill="#0d0064">Aa</text>
+            <rect x="152" y="180" width="120" height="10" rx="5" fill="#0049dc"/>
+            <rect x="152" y="198" width="84" height="8" rx="4" fill="#ffffff"/>
+            <rect x="83" y="249" width="92" height="34" rx="9" fill="#232323"/>
+            <rect x="80" y="252" width="92" height="34" rx="9" fill="#0049dc"/>
+            <rect x="98" y="265" width="56" height="8" rx="4" fill="#ffffff"/>
+            <rect x="192" y="256" width="110" height="8" rx="4" fill="#e3f0ff"/>
+            <rect x="192" y="272" width="80" height="8" rx="4" fill="#e3f0ff"/>
+          </g>
+          <g transform="rotate(6 350 104)">
+            <rect x="282" y="72" width="134" height="64" rx="12" fill="#ffffff"/>
+            <rect x="298" y="92" width="48" height="24" rx="12" fill="#0049dc"/>
+            <circle cx="334" cy="104" r="8" fill="#ffffff"/>
+            <rect x="356" y="94" width="44" height="8" rx="4" fill="#0d0064"/>
+            <rect x="356" y="108" width="30" height="6" rx="3" fill="#e3f0ff"/>
+          </g>
+          <g transform="rotate(-5 352 300)">
+            <rect x="290" y="268" width="128" height="62" rx="12" fill="#ffffff"/>
+            <circle cx="318" cy="299" r="12" fill="#0d0064"/>
+            <circle cx="350" cy="299" r="12" fill="#0049dc"/>
+            <circle cx="382" cy="299" r="12" fill="#ffc518"/>
+          </g>
+          <circle cx="76" cy="320" r="30" fill="#ffc518"/>
+          <path d="M62 320 l10 10 l19 -20" fill="none" stroke="#0d0064" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M40 66 l6 15 l15 6 l-15 6 l-6 15 l-6 -15 l-15 -6 l15 -6 z" fill="#0049dc"/>
+        </svg>
+    </div>
+   </div>
+  </section>
+
+  <section id="voor-wie" style="background: #ffffff;">
+   <div style="max-width: 1120px; margin: 0 auto; padding: clamp(64px, 8vw, 117px) 16px; display: flex; flex-wrap: wrap-reverse; align-items: center; gap: 48px 56px;">
+    <div style="flex: 1 1 300px; max-width: 360px; margin: 0 auto;">
+        <svg viewBox="0 0 440 400" aria-hidden="true" style="display: block; width: 100%; height: auto;">
+          <circle cx="200" cy="214" r="154" fill="none" stroke="#ffc518" stroke-width="4"/>
+          <circle cx="224" cy="200" r="154" fill="#e3f0ff"/>
+          <g fill="none" stroke="#0d0064" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 9">
+            <path d="M136 124 L 170 156"/><path d="M312 124 L 278 156"/>
+            <path d="M136 280 L 170 248"/><path d="M312 280 L 278 248"/>
+          </g>
+          <rect x="164" y="150" width="120" height="104" rx="10" fill="#ffffff"/>
+          <text x="182" y="198" font-family="Poppins, sans-serif" font-size="30" font-weight="600" fill="#0d0064">Aa</text>
+          <rect x="183" y="215" width="72" height="24" rx="7" fill="#232323"/>
+          <rect x="180" y="218" width="72" height="24" rx="7" fill="#0049dc"/>
+          <g transform="translate(108 98)"><clipPath id="av1"><circle r="36"/></clipPath><circle r="36" fill="#0d0064"/><g clip-path="url(#av1)"><circle cx="0" cy="-7" r="12" fill="#ffffff"/><ellipse cx="0" cy="32" rx="24" ry="20" fill="#ffffff"/></g><circle r="36" fill="none"/></g>
+          <g transform="translate(340 98)"><clipPath id="av2"><circle r="36"/></clipPath><circle r="36" fill="#ffc518"/><g clip-path="url(#av2)"><circle cx="0" cy="-7" r="12" fill="#0d0064"/><ellipse cx="0" cy="32" rx="24" ry="20" fill="#0d0064"/></g><circle r="36" fill="none"/></g>
+          <g transform="translate(108 306)"><clipPath id="av3"><circle r="36"/></clipPath><circle r="36" fill="#ffffff"/><g clip-path="url(#av3)"><circle cx="0" cy="-7" r="12" fill="#0049dc"/><ellipse cx="0" cy="32" rx="24" ry="20" fill="#0049dc"/></g><circle r="36" fill="none" stroke="#0d0064" stroke-width="3"/></g>
+          <g transform="translate(340 306)"><clipPath id="av4"><circle r="36"/></clipPath><circle r="36" fill="#0049dc"/><g clip-path="url(#av4)"><circle cx="0" cy="-7" r="12" fill="#ffffff"/><ellipse cx="0" cy="32" rx="24" ry="20" fill="#ffffff"/></g><circle r="36" fill="none"/></g>
+        </svg>
+    </div>
+    <div style="flex: 999 1 560px; min-width: 0;">
+      <p style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; font-weight: 600; line-height: 1.4;">Match</p>
+      <h2 style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">Voor wie</h2>
+      <ul class="oneline" style="margin: 32px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; font-size: 18px; line-height: 1.4;">
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.750 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span>Organisaties waar design verspreid zit over afdelingen en tools</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span>Teams die met AI willen werken zonder dat de kwaliteit wegzakt</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span>Organisaties zonder eigen designer die een senior willen laten meekijken</span></li>
+          <li style="display: flex; gap: 12px;"><svg viewBox="0 0 448 512" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M264.6 70.63l176 168c4.75 4.531 7.438 10.81 7.438 17.38s-2.688 12.84-7.438 17.38l-176 168c-9.594 9.125-24.78 8.781-33.94-.8125c-9.156-9.5-8.812-24.75 .8125-33.94l132.7-126.6H24.01c-13.25 0-24.01-10.76-24.01-24.01s10.76-23.99 24.01-23.99h340.1l-132.7-126.6C221.8 96.23 221.5 80.98 230.6 71.45C239.8 61.85 254.1 61.51 264.6 70.63z"></path></svg><span>Teams met designers die beheer en reviewen willen uitbesteden</span></li>
+        </ul>
+    </div>
+   </div>
+  </section>
+
+</div>
+  <Contact
+    text="Benieuwd wat dit voor jouw organisatie kan betekenen? Begin met een kort gesprek over wat er nu ligt. Je krijgt binnen een werkdag reactie."
+    labelClass="label-navy"
+  />
+</Base>
+
+<style is:global>
+.consultancy { font-family: Poppins, sans-serif; color: #232323; }
+.consultancy a { color: #0d0064; }
+.consultancy p, .consultancy h1, .consultancy h2, .consultancy h3, .consultancy ul, .consultancy ol { letter-spacing: normal; }
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:56px 24px;position:relative}
+.steps-loop{display:block}
+@media (min-width:1100px){.oneline span{white-space:nowrap}}
+.steps-mobile{display:none}
+@media (max-width:1000px){.why-dots{display:none}}
+@media (max-width:760px){
+.steps{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;margin:56px -16px 0 !important;padding:0 16px 8px !important;scroll-padding:0 16px;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 70%,transparent 100%);mask-image:linear-gradient(90deg,#000 0,#000 70%,transparent 100%);transition:-webkit-mask-image .3s}
+.steps::-webkit-scrollbar{display:none}
+.steps.is-end{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 100%);mask-image:linear-gradient(90deg,transparent 0,#000 12%,#000 100%)}
+.steps.is-mid{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 72%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 72%,transparent 100%)}
+.steps-loop{display:none}
+.steps-mobile{display:flex}
+}
+
+.label-navy { background: #0d0064 !important; color: #ffffff !important; }
+</style>
+
+<script>
+  const steps = document.querySelector<HTMLElement>('[data-steps]');
+  const dots = [...document.querySelectorAll<HTMLElement>('[data-dot]')];
+  if (steps) {
+    const update = () => {
+      const max = steps.scrollWidth - steps.clientWidth;
+      const step = max > 0 ? Math.round((steps.scrollLeft / max) * 4) : 0;
+      steps.classList.toggle('is-end', max > 0 && steps.scrollLeft > max - 8);
+      steps.classList.toggle('is-mid', steps.scrollLeft >= 8 && steps.scrollLeft <= max - 8);
+      dots.forEach((d, i) => {
+        d.style.width = i === step ? '28px' : '8px';
+        d.style.background = i === step ? '#0049dc' : '#c7ddff';
+      });
+    };
+    steps.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+</script>

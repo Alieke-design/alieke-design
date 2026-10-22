@@ -5,8 +5,8 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../config';
 
-interface Props { title?: string; description?: string; noindex?: boolean }
-const { title = site.title, description = site.description, noindex = false } = Astro.props;
+interface Props { title?: string; description?: string; noindex?: boolean; nav?: { href: string; label: string }[]; menuNote?: string }
+const { title = site.title, description = site.description, noindex = false, nav, menuNote } = Astro.props;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 
 const jsonLd = {
@@ -44,7 +44,7 @@ const jsonLd = {
   </head>
   <body class="color--dark">
     <a class="skip-link" href="#main">Naar de inhoud</a>
-    <Header />
+    <Header items={nav} menuNote={menuNote} />
     <div class="smooth-scroll">
       <main id="main">
         <slot />

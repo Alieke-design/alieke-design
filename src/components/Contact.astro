@@ -1,5 +1,7 @@
 ---
 import { site } from '../config';
+interface Props { text?: string; labelClass?: string }
+const { text = 'Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.', labelClass = 'background--dyellow' } = Astro.props;
 const dots: [number, number][] = [];
 for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push([x, y]);
 ---
@@ -11,10 +13,10 @@ for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push(
       </svg>
     </div>
     <div class="form__text">
-      <p class="label background--dyellow font-semibold">Contact</p>
+      <p class={`label ${labelClass} font-semibold`}>Contact</p>
       <h2 class="large-heading color--dblue">Vertel..</h2>
       <div class="default-body p">
-        <p>Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.</p>
+        <p>{text}</p>
       </div>
       <button class="button tip contact-copy" type="button" data-copy={site.email} aria-label={`${site.email} kopiëren`}>
         <span class="button__icon contact-copy__icon">
