@@ -149,28 +149,13 @@
 .review__toggle[aria-expanded='true'] .review__toggle-more,
 .review__toggle[aria-expanded='false'] .review__toggle-less { display: none; }
 
-/* Contact zonder formulier ------------------------------------------------ */
-.contact-mail { margin-top: 1.5rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem; }
-/* Kleine icoonknop in de stijl van de hoofdknop */
-.button--icon { padding: 0.6em; line-height: 0; border-radius: 0.6em; box-shadow: 0.16em -0.16em 0 0 #232323; }
-.button--icon svg { width: 1em; height: 1em; fill: currentColor; display: block; }
-.button--icon:hover { box-shadow: 0.08em -0.08em 0 #232323; transform: translate(0.08em, -0.08em); }
-.contact-mail__copy .tip__bubble { line-height: 1.2; }
-.contact-mail__copy.is-copied .tip__bubble { opacity: 1; visibility: visible; transition-delay: 0s; }
-.contact-mail__link {
-  font-size: 1.40625vw;
-  font-weight: 600;
-  color: var(--brand-navy);
-  text-decoration-color: var(--brand-yellow);
-  text-decoration-thickness: 0.18em;
-  text-underline-offset: 0.2em;
-}
-@media only screen and (max-width: 1280px) { .contact-mail__link { font-size: 18px; } }
-@media only screen and (min-width: 1440px) { .contact-mail__link { font-size: 20.25px; } }
-.form__text .button { margin-top: 1.77em; }
-/* Ruimte waar de knop "Mail mij" stond, blijft bewust behouden */
-.contact-spacer { margin-top: 1.77em; height: 3.12em; }
-.form .form__inner { min-height: 0; }
+/* Contact zonder formulier: één knop die het e-mailadres kopieert ------- */
+.contact-copy { position: relative; margin-top: 1.77em; }
+.contact-copy .button__icon svg { width: 0.875em; height: 0.875em; fill: currentColor; display: block; }
+.contact-copy .tip__bubble { line-height: 1.2; }
+.contact-copy.is-copied .tip__bubble { opacity: 1; visibility: visible; transition-delay: 0s; }
+/* Houdt het contactblok even hoog als in de oude versie */
+.contact-spacer { height: 3.125rem; }
 
 /* Footer: link naar cookie-instellingen ---------------------------------- */
 .footer__cookies { max-width: var(--max-width); margin: 0 auto; padding: 0 3.125vw 1.5rem; }
@@ -253,4 +238,3 @@
 }
 /* Tooltip bij de foto links uitlijnen, zodat hij niet buiten de kaart valt */
 .review__avatar .tip__bubble { left: -4px; transform: none; }
-.form__text .contact-mail .button { margin-top: 0; }
