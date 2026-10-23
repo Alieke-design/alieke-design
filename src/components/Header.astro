@@ -1,5 +1,6 @@
 ---
 import { site } from '../config';
+import Logo from './Logo.astro';
 
 interface Props { items?: { href: string; label: string }[]; menuNote?: string }
 const defaultItems = [
@@ -18,10 +19,10 @@ const copyIcon =
 <header class="header color--ddarkblue">
   <div class="header__inner">
     <nav aria-label="Hoofdmenu" class="header__nav nav--top">
-      <a class="header__logo" href="/">
-        <img alt="Alieke.design, naar de homepage" src="/img/logos/alieke-logo.svg" width="165" height="26" />
-      </a>
-      <ul class="header__list default-body">
+      <Logo />
+      <div class="header__links">
+        <span class="header__indicator" aria-hidden="true"></span>
+        <ul class="header__list default-body">
         {items.map((item) => (
           <li class="header__item">
             <div class="header__text-container">
@@ -31,8 +32,8 @@ const copyIcon =
             </div>
           </li>
         ))}
-      </ul>
-      <span class="header__indicator" aria-hidden="true"></span>
+        </ul>
+      </div>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-open>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" /></svg>
         Menu
@@ -43,9 +44,7 @@ const copyIcon =
 
 <dialog class="mobile-menu" id="mobile-menu" aria-label="Menu">
   <div class="mobile-menu__bar">
-    <a class="header__logo" href="/">
-      <img alt="Alieke.design, naar de homepage" src="/img/logos/alieke-logo.svg" width="165" height="26" />
-    </a>
+    <Logo />
     <button class="menu-toggle" type="button" data-menu-close autofocus>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
       Sluiten

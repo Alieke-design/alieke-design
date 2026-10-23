@@ -232,7 +232,7 @@ if (menu && menuOpen) {
 
 // Koppen, teksten en kaarten zacht laten verschijnen zodra ze in beeld komen.
 const revealTargets = $$(
-  '.text-image__text > *, .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.contact-spacer):not(.visually-hidden)',
+  '.text-image__text > :not(.quote-b), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.contact-spacer):not(.visually-hidden)',
 );
 if (reduceMotion || !('IntersectionObserver' in window)) {
   revealTargets.forEach((el) => el.classList.add('is-revealed'));
@@ -254,7 +254,6 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 // 2. Actieve sectie in het menu (gele streep die meeschuift + aria-current)
 // ---------------------------------------------------------------------------
 const headerEl = document.querySelector<HTMLElement>('.header');
-const navEl = headerEl?.querySelector<HTMLElement>('.header__nav');
 const indicator = headerEl?.querySelector<HTMLElement>('.header__indicator');
 const navLinks = $$<HTMLAnchorElement>('.header__link').filter((a) => a.hash && a.pathname === location.pathname);
 const themeOf = (el: Element): 'light' | 'tint' | 'navy' | null => {
@@ -292,14 +291,14 @@ let headerTicking = false;
 let lastTheme = '';
 let lastActive: HTMLAnchorElement | null | undefined;
 let lastCompact: boolean | undefined;
+const linksEl = headerEl?.querySelector<HTMLElement>('.header__links');
 const placeIndicator = (active: HTMLAnchorElement | null) => {
-  if (!indicator || !navEl) return;
-  const text = active?.querySelector('.header__text') ?? active;
-  if (!text) { indicator.classList.remove('is-visible'); return; }
-  const r = text.getBoundingClientRect();
-  const n = navEl.getBoundingClientRect();
+  if (!indicator || !linksEl) return;
+  if (!active || !active.offsetParent) { indicator.classList.remove('is-visible'); return; }
+  const r = active.getBoundingClientRect();
+  const n = linksEl.getBoundingClientRect();
   indicator.style.width = `${r.width}px`;
-  indicator.style.transform = `translate(${r.left - n.left}px, ${r.bottom - n.top + 2}px)`;
+  indicator.style.transform = `translateX(${r.left - n.left}px)`;
   indicator.classList.add('is-visible');
 };
 const updateHeader = (force = false) => {
@@ -339,39 +338,45 @@ if ('ResizeObserver' in window) new ResizeObserver(() => { measureAll(); request
 updateHeader(true);
 
 // ---------------------------------------------------------------------------
-// 3. Markeerstift onder het eerste kopwoord van elke sectie, tekent zich in
+// 3. Logo: letters komen omhoog en de gele stip valt erin (één keer bij laden).
+//    Bij hover of focus maken de letters een golfje en springt de stip mee.
 // ---------------------------------------------------------------------------
-$$('main section').forEach((section) => {
-  const h = section.querySelector<HTMLElement>('h2');
-  if (!h || h.querySelector('.mark') || h.closest('.mobile-menu')) return;
-  // Kernwoord: data-mark="…" op de kop, anders de hele kop als die uit één woord bestaat.
-  const node = [...h.childNodes].find((n) => n.nodeType === 3 && n.textContent!.trim());
-  if (!node) return;
-  const text = node.textContent!;
-  const word = h.dataset.mark || (text.trim().split(/\s+/).length === 1 ? text.trim() : '');
-  const at = word ? text.indexOf(word) : -1;
-  if (at < 0) return;
-  const mark = document.createElement('span');
-  mark.className = 'mark';
-  mark.textContent = word;
-  const frag = document.createDocumentFragment();
-  frag.append(text.slice(0, at), mark, text.slice(at + word.length));
-  h.replaceChild(frag, node);
-});
-const marks = $$('.mark, .p blockquote .highlight');
-if (reduceMotion || !('IntersectionObserver' in window)) {
-  marks.forEach((m) => m.classList.add('is-drawn'));
-} else {
-  const mio = new IntersectionObserver((entries) => entries.forEach((e) => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('is-drawn');
-    mio.unobserve(e.target);
-  }), { rootMargin: '0px 0px -15% 0px' });
-  marks.forEach((m) => mio.observe(m));
+const logos = $$<HTMLElement>('.logo');
+const restartLogo = (el: HTMLElement, cls: 'is-playing' | 'is-waving') => {
+  el.classList.remove('is-playing', 'is-waving');
+  void el.getBoundingClientRect();
+  el.classList.add(cls);
+};
+if (!reduceMotion) {
+  logos.forEach((el) => {
+    let busy = false;
+    const done = () => { busy = false; };
+    el.addEventListener('animationend', (e) => { if ((e.target as Element).classList.contains('logo__dot')) done(); });
+    const wave = () => { if (busy) return; busy = true; restartLogo(el, 'is-waving'); };
+    el.addEventListener('pointerenter', wave);
+    el.addEventListener('focus', wave);
+    if (!el.closest('.mobile-menu')) { busy = true; restartLogo(el, 'is-playing'); }
+  });
 }
 
 // ---------------------------------------------------------------------------
-// 4. Projectbeelden: harde schaduw schuift op zijn plek (via .is-inview hierboven)
+// Kernzin: woorden komen één voor één binnen, daarna tekenen de cirkels zich in.
+// Eenmalig, zodra de zin in beeld komt.
+// ---------------------------------------------------------------------------
+const quotes = $$('[data-quote]');
+if (reduceMotion || !('IntersectionObserver' in window)) {
+  quotes.forEach((q) => q.classList.add('is-played'));
+} else {
+  const qio = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-played');
+    qio.unobserve(e.target);
+  }), { rootMargin: '0px 0px -10% 0px' });
+  quotes.forEach((q) => qio.observe(q));
+}
+
+// ---------------------------------------------------------------------------
+// 4. Projectkaarten komen rustig binnen (via .is-inview hierboven)
 // 6. Stippen en driehoeken zweven één keer rustig (5 s) als ze in beeld komen.
 //    Kort genoeg voor WCAG 2.2.2, en opnieuw zodra je er weer langs scrolt.
 // ---------------------------------------------------------------------------
@@ -387,6 +392,62 @@ if (!reduceMotion && 'IntersectionObserver' in window) {
   }), { threshold: 0.3 });
   floaters.forEach((f) => fio.observe(f));
 }
+
+// ---------------------------------------------------------------------------
+// 5. Projectkaarten: diepte met de muis. Foto en tekstkaart bewegen een paar
+//    pixels tegen elkaar in en een zacht lichtschijnsel volgt de cursor.
+// ---------------------------------------------------------------------------
+$$('.project').forEach((project) => {
+  // Na het binnenkomen de overgang van de kaart uitzetten, zodat hij direct de muis volgt.
+  const settle = () => window.setTimeout(() => project.classList.add('is-settled'), 1900);
+  if (project.classList.contains('is-inview')) settle();
+  else new MutationObserver((_, mo) => { if (project.classList.contains('is-inview')) { mo.disconnect(); settle(); } })
+    .observe(project, { attributes: true, attributeFilter: ['class'] });
+
+  if (reduceMotion || !window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const media = project.querySelector<HTMLElement>('.project__media');
+  const img = media?.querySelector<HTMLElement>('img, video');
+  const card = project.querySelector<HTMLElement>('.project__text');
+  if (!media || !img || !card) return;
+  const sheen = document.createElement('span');
+  sheen.className = 'project__sheen';
+  sheen.setAttribute('aria-hidden', 'true');
+  media.append(sheen);
+  let tx = 0, ty = 0, x = 0, y = 0, ts = 1, sc = 1, raf = 0;
+  let rect: DOMRect | null = null, mrect: DOMRect | null = null;
+  const tick = () => {
+    x += (tx - x) * 0.09; y += (ty - y) * 0.09; sc += (ts - sc) * 0.07;
+    img.style.setProperty('--ix', `${(-x * 12).toFixed(2)}px`);
+    img.style.setProperty('--iy', `${(-y * 9).toFixed(2)}px`);
+    img.style.setProperty('--is', sc.toFixed(4));
+    card.style.setProperty('--cx', `${(x * 7).toFixed(2)}px`);
+    card.style.setProperty('--cy', `${(y * 5).toFixed(2)}px`);
+    const still = Math.abs(tx - x) < 0.001 && Math.abs(ty - y) < 0.001 && Math.abs(ts - sc) < 0.0005;
+    raf = still ? 0 : requestAnimationFrame(tick);
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  project.addEventListener('pointerenter', () => {
+    rect = project.getBoundingClientRect();
+    mrect = media.getBoundingClientRect();
+    project.classList.add('is-hovered');
+  });
+  project.addEventListener('pointermove', (e) => {
+    if (!rect || !mrect) return;
+    tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    ty = ((e.clientY - rect.top) / rect.height) * 2 - 1;
+    ts = 1.05;
+    sheen.style.setProperty('--sx', `${e.clientX - mrect.left}px`);
+    sheen.style.setProperty('--sy', `${e.clientY - mrect.top}px`);
+    kick();
+  });
+  project.addEventListener('pointerleave', () => {
+    tx = 0; ty = 0; ts = 1; rect = null; mrect = null;
+    project.classList.remove('is-hovered');
+    kick();
+  });
+  // Bij scrollen verschuift de kaart; posities opnieuw opmeten bij de volgende beweging.
+  window.addEventListener('scroll', () => { if (rect) { rect = project.getBoundingClientRect(); mrect = media.getBoundingClientRect(); } }, { passive: true });
+});
 
 // ---------------------------------------------------------------------------
 // 7. Tijdlijn bij Ervaring en Opleiding vult zich terwijl je scrolt

@@ -1,0 +1,30 @@
+---
+// Kernzin met gele, handgetekende cirkels om de woorden tussen *sterretjes*.
+// Woorden komen één voor één binnen, daarna tekenen de cirkels zich na elkaar (eenmalig).
+interface Props { text: string; class?: string }
+const { text, class: extra = '' } = Astro.props;
+
+const circles = [
+  'M118 5 C 62 1, 9 13, 7 35 C 5 57, 66 67, 118 65 C 172 63, 215 51, 213 33 C 211 13, 162 3, 96 9',
+  'M120 6 C 60 2, 8 14, 6 36 C 4 58, 70 66, 120 64 C 175 62, 216 50, 214 32 C 212 12, 160 4, 100 8',
+];
+let k = 0;
+const words = text.split(/\s+/).map((raw) => {
+  const m = raw.match(/^\*(.+?)\*([.,!?:;]*)$/);
+  if (!m) return { word: raw };
+  return { word: m[1], tail: m[2], circle: circles[k++ % circles.length], c: k };
+});
+---
+<p class:list={['quote-b', extra]} style={`--words:${words.length}`} data-quote>
+  {words.map((w, n) => (
+    <>
+      {w.circle ? (
+        <span class="quote-b__w quote-b__k" style={`--n:${n}`}>{w.word}<svg class={`quote-b__circle quote-b__circle--${w.c}`} viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={w.circle} /></svg></span>
+      ) : (
+        <span class="quote-b__w" style={`--n:${n}`}>{w.word}</span>
+      )}
+      {w.tail && <span class="quote-b__w" style={`--n:${n}`}>{w.tail}</span>}
+      {n < words.length - 1 && ' '}
+    </>
+  ))}
+</p>

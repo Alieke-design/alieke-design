@@ -303,13 +303,13 @@ html { scroll-padding-top: 5rem; }
 [data-lazy-load] { transition: opacity 0.8s ease-out; }
 
 @media (prefers-reduced-motion: no-preference) {
-  html.js :is(.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)) {
+  html.js :is(.text-image__text > :not(.button):not(.quote-b), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)) {
     opacity: 0;
     transform: translateY(16px);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
-  html.js :is(.text-image__text > :not(.button), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)).is-revealed {
+  html.js :is(.text-image__text > :not(.button):not(.quote-b), .projects__text > *, .content-repeater__content > *, .widget-block__inner > :not(.reviews), .review, .form__text > :not(.button):not(.contact-copy):not(.contact-spacer):not(.visually-hidden)).is-revealed {
     opacity: 1;
     transform: none;
   }
@@ -336,73 +336,141 @@ html { scroll-padding-top: 5rem; }
    Aantrekkelijker maken (1 t/m 7)
    ========================================================================== */
 
-/* 1. Header kleurt mee met de achtergrond -------------------------------- */
-.header {
-  transition: background-color 0.5s ease, color 0.5s ease;
+/* 1. Zwevende navigatiebalk (B) -------------------------------------------
+   De balk is wit met een zachte, blauw getinte schaduw. Boven navy secties
+   wordt hij navy: wit logo, witte links en een gele pil. */
+.header,
+.header[data-theme] { --background: transparent; background-color: transparent; pointer-events: none; }
+.header { top: 0; padding: 12px max(16px, env(safe-area-inset-left, 0px)) 0; }
+.header .header__nav {
+  pointer-events: auto;
+  position: relative;
+  max-width: calc(var(--max-width, 1440px) - 2 * 3.125vw);
+  padding: 8px 8px 8px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(13, 0, 100, 0.08), 0 12px 32px -12px rgba(13, 0, 100, 0.28);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
 }
-.header__nav { transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
-.header[data-theme='tint'] { --background: #e3f0ff; background-color: #e3f0ff; }
-.header[data-theme='light'] { --background: #ffffff; background-color: #ffffff; }
-.header[data-theme='navy'] { --background: #0d0064; background-color: #0d0064; color: #fff; }
-.header__logo img, .header__link { transition: filter 0.5s ease, color 0.5s ease; }
-.header[data-theme='navy'] .header__logo img { filter: brightness(0) invert(1); }
+.header[data-theme='navy'] .header__nav {
+  background: var(--brand-navy);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16), 0 12px 32px -12px rgba(0, 0, 0, 0.5);
+}
+.header__links { position: relative; }
+.header .header__list { position: relative; z-index: 1; gap: 2px; margin: 0; }
+.header .header__link {
+  display: block;
+  padding: 10px 13px;
+  border-radius: 10px;
+  color: var(--brand-navy);
+  transition: color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.header .header__link:hover { color: var(--brand-blue); }
+.header .header__link[aria-current] { color: #fff; }
 .header[data-theme='navy'] .header__link { color: #fff; }
+.header[data-theme='navy'] .header__link:hover { color: var(--brand-yellow); }
+.header[data-theme='navy'] .header__link[aria-current] { color: var(--brand-navy); }
+.header[data-theme='navy'] .logo { color: #fff; }
 .header[data-theme='navy'] :where(a, button):focus-visible { outline-color: #fff; }
-@media only screen and (min-width: 751px) {
-  .header.is-compact .header__nav { padding-top: 1.1rem; padding-bottom: 0.6rem; }
-}
+.header .header__link:focus-visible { outline-offset: 2px; }
 
-/* 2. Actieve sectie in het menu ------------------------------------------- */
-.header__nav { position: relative; }
+/* 2. Pil die naar het actieve onderdeel glijdt ---------------------------- */
 .header__indicator {
   position: absolute;
-  left: 0;
+  z-index: 0;
   top: 0;
-  height: 3px;
-  border-radius: 3px;
-  background: var(--brand-yellow);
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 10px;
+  background: var(--brand-blue);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), width 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), width 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease, background-color 0.5s ease;
 }
 .header__indicator.is-visible { opacity: 1; }
-.header__link[aria-current] { font-weight: 600; }
-@media only screen and (max-width: 750px) { .header__indicator { display: none; } }
+.header[data-theme='navy'] .header__indicator { background: var(--brand-yellow); }
+@media only screen and (min-width: 751px) and (max-width: 1100px) {
+  .header .header__link { padding: 10px 9px; }
+}
+@media only screen and (max-width: 750px) {
+  .header { padding-top: 8px; }
+  .header .header__nav { padding: 6px 6px 6px 14px; }
+  .header__links { display: none; }
+}
 
-/* 3. Markeerstift die zich intekent --------------------------------------- */
-.mark {
-  background-image: linear-gradient(var(--brand-yellow), var(--brand-yellow));
-  background-repeat: no-repeat;
-  background-position: 0 88%;
-  background-size: 0% 0.32em;
-  padding: 0 0.04em;
-  margin: 0 -0.04em;
-  transition: background-size 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.15s;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+/* 3. Logo: gele stip die erin valt, golfje bij hover ---------------------- */
+.logo { display: block; height: auto; color: var(--brand-navy); border-radius: 6px; transition: color 0.5s ease; }
+.logo__svg { display: block; width: auto; height: 1.6rem; overflow: visible; }
+.mobile-menu__bar .logo__svg { height: 26px; }
+.logo__l { fill: currentColor; }
+.logo__dot { fill: var(--brand-yellow); }
+.logo__l, .logo__dot { transform-box: fill-box; transform-origin: 50% 100%; }
+.logo.is-playing .logo__l { animation: logo-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--n) * 38ms); }
+.logo.is-playing .logo__dot { animation: logo-drop 1.1s linear 0.5s both; }
+.logo.is-waving .logo__l { animation: logo-wave 0.55s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--n) * 32ms); }
+.logo.is-waving .logo__dot { animation: logo-hop 0.8s linear 0.18s both; }
+@keyframes logo-rise { from { opacity: 0; transform: translateY(45%); } }
+@keyframes logo-wave { 0%, 100% { transform: none; } 45% { transform: translateY(-14%); } }
+@keyframes logo-drop {
+  0% { opacity: 0; transform: translateY(-900%); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  38% { opacity: 1; transform: translateY(0) scale(1.25, 0.75); animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+  58% { transform: translateY(-260%) scale(0.92, 1.1); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  76% { transform: translateY(0) scale(1.12, 0.88); animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+  88% { transform: translateY(-70%); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  100% { transform: none; }
 }
-.mark.is-drawn { background-size: 100% 0.32em; }
-/* Hero-markeerstift: rustiger intekenen (was 0,4 s) */
-.p blockquote .highlight::before { animation-duration: 1s !important; animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1) !important; animation-play-state: paused; }
-.p blockquote .highlight.is-drawn::before { animation-play-state: running; }
+@keyframes logo-hop {
+  0% { transform: none; animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+  35% { transform: translateY(-300%) scale(0.92, 1.1); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  60% { transform: translateY(0) scale(1.15, 0.85); animation-timing-function: cubic-bezier(0, 0.4, 0.5, 1); }
+  78% { transform: translateY(-80%); animation-timing-function: cubic-bezier(0.5, 0, 1, 0.6); }
+  100% { transform: none; }
+}
 
-/* 4. Projectkaarten met harde schaduw ------------------------------------- */
-.project__media {
-  box-shadow: 0 0 0 0 var(--brand-navy);
-  transition: box-shadow 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+/* 4. Kernzin (quote B): woorden komen binnen, gele cirkels tekenen zich ---- */
+.quote-b {
+  margin: 1.25rem 0 1.5rem;
+  max-width: 19em;
+  color: var(--brand-navy);
+  font-family: Poppins, sans-serif;
+  font-style: italic;
+  font-weight: 450;
+  font-size: clamp(1.375rem, 1.9vw, 1.875rem);
+  line-height: 1.45;
 }
-.project.is-inview .project__media { box-shadow: 16px -16px 0 0 var(--brand-navy); }
-.project__text {
-  transition: translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.project__text:hover { translate: 0 -4px; box-shadow: 6px -6px 0 0 var(--ink); }
+.quote-b--consultancy { max-width: 18em; margin: 1.25rem 0 0; }
+.quote-b__w { display: inline-block; }
+.quote-b__k { position: relative; margin: 0 0.22em 0 0.18em; }
+.quote-b__circle { position: absolute; left: -0.4em; top: -0.16em; width: calc(100% + 0.8em); height: calc(100% + 0.34em); overflow: visible; pointer-events: none; }
+.quote-b__circle path { fill: none; stroke: var(--brand-yellow); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+html.js .quote-b:not(.is-played) .quote-b__w { opacity: 0; }
+html.js .quote-b:not(.is-played) .quote-b__circle path { stroke-dashoffset: 1; }
+.quote-b.is-played .quote-b__w { animation: quote-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--n) * 55ms); }
+.quote-b.is-played .quote-b__circle--1 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 0.25s); }
+.quote-b.is-played .quote-b__circle--2 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 0.9s); }
+@keyframes quote-rise { from { opacity: 0; transform: translateY(0.45em); } }
+@keyframes quote-draw { from { stroke-dashoffset: 1; } }
 
-/* 5. Aanbevelingen en tools reageren -------------------------------------- */
-.review {
-  transition: translate 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+/* 5. Projectkaarten: rustig binnenkomen en diepte met de muis ------------- */
+html.js .project .project__media { opacity: 0; translate: 0 28px; transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), translate 1.6s cubic-bezier(0.16, 1, 0.3, 1); }
+html.js .project .project__text { opacity: 0; translate: 0 40px; transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, translate 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.35s; }
+html.js .project.is-inview .project__media { opacity: 1; translate: 0 0; }
+html.js .project.is-inview .project__text { opacity: 1; translate: var(--cx, 0px) var(--cy, 0px); }
+html.js .project.is-inview.is-settled .project__text { transition: none; }
+.project__media { position: relative; }
+.project__media img, .project__media video { transition: transform 2.4s cubic-bezier(0.16, 1, 0.3, 1); translate: var(--ix, 0px) var(--iy, 0px); scale: var(--is, 1); }
+.project__sheen {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; mix-blend-mode: soft-light;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, 50%), rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 60%);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.review:hover, .review:focus-within { translate: 0 -4px; box-shadow: 6px -6px 0 0 var(--ink); }
+.project.is-hovered .project__sheen { opacity: 1; }
+@media only screen and (min-width: 751px) { .project__text { margin-top: max(16px, calc(5vw - 28px)); } }
+@media only screen and (min-width: 1440px) { .project__text { margin-top: 44px; } }
+
+/* Tools reageren op de muis (zonder kaartschaduw) */
 .tool-logo img { transition: scale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .tool-logo:hover img { scale: 1.12; }
 
@@ -434,9 +502,11 @@ html { scroll-padding-top: 5rem; }
 
 /* Alles uit bij "verminder beweging" (eindstand direct zichtbaar) */
 @media (prefers-reduced-motion: reduce) {
-  .mark { background-size: 100% 0.32em; }
-  .project.is-inview .project__media, .project__media { box-shadow: 16px -16px 0 0 var(--brand-navy); }
   .is-floating { animation: none; }
-  .project__text:hover, .review:hover, .review:focus-within { translate: none; }
   .tool-logo:hover img { scale: 1; }
+  .logo .logo__l, .logo .logo__dot { animation: none !important; }
+  html.js .quote-b .quote-b__w { opacity: 1; animation: none; }
+  html.js .quote-b .quote-b__circle path { stroke-dashoffset: 0; animation: none; }
+  html.js .project .project__media, html.js .project .project__text { opacity: 1; translate: none; transition: none; }
+  .header__indicator { transition: opacity 0.3s ease; }
 }
