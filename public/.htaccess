@@ -28,6 +28,13 @@ ErrorDocument 404 /404.html
   ExpiresByType font/woff "access plus 1 year"
 </IfModule>
 
+# De testomgeving (nieuw.alieke.design) niet in Google. Geldt alleen voor die host,
+# dus na de overstap naar alieke.design hoeft hier niets aangepast te worden.
+SetEnvIfNoCase Host ^nieuw\. NOINDEX_HOST
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "noindex, nofollow" env=NOINDEX_HOST
+</IfModule>
+
 <IfModule mod_headers.c>
   Header set X-Content-Type-Options "nosniff"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
