@@ -28,6 +28,18 @@ RewriteRule ^wp-sitemap\.xml$ /sitemap.xml [L,R=301]
 
 ErrorDocument 404 /404.html
 
+# De servercache van Hostinger (LiteSpeed) mag html-pagina's niet vasthouden,
+# anders zie je na een deploy nog minutenlang de oude pagina. Plaatjes, css en js
+# hebben een hash in de naam en mogen wel gecachet worden.
+RewriteCond %{REQUEST_URI} !\.(css|js|webp|png|jpg|svg|woff2?|ico|xml|txt)$ [NC]
+RewriteRule .* - [E=Cache-Control:no-cache]
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set X-LiteSpeed-Cache-Control "no-cache"
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
 # Caching: bestanden met een hash in de naam mogen lang bewaard worden
 <IfModule mod_expires.c>
   ExpiresActive On
