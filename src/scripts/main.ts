@@ -464,6 +464,32 @@ $$('.project').forEach((project) => {
   window.addEventListener('scroll', () => { if (rect) { rect = project.getBoundingClientRect(); mrect = media.getBoundingClientRect(); } }, { passive: true });
 });
 
+// Portret in de hero: gele cirkel, foto en blauwe ring liggen op drie lagen
+// en bewegen een paar pixels tegen elkaar in als je de muis beweegt.
+const portrait = document.querySelector<HTMLElement>('.text-image__media');
+const heroSection = portrait?.closest<HTMLElement>('section');
+if (portrait && heroSection && !reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  let tx = 0, ty = 0, x = 0, y = 0, raf = 0;
+  const layers: [string, string, number, number][] = [['--hx1', '--hy1', -3, -2], ['--hx2', '--hy2', 4, 3], ['--hx3', '--hy3', -12, -9]];
+  const tick = () => {
+    x += (tx - x) * 0.08; y += (ty - y) * 0.08;
+    for (const [vx, vy, ax, ay] of layers) {
+      portrait.style.setProperty(vx, `${(x * ax).toFixed(2)}px`);
+      portrait.style.setProperty(vy, `${(y * ay).toFixed(2)}px`);
+    }
+    raf = Math.abs(tx - x) < 0.001 && Math.abs(ty - y) < 0.001 ? 0 : requestAnimationFrame(tick);
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  heroSection.addEventListener('pointermove', (e) => {
+    const r = portrait.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    tx = Math.max(-1, Math.min(1, (e.clientX - cx) / (window.innerWidth / 2)));
+    ty = Math.max(-1, Math.min(1, (e.clientY - cy) / (window.innerHeight / 2)));
+    kick();
+  });
+  heroSection.addEventListener('pointerleave', () => { tx = 0; ty = 0; kick(); });
+}
+
 // ---------------------------------------------------------------------------
 // 7. Tijdlijn bij Ervaring en Opleiding vult zich terwijl je scrolt
 // ---------------------------------------------------------------------------
