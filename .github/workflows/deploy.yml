@@ -27,7 +27,10 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      - name: Upload naar Hostinger via FTP
+      # Upload met maximaal drie pogingen: Hostinger reageert soms niet op tijd (FTP-timeout).
+      - name: Upload naar Hostinger via FTP (poging 1)
+        id: ftp1
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -35,3 +38,36 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          timeout: 60000
+
+      - name: Even wachten
+        if: steps.ftp1.outcome == 'failure'
+        run: sleep 20
+
+      - name: Upload naar Hostinger via FTP (poging 2)
+        id: ftp2
+        if: steps.ftp1.outcome == 'failure'
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          timeout: 60000
+
+      - name: Nog even wachten
+        if: steps.ftp2.outcome == 'failure'
+        run: sleep 40
+
+      - name: Upload naar Hostinger via FTP (poging 3)
+        if: steps.ftp2.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          timeout: 60000
