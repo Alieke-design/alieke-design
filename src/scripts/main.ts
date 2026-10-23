@@ -396,7 +396,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
 //    Kort genoeg voor WCAG 2.2.2, en opnieuw zodra je er weer langs scrolt.
 // ---------------------------------------------------------------------------
 if (!reduceMotion && 'IntersectionObserver' in window) {
-  const floaters = $$('.svg-dot-grid svg, .form__svg svg, .svg-double-arrows-down svg, .mobile-menu__dots');
+  const floaters = $$('.mobile-menu__dots');
   const fio = new IntersectionObserver((entries) => entries.forEach((e) => {
     const el = e.target as HTMLElement;
     if (e.isIntersecting) {
@@ -488,6 +488,66 @@ if (portrait && heroSection && !reduceMotion && window.matchMedia('(hover: hover
     kick();
   });
   heroSection.addEventListener('pointerleave', () => { tx = 0; ty = 0; kick(); });
+}
+
+// ---------------------------------------------------------------------------
+// Stippen en pijlen
+// - Stippen bovenaan komen tegelijk met de rest binnen, die bij Contact als golf.
+// - Met de muis wijken stippen dichtbij de cursor een paar pixels uit.
+// - Pijlen schuiven één keer naar beneden en veren terug als ze in beeld komen.
+// ---------------------------------------------------------------------------
+const dotGrids = $$<SVGSVGElement>('[data-dots]');
+const arrowSets = $$('.svg-double-arrows-down');
+if (reduceMotion || !('IntersectionObserver' in window)) {
+  dotGrids.forEach((g) => g.classList.add('is-dotted'));
+} else {
+  const dio = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add(e.target.matches('[data-dots]') ? 'is-dotted' : 'is-nudged');
+    dio.unobserve(e.target);
+  }), { threshold: 0.35 });
+  dotGrids.forEach((g) => dio.observe(g));
+  arrowSets.forEach((a) => dio.observe(a));
+}
+if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  type Dot = { el: SVGCircleElement; cx: number; cy: number; x: number; y: number; tx: number; ty: number };
+  const grids = dotGrids.map((svg) => {
+    const vb = svg.viewBox.baseVal;
+    const dots: Dot[] = [...svg.querySelectorAll('circle')].map((el) => ({
+      el, cx: el.cx.baseVal.value, cy: el.cy.baseVal.value, x: 0, y: 0, tx: 0, ty: 0,
+    }));
+    return { svg, vb, dots, visible: false };
+  });
+  const vio = new IntersectionObserver((entries) => entries.forEach((e) => {
+    const g = grids.find((x) => x.svg === e.target);
+    if (g) g.visible = e.isIntersecting;
+  }));
+  grids.forEach((g) => vio.observe(g.svg));
+  let px = -9999, py = -9999, raf = 0;
+  const R = 110, PUSH = 12;
+  const tick = () => {
+    let moving = false;
+    for (const g of grids) {
+      if (!g.visible) continue;
+      const r = g.svg.getBoundingClientRect();
+      const sx = r.width / g.vb.width, sy = r.height / g.vb.height;
+      for (const d of g.dots) {
+        const dx = r.left + d.cx * sx - px, dy = r.top + d.cy * sy - py;
+        const dist = Math.hypot(dx, dy);
+        const f = dist < R ? (1 - dist / R) ** 2 : 0;
+        d.tx = dist > 0.01 ? (dx / dist) * f * PUSH : 0;
+        d.ty = dist > 0.01 ? (dy / dist) * f * PUSH : 0;
+        d.x += (d.tx - d.x) * 0.15; d.y += (d.ty - d.y) * 0.15;
+        if (Math.abs(d.tx - d.x) > 0.02 || Math.abs(d.ty - d.y) > 0.02) moving = true;
+        // terug naar viewBox-eenheden
+        d.el.style.transform = `translate(${(d.x / sx).toFixed(2)}px, ${(d.y / sy).toFixed(2)}px)`;
+      }
+    }
+    raf = moving ? requestAnimationFrame(tick) : 0;
+  };
+  const kick = () => { if (!raf) raf = requestAnimationFrame(tick); };
+  window.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; if (grids.some((g) => g.visible)) kick(); }, { passive: true });
+  document.addEventListener('pointerleave', () => { px = -9999; py = -9999; kick(); });
 }
 
 // ---------------------------------------------------------------------------

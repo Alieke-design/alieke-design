@@ -8,8 +8,8 @@ for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push(
 <section class="form is-footer-layout background--dlightblue" id="contact">
   <div class="form__inner">
     <div class="form__svg" data-scroll-offset-y="top bottom" data-scroll-translate data-target="parent" data-translate-y="2" aria-hidden="true">
-      <svg viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg">
-        <g fill="#FFC518">{dots.map(([cx, cy]) => <circle cx={cx} cy={cy} r="4" />)}</g>
+      <svg viewBox="0 0 208 208" xmlns="http://www.w3.org/2000/svg" data-dots data-dots-wave>
+        <g fill="#FFC518">{dots.map(([cx, cy]) => <g class="dot" style={`--d:${Math.round((cx - 4) / 40) + Math.round((cy - 4) / 40)}`}><circle cx={cx} cy={cy} r="4" /></g>)}</g>
       </svg>
     </div>
     <div class="form__text">
