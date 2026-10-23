@@ -1,5 +1,8 @@
 # Hostinger (Apache) instellingen voor de statische site
 
+# De statische site gaat voor (ook als er nog een oude index.php staat)
+DirectoryIndex index.html
+
 # Altijd https
 RewriteEngine On
 RewriteCond %{HTTPS} off

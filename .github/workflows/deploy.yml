@@ -1,22 +1,42 @@
 name: Deploy naar Hostinger
 
-# Draait automatisch bij elke wijziging op main, en handmatig via
-# Actions → Deploy naar Hostinger → Run workflow.
-# LET OP: zolang de FTP-secrets naar het testadres (nieuw.alieke.design) wijzen
-# is dat veilig. Zet 'push' weer uit vóór de overstap naar alieke.design.
+# Twee bestemmingen:
+# - test (nieuw.alieke.design): automatisch bij elke wijziging op main.
+# - live (alieke.design): alleen handmatig, via Actions → Deploy naar Hostinger →
+#   Run workflow → kies "live". Zo gaat er nooit per ongeluk iets live.
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Waar naartoe? test = nieuw.alieke.design, live = alieke.design'
+        type: choice
+        options: [test, live]
+        default: test
 
 concurrency:
-  group: deploy
+  group: deploy-${{ inputs.target || 'test' }}
   cancel-in-progress: false
+
+env:
+  IS_LIVE: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'live' }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Bestemming
+        env:
+          LIVE_USER: ${{ secrets.FTP_LIVE_USERNAME }}
+        run: |
+          if [ "$IS_LIVE" = "true" ]; then
+            echo "Bestemming: LIVE (alieke.design)"
+            if [ -z "$LIVE_USER" ]; then echo "::error::Secret FTP_LIVE_USERNAME ontbreekt"; exit 1; fi
+          else
+            echo "Bestemming: test (nieuw.alieke.design)"
+          fi
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -34,10 +54,10 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
+          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ./
           timeout: 60000
 
       - name: Even wachten
@@ -51,10 +71,10 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
+          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ./
           timeout: 60000
 
       - name: Nog even wachten
@@ -66,8 +86,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
+          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          server-dir: ./
           timeout: 60000
