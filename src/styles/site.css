@@ -441,13 +441,13 @@ html { scroll-padding-top: 5rem; }
   font-style: italic;
   font-weight: 450;
   font-size: clamp(1.25rem, 1.5vw, 1.5rem);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .quote-b--consultancy { max-width: 18em; margin: 1.25rem 0 0; }
 .quote-b__w { display: inline-block; }
-.quote-b__k { position: relative; margin: 0 0.22em 0 0.18em; }
-.quote-b__circle { position: absolute; left: -0.4em; top: -0.16em; width: calc(100% + 0.8em); height: calc(100% + 0.34em); overflow: visible; pointer-events: none; }
-.quote-b__circle path { fill: none; stroke: var(--brand-yellow); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
+.quote-b__k { position: relative; isolation: isolate; margin: 0 0.3em 0 0.26em; }
+.quote-b__circle { position: absolute; z-index: -1; left: -0.5em; top: -0.26em; width: calc(100% + 1em); height: calc(100% + 0.52em); overflow: visible; pointer-events: none; }
+.quote-b__circle path { fill: none; stroke: var(--brand-yellow); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }
 html.js .quote-b:not(.is-played) .quote-b__w { opacity: 0; }
 html.js .quote-b:not(.is-played) .quote-b__circle path { stroke-dashoffset: 1; }
 .quote-b.is-played .quote-b__w { animation: quote-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--n) * 55ms); }
