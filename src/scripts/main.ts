@@ -92,9 +92,14 @@ if (reduceMotion) {
   });
 
   // CSS-variabele --i loopt van 0 naar 1 tijdens het scrollen.
+  // Alleen op de elementen die --i echt gebruiken (projectkaart-tekst en de ring om de
+  // portretfoto). Op een hele sectie zetten laat de browser bij elk scrollbeeld de hele
+  // sectie opnieuw doorrekenen; dat kostte veel prestaties.
   $$('[data-scroll-var]').forEach((el) => {
+    const consumers = $$<HTMLElement>('.project__text, .text-image__media').filter((c) => el.contains(c));
+    if (!consumers.length) return;
     const once = Boolean(el.dataset.once);
-    gsap.to(el, {
+    gsap.fromTo(consumers, { '--i': 0 }, {
       scrollTrigger: {
         trigger: targetOf(el),
         start: el.dataset.start || 'top',
@@ -243,6 +248,158 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.1 });
   revealTargets.forEach((el) => io.observe(el));
 }
+
+// ---------------------------------------------------------------------------
+// 1. Header kleurt mee met de achtergrond eronder (wit, lichtblauw of navy)
+// 2. Actieve sectie in het menu (gele streep die meeschuift + aria-current)
+// ---------------------------------------------------------------------------
+const headerEl = document.querySelector<HTMLElement>('.header');
+const navEl = headerEl?.querySelector<HTMLElement>('.header__nav');
+const indicator = headerEl?.querySelector<HTMLElement>('.header__indicator');
+const navLinks = $$<HTMLAnchorElement>('.header__link').filter((a) => a.hash && a.pathname === location.pathname);
+const themeOf = (el: Element): 'light' | 'tint' | 'navy' | null => {
+  const bg = getComputedStyle(el).backgroundColor;
+  if (bg === 'rgb(227, 240, 255)') return 'tint';
+  if (bg === 'rgb(13, 0, 100)') return 'navy';
+  if (bg === 'rgb(255, 255, 255)') return 'light';
+  return null;
+};
+// Kleuren één keer uitlezen (en opnieuw bij resize), niet bij elk scrollbeeld.
+// Posities en kleuren één keer opmeten (opnieuw bij resize/laden), zodat er tijdens
+// het scrollen geen layout gelezen hoeft te worden: alleen window.scrollY.
+let bands: { top: number; bottom: number; theme: string }[] = [];
+let linkTargets: { a: HTMLAnchorElement; top: number }[] = [];
+const measureBands = () => {
+  const sy = window.scrollY;
+  bands = $$('main section, footer')
+    .map((el) => ({ el, theme: themeOf(el) as string }))
+    .filter((b) => b.theme)
+    .map(({ el, theme }) => { const r = el.getBoundingClientRect(); return { top: r.top + sy, bottom: r.bottom + sy, theme }; });
+  linkTargets = navLinks
+    .map((a) => ({ a, el: document.querySelector<HTMLElement>(a.hash) }))
+    .filter((l) => l.el)
+    .map(({ a, el }) => ({ a, top: el!.getBoundingClientRect().top + sy }));
+};
+let headerHeight = 0, viewportH = 0, docH = 0;
+const measureAll = () => {
+  measureBands();
+  headerHeight = headerEl?.offsetHeight ?? 0;
+  viewportH = window.innerHeight;
+  docH = document.documentElement.scrollHeight;
+};
+measureAll();
+let headerTicking = false;
+let lastTheme = '';
+let lastActive: HTMLAnchorElement | null | undefined;
+let lastCompact: boolean | undefined;
+const placeIndicator = (active: HTMLAnchorElement | null) => {
+  if (!indicator || !navEl) return;
+  const text = active?.querySelector('.header__text') ?? active;
+  if (!text) { indicator.classList.remove('is-visible'); return; }
+  const r = text.getBoundingClientRect();
+  const n = navEl.getBoundingClientRect();
+  indicator.style.width = `${r.width}px`;
+  indicator.style.transform = `translate(${r.left - n.left}px, ${r.bottom - n.top + 2}px)`;
+  indicator.classList.add('is-visible');
+};
+const updateHeader = (force = false) => {
+  headerTicking = false;
+  if (!headerEl) return;
+  // Eerst alles lezen…
+  const sy = window.scrollY;
+  const probe = sy + headerHeight - 1;
+  let theme = 'light';
+  for (const b of bands) if (b.top <= probe && b.bottom > probe) theme = b.theme;
+  const y = sy + viewportH / 3;
+  let active: HTMLAnchorElement | null = null;
+  for (const l of linkTargets) if (l.top <= y) active = l.a;
+  if (viewportH + sy >= docH - 4) active = linkTargets[linkTargets.length - 1]?.a ?? active;
+  const compact = window.scrollY > 40;
+  // …dan alleen schrijven wat veranderd is.
+  if (theme !== lastTheme) { headerEl.dataset.theme = theme; lastTheme = theme; }
+  if (compact !== lastCompact) { headerEl.classList.toggle('is-compact', compact); lastCompact = compact; force = true; }
+  if (force || active !== lastActive) {
+    navLinks.forEach((a) => (a === active ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+    lastActive = active;
+    // na de padding-overgang van de compacte header opnieuw plaatsen
+    requestAnimationFrame(() => placeIndicator(active));
+    if (force) setTimeout(() => placeIndicator(active), 380);
+  }
+};
+const requestHeader = () => {
+  if (!headerTicking) { headerTicking = true; requestAnimationFrame(() => updateHeader()); }
+};
+window.addEventListener('scroll', requestHeader, { passive: true });
+window.addEventListener('resize', () => { measureAll(); updateHeader(true); });
+window.addEventListener('load', () => { measureAll(); updateHeader(true); });
+document.fonts?.ready.then(() => { measureAll(); updateHeader(true); });
+ScrollTrigger.addEventListener('refresh', () => { measureAll(); requestHeader(); });
+// Lazy-geladen afbeeldingen en 'Lees meer' veranderen de paginahoogte.
+if ('ResizeObserver' in window) new ResizeObserver(() => { measureAll(); requestHeader(); }).observe(document.body);
+updateHeader(true);
+
+// ---------------------------------------------------------------------------
+// 3. Markeerstift onder het eerste kopwoord van elke sectie, tekent zich in
+// ---------------------------------------------------------------------------
+$$('main section').forEach((section) => {
+  const h = section.querySelector<HTMLElement>('h2');
+  if (!h || h.querySelector('.mark') || h.closest('.mobile-menu')) return;
+  // Kernwoord: data-mark="…" op de kop, anders de hele kop als die uit één woord bestaat.
+  const node = [...h.childNodes].find((n) => n.nodeType === 3 && n.textContent!.trim());
+  if (!node) return;
+  const text = node.textContent!;
+  const word = h.dataset.mark || (text.trim().split(/\s+/).length === 1 ? text.trim() : '');
+  const at = word ? text.indexOf(word) : -1;
+  if (at < 0) return;
+  const mark = document.createElement('span');
+  mark.className = 'mark';
+  mark.textContent = word;
+  const frag = document.createDocumentFragment();
+  frag.append(text.slice(0, at), mark, text.slice(at + word.length));
+  h.replaceChild(frag, node);
+});
+const marks = $$('.mark, .p blockquote .highlight');
+if (reduceMotion || !('IntersectionObserver' in window)) {
+  marks.forEach((m) => m.classList.add('is-drawn'));
+} else {
+  const mio = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('is-drawn');
+    mio.unobserve(e.target);
+  }), { rootMargin: '0px 0px -15% 0px' });
+  marks.forEach((m) => mio.observe(m));
+}
+
+// ---------------------------------------------------------------------------
+// 4. Projectbeelden: harde schaduw schuift op zijn plek (via .is-inview hierboven)
+// 6. Stippen en driehoeken zweven één keer rustig (5 s) als ze in beeld komen.
+//    Kort genoeg voor WCAG 2.2.2, en opnieuw zodra je er weer langs scrolt.
+// ---------------------------------------------------------------------------
+if (!reduceMotion && 'IntersectionObserver' in window) {
+  const floaters = $$('.svg-dot-grid svg, .form__svg svg, .svg-double-arrows-down svg, .mobile-menu__dots');
+  const fio = new IntersectionObserver((entries) => entries.forEach((e) => {
+    const el = e.target as HTMLElement;
+    if (e.isIntersecting) {
+      el.classList.remove('is-floating');
+      void el.offsetWidth;
+      el.classList.add('is-floating');
+    }
+  }), { threshold: 0.3 });
+  floaters.forEach((f) => fio.observe(f));
+}
+
+// ---------------------------------------------------------------------------
+// 7. Tijdlijn bij Ervaring en Opleiding vult zich terwijl je scrolt
+// ---------------------------------------------------------------------------
+$$('.description-list').forEach((list) => {
+  list.classList.add('has-timeline');
+  if (reduceMotion) { list.style.setProperty('--progress', '1'); return; }
+  gsap.to(list, {
+    '--progress': 1,
+    ease: 'none',
+    scrollTrigger: { trigger: list, start: 'top 75%', end: 'bottom 55%', scrub: 0.6 },
+  });
+});
 
 // Tooltips sluiten met Escape (WCAG 1.4.13); weer tonen zodra de muis beweegt of de focus verandert.
 document.addEventListener('keydown', (e) => {
