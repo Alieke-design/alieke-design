@@ -290,7 +290,6 @@ measureAll();
 let headerTicking = false;
 let lastTheme = '';
 let lastActive: HTMLAnchorElement | null | undefined;
-let lastCompact: boolean | undefined;
 const linksEl = headerEl?.querySelector<HTMLElement>('.header__links');
 const placeIndicator = (active: HTMLAnchorElement | null) => {
   if (!indicator || !linksEl) return;
@@ -313,16 +312,14 @@ const updateHeader = (force = false) => {
   let active: HTMLAnchorElement | null = null;
   for (const l of linkTargets) if (l.top <= y) active = l.a;
   if (viewportH + sy >= docH - 4) active = linkTargets[linkTargets.length - 1]?.a ?? active;
-  const compact = window.scrollY > 40;
   // …dan alleen schrijven wat veranderd is.
   if (theme !== lastTheme) { headerEl.dataset.theme = theme; lastTheme = theme; }
-  if (compact !== lastCompact) { headerEl.classList.toggle('is-compact', compact); lastCompact = compact; force = true; }
   if (force || active !== lastActive) {
     navLinks.forEach((a) => (a === active ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
     lastActive = active;
-    // na de padding-overgang van de compacte header opnieuw plaatsen
-    requestAnimationFrame(() => placeIndicator(active));
-    if (force) setTimeout(() => placeIndicator(active), 380);
+    // Altijd de link van dát moment gebruiken, nooit een oude (anders springt de pil terug).
+    requestAnimationFrame(() => placeIndicator(lastActive ?? null));
+    if (force) setTimeout(() => placeIndicator(lastActive ?? null), 380);
   }
 };
 const requestHeader = () => {
@@ -342,8 +339,8 @@ updateHeader(true);
 //    Bij hover of focus maken de letters een golfje en springt de stip mee.
 // ---------------------------------------------------------------------------
 const logos = $$<HTMLElement>('.logo');
-const restartLogo = (el: HTMLElement, cls: 'is-playing' | 'is-waving') => {
-  el.classList.remove('is-playing', 'is-waving');
+const restartLogo = (el: HTMLElement, cls: 'is-playing' | 'is-waving' | 'is-idle') => {
+  el.classList.remove('is-playing', 'is-waving', 'is-idle');
   void el.getBoundingClientRect();
   el.classList.add(cls);
 };
@@ -357,6 +354,24 @@ if (!reduceMotion) {
     el.addEventListener('focus', wave);
     if (!el.closest('.mobile-menu')) { busy = true; restartLogo(el, 'is-playing'); }
   });
+  // Sta je even stil (8 s geen scroll, muis of toets), dan stuitert de stip nog eens.
+  // Hooguit drie keer per bezoek, zodat het geen doorlopende beweging wordt (WCAG 2.2.2).
+  const headerLogo = logos.find((el) => !el.closest('.mobile-menu'));
+  if (headerLogo) {
+    let idleTimer = 0, plays = 0;
+    const arm = () => {
+      window.clearTimeout(idleTimer);
+      if (plays >= 3) return;
+      idleTimer = window.setTimeout(() => {
+        if (document.hidden || headerLogo.matches(':hover')) return arm();
+        plays++;
+        restartLogo(headerLogo, 'is-idle');
+        arm();
+      }, 8000);
+    };
+    ['scroll', 'pointermove', 'keydown', 'touchstart'].forEach((t) => window.addEventListener(t, arm, { passive: true }));
+    arm();
+  }
 }
 
 // ---------------------------------------------------------------------------
