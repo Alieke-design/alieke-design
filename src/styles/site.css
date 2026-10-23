@@ -402,11 +402,11 @@ html { scroll-padding-top: 5rem; }
 
 /* 3. Logo: gele stip die erin valt, golfje bij hover ---------------------- */
 .logo { display: block; height: auto; color: var(--brand-navy); border-radius: 6px; transition: color 0.5s ease; }
-.logo__svg { display: block; width: auto; height: 1.6rem; overflow: visible; }
-.mobile-menu__bar .logo__svg { height: 26px; }
+.logo__svg { display: block; width: auto; height: 2.125rem; overflow: visible; }
+@media only screen and (max-width: 750px) { .header .logo__svg { height: 1.875rem; } }
+.mobile-menu__bar .logo__svg { height: 30px; }
 .logo__l { fill: currentColor; }
-.logo__dot { fill: var(--brand-blue); transition: fill 0.5s ease; }
-.header[data-theme='navy'] .logo__dot { fill: var(--brand-yellow); }
+.logo__dot { fill: var(--brand-yellow); }
 .logo__l, .logo__dot { transform-box: fill-box; transform-origin: 50% 100%; }
 .logo.is-playing .logo__l { animation: logo-rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--n) * 38ms); }
 .logo.is-playing .logo__dot { animation: logo-drop 1.1s linear 0.5s both; }
@@ -451,8 +451,8 @@ html { scroll-padding-top: 5rem; }
 html.js .quote-b:not(.is-played) .quote-b__w { opacity: 0; }
 html.js .quote-b:not(.is-played) .quote-b__circle path { stroke-dashoffset: 1; }
 .quote-b.is-played .quote-b__w { animation: quote-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--n) * 55ms); }
-.quote-b.is-played .quote-b__circle--1 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 0.25s); }
-.quote-b.is-played .quote-b__circle--2 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 0.9s); }
+.quote-b.is-played .quote-b__circle--1 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 1.1s); }
+.quote-b.is-played .quote-b__circle--2 path { animation: quote-draw 0.9s cubic-bezier(0.65, 0, 0.35, 1) both; animation-delay: calc(var(--words) * 55ms + 1.9s); }
 @keyframes quote-rise { from { opacity: 0; transform: translateY(0.45em); } }
 @keyframes quote-draw { from { stroke-dashoffset: 1; } }
 
