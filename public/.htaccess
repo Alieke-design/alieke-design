@@ -8,6 +8,12 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
 
+# De testmap is ook bereikbaar als alieke.design/nieuw/. Stuur die naar het testadres,
+# zodat Google geen dubbele kopie van de site op het hoofddomein vindt.
+RewriteCond %{HTTP_HOST} ^(www\.)?alieke\.design$ [NC]
+RewriteCond %{REQUEST_URI} ^/nieuw(/.*)?$
+RewriteRule ^ https://nieuw.alieke.design%1 [L,R=301]
+
 # www naar zonder www
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
