@@ -174,13 +174,15 @@ $$<HTMLButtonElement>('[data-copy]').forEach((btn) => {
 });
 
 // De lijst met aanbevelingen is alleen focusbaar als hij horizontaal scrolt (mobiel).
-const reviewList = document.querySelector<HTMLElement>('.reviews');
+// Hetzelfde voor de stappen op de AI Design Consultancy-pagina (mobiel swipebaar).
+const scrollLists = $$<HTMLElement>('.reviews, [data-steps]');
 const updateReviewFocus = () => {
-  if (!reviewList) return;
-  const scrollable = reviewList.scrollWidth > reviewList.clientWidth + 1;
-  reviewList.classList.toggle('is-scrollable', scrollable);
-  if (scrollable) reviewList.setAttribute('tabindex', '0');
-  else reviewList.removeAttribute('tabindex');
+  scrollLists.forEach((list) => {
+    const scrollable = list.scrollWidth > list.clientWidth + 1;
+    list.classList.toggle('is-scrollable', scrollable);
+    if (scrollable) list.setAttribute('tabindex', '0');
+    else list.removeAttribute('tabindex');
+  });
 };
 updateReviewFocus();
 window.addEventListener('resize', updateReviewFocus);
