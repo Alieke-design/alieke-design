@@ -12,6 +12,10 @@ RewriteRule ^(.*)$ https://%1/$1 [L,R=301]
 # Oude WordPress-adressen naar de homepage
 RewriteRule ^(wp-admin|wp-login\.php|feed|xmlrpc\.php)(/.*)?$ / [L,R=301]
 RewriteRule ^(page-)?sitemap(_index)?\.xml$ /sitemap.xml [L,R=301]
+# Oude WordPress-links met ?p=, ?page_id= of ?attachment_id= naar de homepage (zonder query)
+RewriteCond %{QUERY_STRING} (^|&)(p|page_id|attachment_id)=\d+ [NC]
+RewriteRule ^$ /? [L,R=301]
+RewriteRule ^wp-sitemap\.xml$ /sitemap.xml [L,R=301]
 
 ErrorDocument 404 /404.html
 
