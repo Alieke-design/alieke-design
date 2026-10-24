@@ -166,6 +166,7 @@ const nav = [
       </li>
       <li class="steps-loop" aria-hidden="true" style="position: absolute; top: -44px; left: calc((100% - 96px) / 5 * 3 + 72px + 32px); width: calc((100% - 96px) / 5 + 24px); height: 40px; list-style: none; pointer-events: none;">
         <span class="steps-loop__arc" style="position: absolute; inset: 0; border: 3px solid #0049dc; border-bottom: 0; border-radius: 30px 30px 0 0;"></span>
+        <svg class="steps-loop__flow" aria-hidden="true" style="position: absolute; left: -8px; top: -8px; width: calc(100% + 16px); height: calc(100% + 16px); overflow: visible;"><circle r="5" fill="#ffc518" opacity="0"><animateMotion data-flow-motion dur="2.4s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.45 0 0.2 1" path="M0 0"></animateMotion><animate data-flow-fade attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.85;1" dur="2.4s" begin="indefinite" fill="freeze"></animate></circle></svg>
         <svg class="steps-loop__head" viewBox="0 0 14 12" aria-hidden="true" style="position: absolute; left: -5.5px; bottom: -7px; width: 14px; height: 12px; fill: #0049dc;"><path d="M7 12 L0 0 Q7 3 14 0 Z"></path></svg>
       </li>
     </ol>
@@ -184,6 +185,7 @@ const nav = [
       <p data-rv style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #0d0064; color: #ffffff; font-size: 16px; font-weight: 600; line-height: 1.4;">Resultaat</p>
       <h2 data-rv style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">Dit staat er straks</h2>
       <p data-rv style="margin: 12px 0 0; font-size: clamp(24px, 1.875vw, 27px); line-height: 1.1; font-weight: 400; color: #0d0064;">Gebouwd op wat er al is, <span class="qk">geen rebranding<svg viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M118 5 C 62 1, 9 13, 7 35 C 5 57, 66 67, 118 65 C 172 63, 215 51, 213 33 C 211 13, 162 3, 96 9"></path></svg></span></p>
+      <p data-rv style="margin: 14px 0 0; max-width: 34em; font-size: 16px; line-height: 1.5; color: #232323;">Wil je wél een nieuwe huisstijl? Dat is een groter traject, en bespreekbaar.</p>
       <ul style="margin: 40px 0 0; padding: 0; list-style: none; display: grid; gap: 22px;">
         <li data-rv style="display: flex; gap: 14px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 27px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><span style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px"><strong style="font-size: 20px; line-height: 1.3; font-weight: 600; color: rgb(13, 0, 100)">Eén design system</strong></span><span style="display: block; margin-top: 2px; font-size: 16px; line-height: 1.5; color: rgb(35, 35, 35)">De bron van waarheid in Claude Design <br>dat met je tools communiceert.</span></span></li>
         <li data-rv style="display: flex; gap: 14px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 27px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"></path></svg><span><span style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px"><strong style="font-size: 20px; line-height: 1.3; font-weight: 600; color: rgb(13, 0, 100)">Een team dat zelf aan de slag kan</strong></span><span style="display: block; margin-top: 2px; font-size: 16px; line-height: 1.5; color: rgb(35, 35, 35)">Dat met de basis en AI zelf designs maakt, met heldere afspraken.</span></span></li>
@@ -240,6 +242,7 @@ const nav = [
     <h2 data-rv style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">De scan</h2>
     
     <p data-rv style="max-width: 630px; margin: 32px 0 0; font-size: 18px; line-height: 1.6;">Ik breng in kaart wat er ligt: wat klopt, wat dubbel is en wat ontbreekt. Bij jullie op locatie of online als dat handiger is.&nbsp;</p>
+    <p data-rv style="margin: 16px 0 0;"><button type="button" class="steplink steplink--lg" data-step-open="1" aria-haspopup="dialog"><span class="steplink__num steplink__num--y" aria-hidden="true">1</span>Wat ik precies doe bij de scan<svg class="steplink__plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></p>
 
     <ul style="list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: start;">
       <li data-rv style="position: relative; display: flex; flex-direction: column; gap: 10px; padding: 28px; border-radius: 8px; background: #ffffff;">
@@ -292,8 +295,8 @@ const nav = [
       <h3 style="margin: 12px 0 0; font-size: clamp(22px, 1.95vw, 28px); line-height: 1.2; font-weight: 600; color: #0d0064;">Dit krijg je na elke scan</h3>
       <ul style="list-style: none; margin: 24px 0 0; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; font-size: 18px; line-height: 1.5; text-align: left;">
         <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"/></svg><span>Helder rapport</span></li>
-        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"/></svg><span>Plan én prijs voor <span class="visually-hidden">stap 2 </span><span style="white-space: nowrap;"><span aria-hidden="true" style="display: inline-grid; place-items: center; width: 24px; height: 24px; margin: 0 2px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 13px; font-weight: 600; line-height: 1; vertical-align: middle; position: relative; top: -1px;">2</span> Fundament</span> en <span class="visually-hidden">stap 3 </span><span style="white-space: nowrap;"><span aria-hidden="true" style="display: inline-grid; place-items: center; width: 24px; height: 24px; margin: 0 2px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 13px; font-weight: 600; line-height: 1; vertical-align: middle; position: relative; top: -1px;">3</span> Overdracht</span></span></li>
-        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"/></svg><span>Advies over <span class="visually-hidden">stap 4 </span><span style="white-space: nowrap;"><span aria-hidden="true" style="display: inline-grid; place-items: center; width: 24px; height: 24px; margin: 0 2px; border-radius: 50%; background: #ffffff; color: #0049dc; box-shadow: inset 0 0 0 2px #0049dc; font-size: 13px; font-weight: 600; line-height: 1; vertical-align: middle; position: relative; top: -1px;">4</span> Beheer</span> en <span class="visually-hidden">stap 5 </span><span style="white-space: nowrap;"><span aria-hidden="true" style="display: inline-grid; place-items: center; width: 24px; height: 24px; margin: 0 2px; border-radius: 50%; background: #ffffff; color: #0049dc; box-shadow: inset 0 0 0 2px #0049dc; font-size: 13px; font-weight: 600; line-height: 1; vertical-align: middle; position: relative; top: -1px;">5</span> Review</span></span></li>
+        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"/></svg><span>Plan én prijs voor <button type="button" class="steplink" data-step-open="2" aria-haspopup="dialog" aria-label="Meer over stap 2, Fundament"><span class="steplink__num steplink__num--y" aria-hidden="true">2</span>Fundament<svg class="steplink__plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11"></path></svg></button> en <button type="button" class="steplink" data-step-open="3" aria-haspopup="dialog" aria-label="Meer over stap 3, Overdracht"><span class="steplink__num steplink__num--y" aria-hidden="true">3</span>Overdracht<svg class="steplink__plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></span></li>
+        <li style="display: flex; gap: 12px;"><svg viewBox="0 0 18 14" aria-hidden="true" style="flex: none; width: 18px; height: 25px; fill: #0049dc;"><path d="M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z"/></svg><span>Advies over <button type="button" class="steplink" data-step-open="4" aria-haspopup="dialog" aria-label="Meer over stap 4, Beheer"><span class="steplink__num steplink__num--b" aria-hidden="true">4</span>Beheer<svg class="steplink__plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11"></path></svg></button> en <button type="button" class="steplink" data-step-open="5" aria-haspopup="dialog" aria-label="Meer over stap 5, Review"><span class="steplink__num steplink__num--b" aria-hidden="true">5</span>Review<svg class="steplink__plus" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11"></path></svg></button></span></li>
       </ul>
     </div>
 
@@ -516,6 +519,18 @@ const nav = [
 .flowline{fill:none;stroke:#0049dc;stroke-width:3;stroke-linecap:round;stroke-dasharray:3 11;animation:flowdown 1.4s linear infinite}@keyframes flowdown{to{stroke-dashoffset:-28}}
 @media (max-width:860px){.flow-wrap{display:none}.scan-result{margin-top:40px !important;padding:36px 24px 32px !important}}
 @media (prefers-reduced-motion:reduce){.flowline{animation:none}}
+.steplink { display: inline-flex; align-items: center; gap: 8px; margin: 0 2px; padding: 4px 10px 4px 5px; border: 0; border-radius: 48px; background: #e3f0ff; color: #0d0064; font-family: Poppins, sans-serif; font-size: 17px; font-weight: 600; line-height: 1.3; vertical-align: middle; position: relative; top: -1px; cursor: pointer; white-space: nowrap; transition: background .25s ease, color .25s ease; }
+.steplink__num { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 13px; font-weight: 600; line-height: 1; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
+.steplink__num--y { background: #ffc518; color: #232323; }
+.steplink__num--b { background: #ffffff; color: #0049dc; box-shadow: inset 0 0 0 2px #0049dc; }
+.steplink__plus { width: 14px; height: 14px; color: #0049dc; transition: transform .35s cubic-bezier(.16,1,.3,1), color .25s ease; }
+.steplink:hover, .steplink:focus-visible { background: #0049dc; color: #ffffff; }
+.steplink:hover .steplink__plus, .steplink:focus-visible .steplink__plus { color: #ffffff; transform: rotate(90deg); }
+.steplink:hover .steplink__num--b, .steplink:focus-visible .steplink__num--b { box-shadow: inset 0 0 0 2px #ffffff; }
+.steplink:focus-visible { outline: 3px solid #0d0064; outline-offset: 2px; }
+.steplink--lg { padding: 8px 16px 8px 8px; gap: 10px; font-size: 16px; top: 0; }
+.steplink--lg .steplink__num { width: 28px; height: 28px; font-size: 14px; }
+#scan .scan-result li { line-height: 1.7; }
 .stepcard__plus { position: absolute; right: 16px; bottom: 16px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: #e3f0ff; color: #0049dc; transition: background .25s ease, color .25s ease, transform .35s cubic-bezier(.16,1,.3,1); }
 .stepcard__plus svg { width: 16px; height: 16px; }
 .stepcard:hover .stepcard__plus, .stepcard:focus-visible .stepcard__plus { background: #0049dc; color: #ffffff; transform: rotate(90deg); }
@@ -769,6 +784,27 @@ const nav = [
     window.addEventListener('resize', () => { if (dialog.open) placeBar(); });
     go(0);
   });
+
+  // Lus 4↔5: elke keer dat de stappen in beeld komen, loopt er één gele stip langs de lus (2,4 s).
+  const loop = document.querySelector<HTMLElement>('.steps-loop');
+  const motion = loop?.querySelector<SVGAnimateMotionElement>('[data-flow-motion]');
+  const fade = loop?.querySelector<SVGAnimateElement>('[data-flow-fade]');
+  if (loop && motion && fade && !reduce && 'IntersectionObserver' in window && getComputedStyle(loop).display !== 'none') {
+    const setPath = () => {
+      const w = loop.offsetWidth, h = loop.offsetHeight, o = 8, r = 28.5, i = 1.5;
+      motion.setAttribute('path', `M${w - i + o} ${h + o} L${w - i + o} ${r + o} A${r} ${r} 0 0 0 ${w - i - r + o} ${i + o} L${i + r + o} ${i + o} A${r} ${r} 0 0 0 ${i + o} ${r + o} L${i + o} ${h + o - 2}`);
+    };
+    setPath();
+    window.addEventListener('resize', setPath);
+    let first = true;
+    const play = () => { setPath(); (motion as any).beginElement(); (fade as any).beginElement(); };
+    const lio = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      window.setTimeout(play, first ? 2300 : 300);
+      first = false;
+    }), { threshold: 0.6 });
+    lio.observe(loop);
+  }
 
   // Pop-ups per stap: native <dialog> (focus blijft erin, Escape sluit, klik buiten sluit).
   // De pagina erachter wordt vastgezet (ook op iOS), zodat je in de pop-up scrolt.
