@@ -5,21 +5,21 @@ linkUrl: https://www.linkedin.com/in/aliekezelhorst/details/recommendations/
 items:
   - name: Rik van Duijn
     role: React Native Developer @ Tired of Cancer
-    photo: ../assets/img/aanbevelingen/rik.webp
+    photo: /src/assets/img/aanbevelingen/rik.webp
     lang: en
     linkedin: ""
     text: |-
       Alieke is the best designer I have ever worked with. She stepped into the Untire project and immediately started creating structure and consistency in our chaos. Her designs don't just look beautiful; they are practical and aligned with the technology. As a developer, I'm often at the end of the line trying to implement technically uninformed designs to the pixel. With Alieke, the experience was completely different. We often worked closely together, making pragmatic decisions that would yield the best outcome with the least technical effort. The result: a complex app that is nonetheless both beautiful and user-friendly, designed and built in a very ambitious timeline that could only have worked when design and development work hand in hand.
   - name: Bas Tromp
     role: Owner @ Opreis.nl
-    photo: ../assets/img/aanbevelingen/bas.webp
+    photo: /src/assets/img/aanbevelingen/bas.webp
     lang: nl
     linkedin: ""
     text: |-
       Alieke heeft onze verwachtingen overtroffen bij het redesign van de Opreis.nl website. Binnen no-time wist ze de brei aan informatie en wensen te structureren en op een manier weer te geven die duidelijk en prettig is voor de bezoekers, en tevens voor een hogere conversie zorgt. De samenwerking was leuk en efficiënt, deadlines werden gehaald en de kwaliteit van het werk was bovenal top. Ik raad het iedereen aan om Alieke in te schakelen voor een complex UX/UI project.
   - name: Ajay Kharade
     role: Seasoned Agile Leader @ Heineken
-    photo: ../assets/img/aanbevelingen/ajay.webp
+    photo: /src/assets/img/aanbevelingen/ajay.webp
     lang: en
     linkedin: ""
     text: |-
@@ -32,7 +32,7 @@ items:
       Wishing you the best, Alieke.
   - name: Bob Hennis
     role: Informatieanalist @ Zorg en Zekerheid
-    photo: ../assets/img/aanbevelingen/bob.webp
+    photo: /src/assets/img/aanbevelingen/bob.webp
     lang: nl
     linkedin: ""
     text: |-
@@ -45,7 +45,7 @@ items:
       Daarnaast is Alieke ook gewoon een hele gezellige collega, ook zeker niet onbelangrijk!
   - name: Aron Schilder
     role: Founder @ Recruit Robin
-    photo: ../assets/img/aanbevelingen/aron.webp
+    photo: /src/assets/img/aanbevelingen/aron.webp
     lang: en
     linkedin: ""
     text: |-

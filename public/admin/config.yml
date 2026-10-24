@@ -11,15 +11,16 @@ backend:
   # Vul hier de URL van die Worker in zodra die is aangemaakt.
   base_url: https://VUL-IN.workers.dev
   commit_messages:
-    create: 'Nieuw: {{collection}} “{{slug}}” (via beheer)'
-    update: 'Aangepast: {{collection}} “{{slug}}” (via beheer)'
-    delete: 'Verwijderd: {{collection}} “{{slug}}” (via beheer)'
-    uploadMedia: 'Bestand toegevoegd: {{path}} (via beheer)'
-    deleteMedia: 'Bestand verwijderd: {{path}} (via beheer)'
+    create: 'Beheer: {{slug}} toegevoegd'
+    update: 'Beheer: {{slug}} aangepast'
+    delete: 'Beheer: {{slug}} verwijderd'
+    uploadMedia: 'Beheer: bestand {{path}} toegevoegd'
+    deleteMedia: 'Beheer: bestand {{path}} verwijderd'
 
 site_url: https://alieke.design
 display_url: https://alieke.design
-logo_url: /favicon-192x192.png
+logo:
+  src: /favicon-192x192.png
 
 # Standaardmap voor losse uploads. Afbeeldingen van projecten, aanbevelingen en het portret
 # gaan naar src/assets/img (zie per veld), zodat Astro er automatisch kleine webp-versies van maakt.
@@ -52,8 +53,8 @@ singletons:
           - name: portrait
             label: Portretfoto
             widget: image
-            media_folder: ../assets/img
-            public_folder: ../assets/img
+            media_folder: /src/assets/img
+            public_folder: /src/assets/img
           - { name: portraitAlt, label: Alt-tekst portret, widget: string, hint: 'Beschrijving van de foto voor schermlezers.' }
       - name: contact
         label: Contact
@@ -96,8 +97,8 @@ singletons:
           - name: image
             label: Afbeelding
             widget: image
-            media_folder: ../assets/img
-            public_folder: ../assets/img
+            media_folder: /src/assets/img
+            public_folder: /src/assets/img
             hint: 'Liefst minimaal 1324 pixels breed.'
           - { name: imageAlt, label: Alt-tekst afbeelding, widget: string }
           - name: logo
@@ -135,8 +136,8 @@ singletons:
           - name: photo
             label: Foto (vierkant)
             widget: image
-            media_folder: ../assets/img/aanbevelingen
-            public_folder: ../assets/img/aanbevelingen
+            media_folder: /src/assets/img/aanbevelingen
+            public_folder: /src/assets/img/aanbevelingen
           - name: lang
             label: Taal van de tekst
             widget: select

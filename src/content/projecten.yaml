@@ -3,7 +3,7 @@
 items:
   - title: Sneller passende zorg door heldere flows
     intro: Redesign van publieke platform en beheersysteem
-    image: ../assets/img/visual-design-beschikbaarheidswijzer-small.jpg
+    image: /src/assets/img/visual-design-beschikbaarheidswijzer-small.jpg
     imageAlt: Vrouw achter een computerscherm met het beheersysteem van de Beschikbaarheidswijzer
     logo: /img/logos/logo-beschikbaarheidswijzer.svg
     logoAlt: Logo Beschikbaarheidswijzer
@@ -15,7 +15,7 @@ items:
       - WCAG toetsing<br>bestaand design system
   - title: Slim inzicht in slaap en voeding van baby’s
     intro: Design en realisatie van een nieuwe app
-    image: ../assets/img/evi-app-small.png
+    image: /src/assets/img/evi-app-small.png
     imageAlt: Hand met een telefoon waarop de Evi-app de planning voor slaap en voeding toont
     logo: /img/logos/logo-evi-dark.png
     logoAlt: Logo Evi app
@@ -29,7 +29,7 @@ items:
       - Vibe coding
   - title: Meer inzicht met dashboard voor bareigenaren
     intro: Design voor een nieuw concept van Heineken
-    image: ../assets/img/Heineken-dashboard-design-1800x1220.jpg
+    image: /src/assets/img/Heineken-dashboard-design-1800x1220.jpg
     imageAlt: Design van een dashboard voor Heineken waarop de performance van de bar te zien is.
     logo: /img/logos/Logo-Heineken.svg
     logoAlt: Logo van opdrachtgever Heineken
@@ -43,7 +43,7 @@ items:
       - Usability tests
   - title: "Intuïtieve app voor vermoeide (ex)kanker­patiënten" # ­ = afbreekpunt op smalle schermen
     intro: 'Volledig redesign <a href="https://apps.apple.com/nl/app/untire-now/id1661118356" target="_blank" rel="noopener">Untire Now app<span class="visually-hidden"> (opent in nieuw venster)</span></a> / <span role="img" aria-label="5 sterren">⭐️⭐️⭐️⭐️⭐️</span> in AppStore'
-    image: ../assets/img/Untire-app-design-1800x1228.jpg
+    image: /src/assets/img/Untire-app-design-1800x1228.jpg
     imageAlt: Design van het Vandaag scherm van de app Untire Now
     logo: /img/logos/Logo-Untire.svg
     logoAlt: Logo van de app Untire

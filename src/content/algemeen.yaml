@@ -14,7 +14,7 @@ hero:
     - Gediplomeerd WCAG specialist
     - Bedreven in het verbeteren van AI producten
   buttonText: Bekijk werk
-  portrait: ../assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
+  portrait: /src/assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
   portraitAlt: Foto van Alieke Zelhorst, freelance UX/UI designer uit Utrecht
 
 contact:

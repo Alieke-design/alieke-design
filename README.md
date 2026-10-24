@@ -47,15 +47,12 @@ Open daarna http://localhost:4321.
 
 ## Live zetten (Hostinger)
 
-De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Tijdens de testfase draait hij automatisch bij elke wijziging op `main` (naar `nieuw.alieke.design`); je kunt hem ook handmatig starten.
+De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Hij draait automatisch bij elke wijziging op `main` (dus ook na opslaan in het beheerscherm); handmatig starten kan via Actions → **Deploy naar Hostinger** → **Run workflow**, eventueel als "dry run" om alleen de verbinding te testen.
 
-Eenmalig instellen in GitHub → Settings → Secrets and variables → Actions:
+De secrets staan in GitHub → Settings → Secrets and variables → Actions:
 
 - `FTP_SERVER` – FTP-host uit Hostinger (hPanel → Bestanden → FTP-accounts)
-- `FTP_USERNAME` – FTP-gebruikersnaam
-- `FTP_PASSWORD` – FTP-wachtwoord
-- `FTP_SERVER_DIR` – map op de server, bijvoorbeeld `/public_html/`
+- `FTP_LIVE_USERNAME` – FTP-gebruikersnaam
+- `FTP_LIVE_PASSWORD` – FTP-wachtwoord
 
-Daarna: Actions → **Deploy naar Hostinger** → **Run workflow**.
-
-Let op: maak eerst een back-up van de WordPress-site en haal WordPress weg uit `public_html` voordat je de eerste keer live zet.
+De secrets `FTP_USERNAME` en `FTP_PASSWORD` van de oude testomgeving (nieuw.alieke.design) worden niet meer gebruikt en kunnen weg.
