@@ -1,19 +1,124 @@
 ---
 import Base from '../layouts/Base.astro';
-import Icon from '../components/Icon.astro';
+
+// De 404 kan op elk adres verschijnen, dus de menu-items wijzen naar de homepage.
+const nav = [
+  { href: '/#hi', label: 'Hi 👋' },
+  { href: '/#werk', label: 'Werk' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/#aanbevelingen', label: 'Aanbevelingen' },
+  { href: '/#over-mij', label: 'Over mij' },
+  { href: '/#contact', label: 'Contact' },
+];
+
+const arrow = 'M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32h306.7L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z';
+const dots = [];
+for (let y = 10; y <= 110; y += 20) for (let x = 10; x <= 120 - y; x += 20) dots.push({ x, y });
 ---
-<Base title="Pagina niet gevonden - Alieke.design" noindex>
-  <section class="text-image" id="hi">
-    <div class="text-image__inner">
-      <div class="text-image__text">
-        <p class="label background--dyellow font-semibold">404</p>
-        <h1 class="large-heading color--ddarkblue">Deze pagina bestaat niet (meer)</h1>
-        <div class="default-body p"><p>Misschien is hij verhuisd. Op de homepage vind je mijn werk, skills en contactgegevens.</p></div>
-        <a class="button" href="/">
-          <span class="button__text">Naar de homepage</span>
-          <span class="button__icon is-arrow-right"><Icon name="arrow-right" /></span>
-        </a>
+<Base title="Pagina niet gevonden - Alieke.design" noindex nav={nav}>
+  <section class="nf" id="hi">
+    <div class="nf__inner">
+      <div class="nf__text">
+        <p class="nf__label nf-rise">404</p>
+        <h1 class="nf__title nf-rise nf-d1">Deze pagina bestaat niet</h1>
+        <p class="nf__quote nf-rise nf-d2">Wist je dat veel organisaties geen <span class="nf__circled">behulpzame<svg viewBox="0 0 120 52" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="60" cy="26" rx="57" ry="22" transform="rotate(-3 60 26)"></ellipse></svg></span> 404-pagina hebben?</p>
+        <p class="nf__body nf-rise nf-d3">Zonde, want dan raak je de weg kwijt.<br />Kies hieronder waar je verder wilt.</p>
+        <div class="nf__buttons nf-rise nf-d4">
+          <a class="nf__btn" href="/">Alieke.design<svg viewBox="0 0 448 512" aria-hidden="true"><path d={arrow}></path></svg></a>
+          <a class="nf__btn nf__btn--navy" href="/ai-design-consultancy">AI Design Consultancy<svg viewBox="0 0 448 512" aria-hidden="true"><path d={arrow}></path></svg></a>
+        </div>
+      </div>
+
+      <div class="nf__art" aria-hidden="true">
+        <div class="nf__stage">
+          <svg class="nf__dots" viewBox="0 0 120 120"><g fill="#ffc518">{dots.map((d) => <circle cx={d.x} cy={d.y} r="3.5"></circle>)}</g></svg>
+          <div class="nf__ring"></div>
+          <div class="nf__sun"></div>
+          <div class="nf__four nf__four--l nf-rise nf-d1">4</div>
+          <div class="nf__four nf__four--r nf-rise nf-d2">4</div>
+          <div class="nf__glass">
+            <svg viewBox="0 0 170 170">
+              <line x1="106" y1="106" x2="148" y2="148" stroke="#0d0064" stroke-width="22" stroke-linecap="round"></line>
+              <line x1="116" y1="116" x2="140" y2="140" stroke="#ffffff" stroke-width="3" stroke-linecap="round"></line>
+              <line x1="94" y1="94" x2="108" y2="108" stroke="#0049dc" stroke-width="16"></line>
+              <circle cx="68" cy="60" r="50" fill="#232323"></circle>
+              <circle cx="64" cy="64" r="50" fill="#0d0064"></circle>
+              <circle cx="64" cy="64" r="41" fill="#e3f0ff"></circle>
+              <text x="64" y="84" text-anchor="middle" font-family="Poppins, sans-serif" font-size="58" font-weight="700" fill="#0049dc">?</text>
+              <path d="M36 52 A30 30 0 0 1 52 34" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"></path>
+              <circle cx="33" cy="64" r="3" fill="#ffffff"></circle>
+            </svg>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </Base>
+
+<style>
+  /* Footer onderaan: de pagina is minstens schermhoog en de inhoud vult de ruimte op. */
+  :global(body:has(.nf)) { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; }
+  :global(body:has(.nf) > .smooth-scroll) { flex: 1 0 auto; display: flex; flex-direction: column; }
+  :global(body:has(.nf) main) { flex: 1 0 auto; display: flex; align-items: center; }
+
+  .nf { width: 100%; padding: clamp(40px, 6vw, 96px) 16px clamp(72px, 8vw, 120px); }
+  .nf__inner { max-width: 1120px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 64px; }
+
+  .nf__text { flex: 1 1 460px; max-width: 630px; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+  .nf__label { margin: 0; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; font-weight: 600; line-height: 1.4; }
+  .nf__title { margin: 0; font-size: 40px; line-height: 1.1; font-weight: 600; color: #0d0064; }
+  .nf__quote { margin: 0; max-width: 19em; font-size: 24px; line-height: 1.6; font-weight: 450; font-style: italic; color: #0d0064; }
+  .nf__body { margin: 0; font-size: 18px; line-height: 1.4; color: #232323; }
+
+  .nf__circled { position: relative; display: inline-block; white-space: nowrap; }
+  .nf__circled svg { position: absolute; left: -12px; top: -7px; width: calc(100% + 24px); height: calc(100% + 14px); overflow: visible; pointer-events: none; }
+  .nf__circled ellipse { fill: none; stroke: #ffc518; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 640; }
+
+  .nf__buttons { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 16px; }
+  .nf__btn { display: inline-flex; align-items: center; gap: 10px; min-height: 40px; box-sizing: border-box; padding: 9px 20px; background: #0049dc; color: #ffffff; font-size: 16px; font-weight: 600; line-height: 1.4; text-decoration: none; border-radius: 14.08px; box-shadow: 3.52px -3.52px 0 0 #232323; transition: transform .2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .nf__btn--navy { background: #0d0064; }
+  .nf__btn svg { width: 14px; height: 14px; fill: currentColor; transition: transform .2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .nf__btn:hover { color: #ffffff; transform: translate(1.6px, -1.6px); box-shadow: 1.6px -1.6px 0 0 #232323; }
+  .nf__btn:hover svg { transform: translateX(0.2em); }
+  .nf__btn:focus-visible { outline: 3px solid #0d0064; outline-offset: 2px; }
+
+  /* Illustratie: getekend op 540 x 376 en meegeschaald op kleinere schermen. */
+  .nf__art { flex: 1 1 400px; min-width: 0; display: flex; justify-content: center; }
+  .nf__stage { position: relative; width: 540px; height: 376px; flex: none; }
+  .nf__dots { position: absolute; left: 0; top: 0; width: 120px; height: 120px; }
+  .nf__ring { position: absolute; left: 148px; top: 74px; width: 280px; height: 280px; border: 3px solid #0049dc; border-radius: 50%; box-sizing: border-box; }
+  .nf__sun { position: absolute; left: 130px; top: 92px; width: 280px; height: 280px; background: #ffc518; border-radius: 50%; }
+  .nf__four { position: absolute; top: 96px; font-size: 240px; line-height: 1; font-weight: 700; color: #0d0064; }
+  .nf__four--l { left: 0; }
+  .nf__four--r { left: 392px; }
+  .nf__glass { position: absolute; left: 196px; top: 150px; width: 170px; height: 170px; }
+  .nf__glass svg { display: block; width: 100%; height: 100%; }
+
+  @media (max-width: 1000px) {
+    .nf__art { order: -1; flex-basis: 100%; }
+    .nf__stage { zoom: 0.8; }
+  }
+  @media (max-width: 600px) {
+    .nf__title { font-size: 24px; }
+    .nf__quote { font-size: 20px; }
+    .nf__body { font-size: 16px; }
+    .nf__btn { padding: 9px 18px; }
+    .nf__stage { zoom: 0.64; margin-top: -60px; }
+    .nf__dots { top: 60px; }
+  }
+
+  /* Beweging: eenmalig, en niets bij "verminder beweging". */
+  @media (prefers-reduced-motion: no-preference) {
+    .nf-rise { animation: nf-rise .8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .nf-d1 { animation-delay: .08s; } .nf-d2 { animation-delay: .16s; } .nf-d3 { animation-delay: .24s; } .nf-d4 { animation-delay: .32s; }
+    .nf__circled ellipse { animation: nf-draw 1s .9s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .nf__sun { animation: nf-pop .9s .2s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+    .nf__glass { animation: nf-search 2.6s 1s ease-in-out both; }
+    .nf__dots { animation: nf-float 5s 1s ease-in-out both; }
+  }
+  @keyframes nf-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes nf-draw { from { stroke-dashoffset: 640; } to { stroke-dashoffset: 0; } }
+  @keyframes nf-pop { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  @keyframes nf-search { 0% { transform: none; } 25% { transform: translate(-26px, -14px) rotate(-6deg); } 50% { transform: translate(22px, -20px) rotate(5deg); } 75% { transform: translate(-8px, 12px); } 100% { transform: none; } }
+  @keyframes nf-float { 0%, 100% { transform: none; } 50% { transform: translateY(-8px); } }
+</style>
