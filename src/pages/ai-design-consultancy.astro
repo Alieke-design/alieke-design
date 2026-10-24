@@ -596,16 +596,19 @@ const nav = [
   }
 
   // Pop-ups per stap: native <dialog> (focus blijft erin, Escape sluit, klik buiten sluit).
+  // De pagina erachter wordt vastgezet (ook op iOS), zodat je in de pop-up scrolt.
+  let lockedY = 0;
   document.querySelectorAll<HTMLButtonElement>('[data-step-open]').forEach((btn) => {
     const dialog = document.querySelector<HTMLDialogElement>(`#step-${btn.dataset.stepOpen}`);
     if (!dialog) return;
     btn.addEventListener('click', () => {
+      lockedY = window.scrollY;
       dialog.showModal();
       document.documentElement.style.overflow = 'hidden';
-      document.body.style.overflow = 'hidden';
+      Object.assign(document.body.style, { position: 'fixed', top: `-${lockedY}px`, left: '0', right: '0', width: '100%', overflow: 'hidden' });
     });
     dialog.querySelector('[data-step-close]')?.addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
-    dialog.addEventListener('close', () => { document.documentElement.style.overflow = ''; document.body.style.overflow = ''; btn.focus(); });
+    dialog.addEventListener('close', () => { document.documentElement.style.overflow = ''; Object.assign(document.body.style, { position: '', top: '', left: '', right: '', width: '', overflow: '' }); window.scrollTo(0, lockedY); btn.focus(); });
   });
 </script>
