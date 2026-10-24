@@ -28,6 +28,10 @@ if (!reduceMotion) {
   gsap.ticker.add((time) => lenis!.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 }
+// Pagina's met een eigen pop-up (zoals AI Design Consultancy) zetten het meescrollen
+// even stil zolang de pop-up open staat.
+window.addEventListener('lenis:stop', () => lenis?.stop());
+window.addEventListener('lenis:start', () => lenis?.start());
 
 // Ankerlinks binnen de pagina.
 $$<HTMLAnchorElement>('a[href*="#"]').forEach((link) => {
