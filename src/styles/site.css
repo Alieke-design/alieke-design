@@ -448,6 +448,7 @@ html { scroll-padding-top: 5rem; }
 }
 .quote-b--consultancy { max-width: 18em; margin: 1.25rem 0 0; }
 .quote-b__w { display: inline-block; }
+.quote-b__nb { white-space: nowrap; }
 .quote-b__k { position: relative; isolation: isolate; margin: 0 0.3em 0 0.26em; }
 .quote-b__circle { position: absolute; z-index: -1; left: -0.5em; top: -0.26em; width: calc(100% + 1em); height: calc(100% + 0.52em); overflow: visible; pointer-events: none; }
 .quote-b__circle path { fill: none; stroke: var(--brand-yellow); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; vector-effect: non-scaling-stroke; }

@@ -9,7 +9,8 @@ const circles = [
   'M120 6 C 60 2, 8 14, 6 36 C 4 58, 70 66, 120 64 C 175 62, 216 50, 214 32 C 212 12, 160 4, 100 8',
 ];
 let k = 0;
-const words = text.split(/\s+/).map((raw) => {
+// Een cirkel kan ook om meerdere woorden: *mens én AI* blijft één geheel.
+const words = (text.match(/\*[^*]+\*[.,!?:;]*|\S+/g) ?? []).map((raw) => {
   const m = raw.match(/^\*(.+?)\*([.,!?:;]*)$/);
   if (!m) return { word: raw };
   return { word: m[1], tail: m[2], circle: circles[k++ % circles.length], c: k };
@@ -19,11 +20,10 @@ const words = text.split(/\s+/).map((raw) => {
   {words.map((w, n) => (
     <>
       {w.circle ? (
-        <span class="quote-b__w quote-b__k" style={`--n:${n}`}>{w.word}<svg class={`quote-b__circle quote-b__circle--${w.c}`} viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={w.circle} /></svg></span>
+        <span class="quote-b__nb"><span class="quote-b__w quote-b__k" style={`--n:${n}`}>{w.word}<svg class={`quote-b__circle quote-b__circle--${w.c}`} viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path pathLength="1" d={w.circle} /></svg></span>{w.tail && <span class="quote-b__w" style={`--n:${n}`}>{w.tail}</span>}</span>
       ) : (
-        <span class="quote-b__w" style={`--n:${n}`}>{w.word}</span>
+        <span class="quote-b__w" style={`--n:${n}`}>{w.word}{w.tail && <span class="quote-b__w" style={`--n:${n}`}>{w.tail}</span>}</span>
       )}
-      {w.tail && <span class="quote-b__w" style={`--n:${n}`}>{w.tail}</span>}
       {n < words.length - 1 && ' '}
     </>
   ))}
