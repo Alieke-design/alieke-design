@@ -1,7 +1,8 @@
 ---
 import DoubleArrows from './DoubleArrows.astro';
 import Icon from './Icon.astro';
-import { werkwijze, resultaat, voorWie } from '../data/skills';
+import { getOverMij } from '../lib/content';
+const { werkwijze, resultaat, voorWie } = await getOverMij();
 const blocks = [
   { title: 'Werkwijze', items: werkwijze, icon: 'arrow-right' as const, label: 'Over mij' },
   { title: 'Resultaat', items: resultaat, icon: 'check' as const },

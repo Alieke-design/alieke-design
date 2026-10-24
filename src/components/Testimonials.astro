@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import { aanbevelingen, recommendationsUrl } from '../data/aanbevelingen';
+import { getAanbevelingen, getAanbevelingenLink } from '../lib/content';
+const aanbevelingen = await getAanbevelingen();
+const recommendationsUrl = await getAanbevelingenLink();
 ---
 <section class="widget-block background--dlightblue" data-scroll-var data-start="top bottom" id="aanbevelingen">
   <div class="widget-block__inner">

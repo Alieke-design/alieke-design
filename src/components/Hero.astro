@@ -2,24 +2,23 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Quote from './Quote.astro';
-import portrait from '../assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png';
+import { getAlgemeen } from '../lib/content';
+const { hero } = await getAlgemeen();
 ---
 <section class="text-image" data-scroll-var data-start="top top" id="hi">
   <div class="text-image__inner">
     <div class="text-image__text">
-      <p class="label background--dblue font-semibold">Hi! 👋</p>
-      <h1 class="large-heading color--ddarkblue">Freelance UX/UI designer</h1>
-      <p class="text-image__subtitle xsmall-heading font-regular color--dblue">Alieke Zelhorst</p>
-      <Quote text="Ik maak complexe apps en tools *intuïtief* en *toegankelijk*." />
+      <p class="label background--dblue font-semibold">{hero.label}</p>
+      <h1 class="large-heading color--ddarkblue">{hero.title}</h1>
+      <p class="text-image__subtitle xsmall-heading font-regular color--dblue">{hero.subtitle}</p>
+      <Quote text={hero.quote} />
       <div class="default-body p">
         <ul>
-          <li><span>Senior UX/UI designer met 15 jaar ervaring</span></li>
-          <li><span>Gediplomeerd WCAG specialist</span></li>
-          <li><span>Bedreven in het verbeteren van AI producten</span></li>
+          {hero.bullets.map((item) => <li><span>{item}</span></li>)}
         </ul>
       </div>
       <a class="button button--anchor" href="#werk">
-        <span class="button__text">Bekijk werk</span>
+        <span class="button__text">{hero.buttonText}</span>
         <span class="button__icon is-arrow-down"><Icon name="arrow-down" /></span>
       </a>
     </div>
@@ -30,8 +29,8 @@ import portrait from '../assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
         </clipPath>
       </svg>
       <Image
-        src={portrait}
-        alt="Foto van Alieke Zelhorst, freelance UX/UI designer uit Utrecht"
+        src={hero.portrait}
+        alt={hero.portraitAlt}
         widths={[400, 600, 800]}
         sizes="(max-width: 750px) 80vw, 336px"
         loading="eager"

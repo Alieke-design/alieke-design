@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://alieke.design/sitemap.xml
+
+User-agent: *
+Disallow: /admin/

@@ -1,11 +1,22 @@
-// Algemene instellingen van de site.
+// Algemene instellingen van de site. De teksten en gegevens komen uit src/content/algemeen.yaml
+// (te beheren via /admin); hier alleen wat de code nodig heeft.
+import yaml from 'js-yaml';
+import raw from './content/algemeen.yaml?raw';
+
+type Algemeen = {
+  seo: { title: string; description: string; ogImageAlt: string };
+  gegevens: { email: string; linkedin: string; kvk: string; adres: string };
+};
+
+const algemeen = yaml.load(raw) as Algemeen;
+
 export const site = {
-  title: 'Alieke Zelhorst - Freelance UX/UI designer en WCAG specialist uit Utrecht',
-  description:
-    'Hi! Ik ben Alieke uit Utrecht. Senior UX/UI designer en specialist in digitale toegankelijkheid (WCAG). Benieuwd wat ik voor je kan doen?',
+  title: algemeen.seo.title,
+  description: algemeen.seo.description,
+  ogImageAlt: algemeen.seo.ogImageAlt,
   url: 'https://alieke.design',
-  email: 'mail@alieke.design',
-  linkedin: 'https://linkedin.com/in/aliekezelhorst',
-  kvk: '72899107',
-  address: 'Hooghiemstraplein 67, Utrecht',
+  email: algemeen.gegevens.email,
+  linkedin: algemeen.gegevens.linkedin,
+  kvk: String(algemeen.gegevens.kvk),
+  address: algemeen.gegevens.adres,
 };
