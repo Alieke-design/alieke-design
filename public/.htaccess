@@ -8,11 +8,12 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
 
-# De testmap is ook bereikbaar als alieke.design/nieuw/. Stuur die naar het testadres,
-# zodat Google geen dubbele kopie van de site op het hoofddomein vindt.
-RewriteCond %{HTTP_HOST} ^(www\.)?alieke\.design$ [NC]
-RewriteCond %{REQUEST_URI} ^/nieuw(/.*)?$
-RewriteRule ^ https://nieuw.alieke.design%1 [L,R=301]
+# De oude testomgeving (nieuw.alieke.design en alieke.design/nieuw/) is niet meer in
+# gebruik: stuur alles daar naar dezelfde pagina op alieke.design.
+RewriteCond %{HTTP_HOST} ^nieuw\.alieke\.design$ [NC]
+RewriteRule ^(.*)$ https://alieke.design/$1 [L,R=301]
+RewriteCond %{REQUEST_URI} ^/nieuw(/(.*))?$
+RewriteRule ^ https://alieke.design/%2 [L,R=301]
 
 # www naar zonder www
 RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
@@ -51,13 +52,6 @@ RewriteRule .* - [E=Cache-Control:no-cache]
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresByType font/woff "access plus 1 year"
-</IfModule>
-
-# De testomgeving (nieuw.alieke.design) niet in Google. Geldt alleen voor die host,
-# dus na de overstap naar alieke.design hoeft hier niets aangepast te worden.
-SetEnvIfNoCase Host ^nieuw\. NOINDEX_HOST
-<IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex, nofollow" env=NOINDEX_HOST
 </IfModule>
 
 <IfModule mod_headers.c>

@@ -1,30 +1,29 @@
 name: Deploy naar Hostinger
 
-# Twee bestemmingen:
-# - test (nieuw.alieke.design): automatisch bij elke wijziging op main.
-# - live (alieke.design): alleen handmatig, via Actions → Deploy naar Hostinger →
-#   Run workflow → kies "live". Zo gaat er nooit per ongeluk iets live.
+# Elke wijziging op main gaat automatisch live naar alieke.design.
+# De oude testomgeving (nieuw.alieke.design) is alleen nog handmatig bereikbaar via
+# Actions → Deploy naar Hostinger → Run workflow → kies "test", tot die is opgeruimd.
 on:
   push:
     branches: [main]
   workflow_dispatch:
     inputs:
       target:
-        description: 'Waar naartoe? test = nieuw.alieke.design, live = alieke.design'
+        description: 'Waar naartoe? live = alieke.design, test = nieuw.alieke.design (oud)'
         type: choice
-        options: [test, live]
-        default: test
+        options: [live, test]
+        default: live
       dry_run:
         description: 'Alleen testen of de verbinding werkt (niets uploaden)'
         type: boolean
         default: false
 
 concurrency:
-  group: deploy-${{ inputs.target || 'test' }}
+  group: deploy-${{ inputs.target || 'live' }}
   cancel-in-progress: false
 
 env:
-  IS_LIVE: ${{ github.event_name == 'workflow_dispatch' && inputs.target == 'live' }}
+  IS_LIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.target == 'live' }}
 
 jobs:
   deploy:
