@@ -1,7 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import { projects } from '../data/projects';
 import DotGrid from './DotGrid.astro';
+import { getProjecten } from '../lib/content';
+const projects = await getProjecten();
 ---
 <section class="projects background--dlightblue" id="werk">
   <div class="projects__inner">
