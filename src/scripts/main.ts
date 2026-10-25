@@ -557,7 +557,7 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
 }
 
 // ---------------------------------------------------------------------------
-// 7. Tijdlijn bij Ervaring en Opleiding vult zich terwijl je scrolt
+// 7. Tijdlijn bij Ervaring en Opleiding vult zich van oud (onder) naar nieuw (boven) terwijl je scrolt
 // ---------------------------------------------------------------------------
 $$('.description-list').forEach((list) => {
   list.classList.add('has-timeline');

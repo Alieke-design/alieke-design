@@ -527,7 +527,8 @@ html.js [data-dots]:not(.is-dotted) .dot { opacity: 0; transform: scale(0.4); }
 .description-list.has-timeline::before { background: var(--surface-tint); }
 .description-list.has-timeline::after {
   background: var(--brand-blue);
-  transform-origin: top;
+  /* Van onder (lang geleden) naar boven (nu): de jaartallen staan van nieuw naar oud */
+  transform-origin: bottom;
   transform: scaleY(var(--progress));
 }
 
