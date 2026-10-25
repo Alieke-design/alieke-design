@@ -557,15 +557,35 @@ if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').mat
 }
 
 // ---------------------------------------------------------------------------
-// 7. Tijdlijn bij Ervaring en Opleiding vult zich van oud (onder) naar nieuw (boven) terwijl je scrolt
+// 7. Tijdlijn bij Ervaring en Opleiding: de streep vult zich van boven naar beneden
+//    terwijl je scrolt, en elke regel licht op zodra de streep hem bereikt.
 // ---------------------------------------------------------------------------
 $$('.description-list').forEach((list) => {
   list.classList.add('has-timeline');
-  if (reduceMotion) { list.style.setProperty('--progress', '1'); return; }
+  const rows = [...list.querySelectorAll<HTMLElement>('.row')];
+  if (reduceMotion) {
+    list.style.setProperty('--progress', '1');
+    rows.forEach((r) => r.classList.add('is-lit'));
+    return;
+  }
+  // Drempel per regel: het midden van de regel, als deel van de lijsthoogte.
+  let thresholds: number[] = [];
+  const measure = () => {
+    const l = list.getBoundingClientRect();
+    thresholds = rows.map((r) => { const b = r.getBoundingClientRect(); return (b.top - l.top + b.height * 0.35) / l.height; });
+  };
+  measure();
+  window.addEventListener('resize', measure);
+  const light = (p: number) => rows.forEach((r, i) => { if (p >= thresholds[i]) r.classList.add('is-lit'); });
   gsap.to(list, {
     '--progress': 1,
     ease: 'none',
-    scrollTrigger: { trigger: list, start: 'top 75%', end: 'bottom 55%', scrub: 0.6 },
+    scrollTrigger: {
+      trigger: list, start: 'top 75%', end: 'bottom 55%', scrub: 0.6,
+      onRefresh: measure,
+      onLeave: () => rows.forEach((r) => r.classList.add('is-lit')),
+    },
+    onUpdate() { light(this.progress()); },
   });
 });
 

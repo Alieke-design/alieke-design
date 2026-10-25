@@ -527,14 +527,22 @@ html.js [data-dots]:not(.is-dotted) .dot { opacity: 0; transform: scale(0.4); }
 .description-list.has-timeline::before { background: var(--surface-tint); }
 .description-list.has-timeline::after {
   background: var(--brand-blue);
-  /* Van onder (lang geleden) naar boven (nu): de jaartallen staan van nieuw naar oud */
-  transform-origin: bottom;
+  transform-origin: top;
   transform: scaleY(var(--progress));
 }
+
+/* Regels lichten één voor één op zodra de streep ze bereikt */
+html.js .description-list.has-timeline .row {
+  opacity: 0;
+  translate: -10px 0;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), translate 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0; }
 
 /* Alles uit bij "verminder beweging" (eindstand direct zichtbaar) */
 @media (prefers-reduced-motion: reduce) {
   .is-floating { animation: none; }
+  html.js .description-list.has-timeline .row { opacity: 1; translate: none; transition: none; }
   html.js [data-dots] .dot { opacity: 1; transform: none; transition: none; }
   .svg-double-arrows-down.is-nudged path { animation: none; }
   .tool-logo:hover img { scale: 1; }
