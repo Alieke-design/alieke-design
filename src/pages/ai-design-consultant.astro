@@ -947,4 +947,40 @@ html.js .why-ill .p8{transform:translate(-10px,-62px) rotate(-10deg)}
 .is-revealed .why-ill .w3{opacity:0;transform:scale(.4);transition:opacity .5s ease 1.70s,transform .6s ease 1.70s}
 .is-revealed .why-ill .w4{opacity:0;transform:scale(.4);transition:opacity .5s ease 1.85s,transform .6s ease 1.85s}
 @media (prefers-reduced-motion:reduce){html.js .why-ill .pc{transform:none!important;transition:none!important}.why-ill [class^=w]{display:none}}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+.why-wrap.ready .why-ill .p1{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.00s}
+.why-wrap.ready:hover .why-ill .p1{transform:translate(-46px,-17px) rotate(-14deg)}
+.why-wrap.ready .why-ill .p2{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.04s}
+.why-wrap.ready:hover .why-ill .p2{transform:translate(60px,-15px) rotate(0deg)}
+.why-wrap.ready .why-ill .p3{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.08s}
+.why-wrap.ready:hover .why-ill .p3{transform:translate(-81px,46px) rotate(0deg)}
+.why-wrap.ready .why-ill .p4{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.12s}
+.why-wrap.ready:hover .why-ill .p4{transform:translate(36px,40px) rotate(0deg)}
+.why-wrap.ready .why-ill .p5{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.16s}
+.why-wrap.ready:hover .why-ill .p5{transform:translate(63px,-8px) rotate(10deg)}
+.why-wrap.ready .why-ill .p6{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.20s}
+.why-wrap.ready:hover .why-ill .p6{transform:translate(-79px,3px) rotate(-12deg)}
+.why-wrap.ready .why-ill .p7{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.24s}
+.why-wrap.ready:hover .why-ill .p7{transform:translate(13px,25px) rotate(8deg)}
+.why-wrap.ready .why-ill .p8{transform:none;transition:transform .6s cubic-bezier(.2,.8,.2,1) 0.28s}
+.why-wrap.ready:hover .why-ill .p8{transform:translate(-10px,-62px) rotate(-10deg)}
+.why-wrap.ready .why-ill .w1{opacity:0;transform:scale(.4);transition:opacity .3s ease,transform .4s ease}
+.why-wrap.ready:hover .why-ill .w1{opacity:1;transform:none}
+.why-wrap.ready .why-ill .w2{opacity:0;transform:scale(.4);transition:opacity .3s ease,transform .4s ease}
+.why-wrap.ready:hover .why-ill .w2{opacity:1;transform:none}
+.why-wrap.ready .why-ill .w3{opacity:0;transform:scale(.4);transition:opacity .3s ease,transform .4s ease}
+.why-wrap.ready:hover .why-ill .w3{opacity:1;transform:none}
+.why-wrap.ready .why-ill .w4{opacity:0;transform:scale(.4);transition:opacity .3s ease,transform .4s ease}
+.why-wrap.ready:hover .why-ill .w4{opacity:1;transform:none}
+}
 </style>
+
+<script>
+  // Na de eerste animatie: bij hover gaan de onderdelen weer uit het kader, bij weggaan terug.
+  const whyWrap = document.querySelector('.why-wrap');
+  if (whyWrap) {
+    const arm = () => { if (whyWrap.classList.contains('is-revealed') && !whyWrap.classList.contains('ready')) setTimeout(() => whyWrap.classList.add('ready'), 3200); };
+    new MutationObserver(arm).observe(whyWrap, { attributes: true, attributeFilter: ['class'] });
+    arm();
+  }
+</script>
