@@ -1,6 +1,7 @@
 // Interacties en animaties, overgenomen uit het WordPress-thema (assets/main.js):
 // smooth scroll (Lenis), parallax (GSAP ScrollTrigger), --i scroll-variabele,
 // is-inview, lazy-load fade en header-achtergrond bij scrollen.
+import './no-widows';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';

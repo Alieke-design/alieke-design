@@ -577,3 +577,7 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 @media only screen and (min-width: 1440px) {
   .text-image__inner { padding-left: 200px !important; padding-right: 200px !important; }
 }
+
+/* Nooit één woord alleen op de laatste regel (zie ook scripts/no-widows.ts) */
+:where(h1, h2, h3, h4, h5, h6, p, li, dt, dd, figcaption, blockquote, label, .button__text) { text-wrap: pretty; }
+.nowidow { white-space: nowrap; }
