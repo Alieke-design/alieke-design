@@ -585,8 +585,8 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 /* Pauzeknop voor herhalende beweging (WCAG 2.2.2) ------------------------- */
 .pause-btn {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  right: 0;
+  bottom: -64px; /* net onder de tekening: daar komt het Review-kaartje tot rust */
   z-index: 2;
   display: grid;
   place-items: center;
