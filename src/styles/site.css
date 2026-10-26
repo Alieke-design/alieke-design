@@ -447,6 +447,7 @@ html { scroll-padding-top: 5rem; }
   line-height: 1.6;
 }
 .quote-b--consultancy { max-width: 18em; margin: 1.25rem 0 0; }
+.quote-b--lead { max-width: none; margin: 1.5rem 0 0; }
 .quote-b__w { display: inline-block; }
 .quote-b__nb { white-space: nowrap; }
 .quote-b__k { position: relative; isolation: isolate; margin: 0 0.3em 0 0.26em; }
