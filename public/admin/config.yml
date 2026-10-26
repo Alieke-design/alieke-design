@@ -8,8 +8,7 @@ backend:
   repo: Alieke-design/alieke-design
   branch: main
   # Inloggen via GitHub loopt via een klein hulpje (sveltia-cms-auth) op Cloudflare Workers.
-  # Vul hier de URL van die Worker in zodra die is aangemaakt.
-  base_url: https://VUL-IN.workers.dev
+  base_url: https://sveltia-cms-auth.mail-fc0.workers.dev
   commit_messages:
     create: 'Beheer: {{slug}} toegevoegd'
     update: 'Beheer: {{slug}} aangepast'
