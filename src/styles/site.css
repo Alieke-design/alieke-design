@@ -642,6 +642,7 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 /* Gepauzeerd: alle CSS-animaties die blijven herhalen staan stil */
 .motion-paused .hero-flow *,
 .motion-paused .flowline,
+.motion-paused .flow-draw,
 .motion-paused .logo .logo__l,
 .motion-paused .logo .logo__dot { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) {
