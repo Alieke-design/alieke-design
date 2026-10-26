@@ -2,6 +2,7 @@
 // smooth scroll (Lenis), parallax (GSAP ScrollTrigger), --i scroll-variabele,
 // is-inview, lazy-load fade en header-achtergrond bij scrollen.
 import './no-widows';
+import { motionPaused } from './motion-pause';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -374,7 +375,7 @@ if (!reduceMotion) {
       window.clearTimeout(idleTimer);
       if (plays >= 3) return;
       idleTimer = window.setTimeout(() => {
-        if (document.hidden || headerLogo.matches(':hover')) return arm();
+        if (document.hidden || motionPaused() || headerLogo.matches(':hover')) return arm();
         plays++;
         restartLogo(headerLogo, 'is-idle');
         arm();

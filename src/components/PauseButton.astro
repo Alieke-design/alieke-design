@@ -1,0 +1,13 @@
+---
+// Pauzeknop voor beweging die blijft herhalen (WCAG 2.2.2). Alleen een icoon, 44×44.
+// Op desktop verschijnt hij bij hover over de illustratie of bij toetsenbordfocus;
+// op een touchscreen staat hij altijd. Gepauzeerd blijft hij staan als "Afspelen".
+// De logica staat in src/scripts/motion-pause.ts.
+---
+<button class="pause-btn" type="button" data-motion-pause aria-pressed="false" aria-label="Animatie pauzeren">
+  <span class="pause-btn__disc" aria-hidden="true">
+    <svg class="pause-btn__pause" viewBox="0 0 12 12"><rect x="2.5" y="2" width="2.4" height="8" rx="1" /><rect x="7.1" y="2" width="2.4" height="8" rx="1" /></svg>
+    <svg class="pause-btn__play" viewBox="0 0 12 12"><path d="M3.5 2.2 L10 6 L3.5 9.8 Z" stroke-width="1" stroke-linejoin="round" /></svg>
+  </span>
+</button>
+<span class="visually-hidden" aria-live="polite" data-motion-status></span>
