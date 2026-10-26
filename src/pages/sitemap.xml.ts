@@ -1,5 +1,5 @@
 // Eenvoudige sitemap. Voeg nieuwe pagina's toe aan de lijst.
-const pages = ['/', '/ai-design-consultancy/'];
+const pages = ['/', '/ai-design-consultant/'];
 
 export function GET() {
   const urls = pages
