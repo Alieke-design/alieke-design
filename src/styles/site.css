@@ -553,3 +553,27 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
   html.js .project .project__media, html.js .project .project__text { opacity: 1; translate: none; transition: none; }
   .header__indicator { transition: opacity 0.3s ease; }
 }
+
+/* ==========================================================================
+   Breedte op desktop: Projecten, Opdrachtgevers en Contact lijnen uit met de
+   navigatiebalk (links het logo, rechts het menu). Hero iets smaller.
+   Ervaring/Opleiding/Tools en Over mij houden hun smalle kolom.
+   ========================================================================== */
+:root { --wrap: calc(1440px - 6.25vw + 32px); --gut: 36px; }
+@media only screen and (min-width: 1025px) {
+  .projects__inner,
+  .widget-block__inner,
+  .form__inner {
+    box-sizing: border-box;
+    max-width: var(--wrap) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--gut) !important;
+    padding-right: var(--gut) !important;
+  }
+  /* Hero een tikje smaller dan voorheen (extra lucht links en rechts) */
+  .text-image__inner { padding-left: calc(11.171875vw + 2.5vw) !important; padding-right: calc(11.171875vw + 2.5vw) !important; }
+}
+@media only screen and (min-width: 1440px) {
+  .text-image__inner { padding-left: 200px !important; padding-right: 200px !important; }
+}
