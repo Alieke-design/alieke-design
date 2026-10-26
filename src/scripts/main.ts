@@ -263,6 +263,10 @@ const headerEl = document.querySelector<HTMLElement>('.header');
 const indicator = headerEl?.querySelector<HTMLElement>('.header__indicator');
 const navLinks = $$<HTMLAnchorElement>('.header__link').filter((a) => a.hash && a.pathname === location.pathname);
 const themeOf = (el: Element): 'light' | 'tint' | 'navy' | null => {
+  // Een sectie kan zelf aangeven hoe de header eroverheen moet ogen (bijv. een gekleurde
+  // hero waar de header toch wit moet blijven).
+  const forced = (el as HTMLElement).dataset.headerTheme;
+  if (forced === 'light' || forced === 'tint' || forced === 'navy') return forced;
   const bg = getComputedStyle(el).backgroundColor;
   if (bg === 'rgb(227, 240, 255)') return 'tint';
   if (bg === 'rgb(13, 0, 100)') return 'navy';
