@@ -179,7 +179,7 @@ const nav = [
       </li>
       <li class="steps-loop" aria-hidden="true" style="position: absolute; top: -44px; left: calc((100% - 96px) / 5 * 3 + 72px + 32px); width: calc((100% - 96px) / 5 + 24px); height: 40px; list-style: none; pointer-events: none;">
         <span class="steps-loop__arc" style="position: absolute; inset: 0; border: 3px solid #0049dc; border-bottom: 0; border-radius: 30px 30px 0 0;"></span>
-        <svg class="steps-loop__flow" aria-hidden="true" style="position: absolute; left: -8px; top: -8px; width: calc(100% + 16px); height: calc(100% + 16px); overflow: visible;"><circle r="5" fill="#ffc518" opacity="0"><animateMotion data-flow-motion dur="2.4s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.45 0 0.2 1" path="M0 0"></animateMotion><animate data-flow-fade attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.85;1" dur="2.4s" begin="indefinite" fill="freeze"></animate></circle></svg>
+        <svg class="steps-loop__flow" aria-hidden="true" style="position: absolute; left: -8px; top: -8px; width: calc(100% + 16px); height: calc(100% + 16px); overflow: visible;"><circle r="5.5" fill="#ffc518" stroke="#0d0064" stroke-width="1.5" opacity="0"><animateMotion data-flow-motion dur="2.4s" begin="indefinite" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.45 0 0.2 1" path="M0 0"></animateMotion><animate data-flow-fade attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.85;1" dur="2.4s" begin="indefinite" fill="freeze"></animate></circle></svg>
         <svg class="steps-loop__head" viewBox="0 0 14 12" aria-hidden="true" style="position: absolute; left: -5.5px; bottom: -7px; width: 14px; height: 12px; fill: #0049dc;"><path d="M7 12 L0 0 Q7 3 14 0 Z"></path></svg>
       </li>
     </ol>
@@ -815,11 +815,13 @@ const nav = [
     };
     setPath();
     window.addEventListener('resize', setPath);
-    let first = true;
+    // Zolang de stappen in beeld zijn, komt de stip elke 3 seconden terug.
+    let first = true, start = 0, timer = 0;
     const play = () => { setPath(); (motion as any).beginElement(); (fade as any).beginElement(); };
     const lio = new IntersectionObserver((entries) => entries.forEach((e) => {
+      window.clearTimeout(start); window.clearInterval(timer);
       if (!e.isIntersecting) return;
-      window.setTimeout(play, first ? 2300 : 300);
+      start = window.setTimeout(() => { play(); timer = window.setInterval(() => { if (!document.hidden) play(); }, 3000); }, first ? 2300 : 300);
       first = false;
     }), { threshold: 0.6 });
     lio.observe(loop);
