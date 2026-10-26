@@ -581,3 +581,69 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 /* Nooit één woord alleen op de laatste regel (zie ook scripts/no-widows.ts) */
 :where(h1, h2, h3, h4, h5, h6, p, li, dt, dd, figcaption, blockquote, label, .button__text) { text-wrap: pretty; }
 .nowidow { white-space: nowrap; }
+
+/* Pauzeknop voor herhalende beweging (WCAG 2.2.2) ------------------------- */
+.pause-btn {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 2px solid var(--brand-navy);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 3px -3px 0 0 var(--brand-navy);
+  cursor: pointer;
+  /* Verborgen tot hover of focus; komt binnen als een tooltip.
+     Alleen visueel verborgen (geen visibility: hidden), zodat Tab hem wél bereikt. */
+  opacity: 0;
+  pointer-events: none;
+  translate: 0 4px;
+  scale: 0.94;
+  transition: opacity 0.1s ease-in, translate 0.1s ease-in, scale 0.1s ease-in, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+.has-pause:hover .pause-btn,
+.pause-btn:focus-visible,
+.pause-btn[aria-pressed='true'] {
+  opacity: 1;
+  pointer-events: auto;
+  translate: 0 0;
+  scale: 1;
+  transition: opacity 0.16s ease-out 0.08s, translate 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s,
+    scale 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+/* Op een touchscreen bestaat hover niet: altijd zichtbaar */
+@media (hover: none) {
+  .pause-btn { opacity: 1; pointer-events: auto; translate: 0 0; scale: 1; }
+}
+.pause-btn:hover { box-shadow: 1.5px -1.5px 0 0 var(--brand-navy); transform: translate(1.5px, -1.5px); }
+.pause-btn:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 4px; }
+.pause-btn__disc {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--brand-yellow);
+  box-shadow: inset 0 0 0 1.5px var(--brand-navy);
+  transition: transform 0.2s ease-out;
+}
+.pause-btn:hover .pause-btn__disc { transform: scale(1.1); }
+.pause-btn__disc svg { width: 12px; height: 12px; fill: var(--brand-navy); stroke: var(--brand-navy); }
+.pause-btn__play { display: none; }
+.pause-btn[aria-pressed='true'] .pause-btn__pause { display: none; }
+.pause-btn[aria-pressed='true'] .pause-btn__play { display: block; }
+
+/* Gepauzeerd: alle CSS-animaties die blijven herhalen staan stil */
+.motion-paused .hero-flow *,
+.motion-paused .flowline,
+.motion-paused .logo .logo__l,
+.motion-paused .logo .logo__dot { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .pause-btn { transition: none; }
+}
