@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import { site } from '../config';
 
 interface Props { title?: string; description?: string; ogImage?: string; ogImageAlt?: string; noindex?: boolean; nav?: { href: string; label: string }[]; menuNote?: string }
-const { title = site.title, description = site.description, ogImage = '/og-home.png', ogImageAlt = 'Alieke Zelhorst, freelance UX/UI designer: Ik maak complexe apps en tools intuïtief en toegankelijk.', noindex = false, nav, menuNote } = Astro.props;
+const { title = site.title, description = site.description, ogImage = '/og-home.png', ogImageAlt = site.ogImageAlt, noindex = false, nav, menuNote } = Astro.props;
 const ogImageUrl = new URL(ogImage, 'https://alieke.design').href;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 

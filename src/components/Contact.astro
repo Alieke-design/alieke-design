@@ -1,7 +1,9 @@
 ---
 import { site } from '../config';
+import { getAlgemeen } from '../lib/content';
 interface Props { text?: string; labelClass?: string }
-const { text = 'Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.', labelClass = 'background--dyellow' } = Astro.props;
+const { contact } = await getAlgemeen();
+const { text = contact.text, labelClass = 'background--dyellow' } = Astro.props;
 const dots: [number, number][] = [];
 for (let x = 4; x <= 204; x += 40) for (let y = 4; y <= 204; y += 40) dots.push([x, y]);
 ---

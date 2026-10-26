@@ -4,18 +4,30 @@ De website van Alieke Zelhorst, gebouwd met [Astro](https://astro.build) als sta
 
 ## Inhoud aanpassen
 
-Bijna alle tekst staat in een paar overzichtelijke bestanden:
+De makkelijkste manier: ga naar **https://alieke.design/admin** en log in met GitHub. Daar pas je projecten, aanbevelingen, skills, "Over mij" en de algemene teksten aan. Opslaan maakt een commit op `main`; een paar minuten later staat het live.
+
+Onder water staan de teksten in `src/content/`:
 
 | Wat | Bestand |
 |---|---|
-| Projecten (Werk) | `src/data/projects.ts` |
-| Aanbevelingen | `src/data/aanbevelingen.ts` |
-| Ervaring, opleiding, tools, werkwijze, resultaat, voor wie | `src/data/skills.ts` |
-| E-mailadres, KvK, adres, LinkedIn | `src/config.ts` |
-| Hero (Hi! 👋) | `src/components/Hero.astro` |
-| Contacttekst | `src/components/Contact.astro` |
+| Hero (Hi! 👋), contacttekst, e-mail, KvK, adres, LinkedIn, SEO | `src/content/algemeen.yaml` |
+| Projecten (Werk) | `src/content/projecten.yaml` |
+| Aanbevelingen | `src/content/aanbevelingen.yaml` |
+| Ervaring, opleiding, tools | `src/content/skills.yaml` |
+| Werkwijze, resultaat, voor wie | `src/content/over-mij.yaml` |
 
-Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/`; Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`.
+Je kunt die bestanden ook rechtstreeks bewerken. Let op: het CMS schrijft de bestanden opnieuw bij het opslaan, dus commentaarregels in de YAML verdwijnen dan.
+
+Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/` (het CMS zet ze daar vanzelf); Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`. De pagina AI Design Consultancy (`src/pages/ai-design-consultancy.astro`) zit nog niet in het CMS.
+
+### CMS instellen (eenmalig)
+
+Het beheerscherm is [Sveltia CMS](https://github.com/sveltia/sveltia-cms) (`public/admin/`). Inloggen met GitHub loopt via een klein hulpje op Cloudflare Workers:
+
+1. Deploy [sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth) naar je (gratis) Cloudflare-account; de README daar heeft een deploy-knop.
+2. Maak op GitHub een OAuth App aan (Settings → Developer settings → OAuth Apps). Homepage: `https://alieke.design`, callback: `https://<worker>.workers.dev/callback`.
+3. Zet in de Worker de variabelen `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` en `ALLOWED_DOMAINS=alieke.design`.
+4. Vul de Worker-URL in bij `backend.base_url` in `public/admin/config.yml`.
 
 ## Lokaal bekijken
 
@@ -35,15 +47,12 @@ Open daarna http://localhost:4321.
 
 ## Live zetten (Hostinger)
 
-De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Tijdens de testfase draait hij automatisch bij elke wijziging op `main` (naar `nieuw.alieke.design`); je kunt hem ook handmatig starten.
+De workflow `.github/workflows/deploy.yml` bouwt de site en zet hem via FTP op Hostinger. Hij draait automatisch bij elke wijziging op `main` (dus ook na opslaan in het beheerscherm); handmatig starten kan via Actions → **Deploy naar Hostinger** → **Run workflow**, eventueel als "dry run" om alleen de verbinding te testen.
 
-Eenmalig instellen in GitHub → Settings → Secrets and variables → Actions:
+De secrets staan in GitHub → Settings → Secrets and variables → Actions:
 
 - `FTP_SERVER` – FTP-host uit Hostinger (hPanel → Bestanden → FTP-accounts)
-- `FTP_USERNAME` – FTP-gebruikersnaam
-- `FTP_PASSWORD` – FTP-wachtwoord
-- `FTP_SERVER_DIR` – map op de server, bijvoorbeeld `/public_html/`
+- `FTP_LIVE_USERNAME` – FTP-gebruikersnaam
+- `FTP_LIVE_PASSWORD` – FTP-wachtwoord
 
-Daarna: Actions → **Deploy naar Hostinger** → **Run workflow**.
-
-Let op: maak eerst een back-up van de WordPress-site en haal WordPress weg uit `public_html` voordat je de eerste keer live zet.
+De secrets `FTP_USERNAME` en `FTP_PASSWORD` van de oude testomgeving (nieuw.alieke.design) worden niet meer gebruikt en kunnen weg.

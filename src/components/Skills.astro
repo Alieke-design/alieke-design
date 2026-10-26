@@ -1,6 +1,7 @@
 ---
 import DoubleArrows from './DoubleArrows.astro';
-import { ervaring, opleiding, tools } from '../data/skills';
+import { getSkills } from '../lib/content';
+const { ervaring, opleiding, tools } = await getSkills();
 ---
 <section class="content-repeater" data-scroll-var data-start="top bottom" id="skills">
   <div class="content-repeater__inner">
@@ -9,16 +10,16 @@ import { ervaring, opleiding, tools } from '../data/skills';
       <p class="label background--dyellow font-semibold">Skills</p>
       <h2 class="large-heading color--dblue">Ervaring</h2>
       <div class="default-body p description-list">
-        {ervaring.map(([label, value]) => (
-          <p class="row"><span class="description-label color--dblue">{label}</span> <span class="description-value">{value}</span></p>
+        {ervaring.map(({ jaar, omschrijving }) => (
+          <p class="row"><span class="description-label color--dblue">{jaar}</span> <span class="description-value">{omschrijving}</span></p>
         ))}
       </div>
     </div>
     <div class="content-repeater__content">
       <h2 class="large-heading color--dblue">Opleiding</h2>
       <div class="default-body p description-list">
-        {opleiding.map(([label, value]) => (
-          <p class="row"><span class="description-label color--dblue">{label}</span> <span class="description-value">{value}</span></p>
+        {opleiding.map(({ jaar, omschrijving }) => (
+          <p class="row"><span class="description-label color--dblue">{jaar}</span> <span class="description-value">{omschrijving}</span></p>
         ))}
       </div>
     </div>
@@ -27,7 +28,7 @@ import { ervaring, opleiding, tools } from '../data/skills';
       <div class="logos">
         {tools.map((tool) => (
           <span class="tip tool-logo">
-            <img alt={tool.alt} decoding="async" src={tool.src} />
+            <img alt={tool.alt} decoding="async" src={tool.logo} />
             <span class="tip__bubble" aria-hidden="true">{tool.name}</span>
           </span>
         ))}

@@ -1,44 +1,31 @@
 name: Deploy naar Hostinger
 
 # Elke wijziging op main gaat automatisch live naar alieke.design.
-# De oude testomgeving (nieuw.alieke.design) is alleen nog handmatig bereikbaar via
-# Actions → Deploy naar Hostinger → Run workflow → kies "test", tot die is opgeruimd.
+# Dus ook elke wijziging die je opslaat in het beheerscherm (alieke.design/admin).
+# Handmatig starten kan via Actions → Deploy naar Hostinger → Run workflow.
 on:
   push:
     branches: [main]
   workflow_dispatch:
     inputs:
-      target:
-        description: 'Waar naartoe? live = alieke.design, test = nieuw.alieke.design (oud)'
-        type: choice
-        options: [live, test]
-        default: live
       dry_run:
         description: 'Alleen testen of de verbinding werkt (niets uploaden)'
         type: boolean
         default: false
 
 concurrency:
-  group: deploy-${{ inputs.target || 'live' }}
+  group: deploy-live
   cancel-in-progress: false
-
-env:
-  IS_LIVE: ${{ github.event_name != 'workflow_dispatch' || inputs.target == 'live' }}
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Bestemming
+      - name: Controleer secrets
         env:
           LIVE_USER: ${{ secrets.FTP_LIVE_USERNAME }}
         run: |
-          if [ "$IS_LIVE" = "true" ]; then
-            echo "Bestemming: LIVE (alieke.design)"
-            if [ -z "$LIVE_USER" ]; then echo "::error::Secret FTP_LIVE_USERNAME ontbreekt"; exit 1; fi
-          else
-            echo "Bestemming: test (nieuw.alieke.design)"
-          fi
+          if [ -z "$LIVE_USER" ]; then echo "::error::Secret FTP_LIVE_USERNAME ontbreekt"; exit 1; fi
 
       - uses: actions/checkout@v4
 
@@ -57,8 +44,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
-          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
+          username: ${{ secrets.FTP_LIVE_USERNAME }}
+          password: ${{ secrets.FTP_LIVE_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
           timeout: 60000
@@ -75,8 +62,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
-          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
+          username: ${{ secrets.FTP_LIVE_USERNAME }}
+          password: ${{ secrets.FTP_LIVE_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
           timeout: 60000
@@ -91,8 +78,8 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_USERNAME || secrets.FTP_USERNAME }}
-          password: ${{ env.IS_LIVE == 'true' && secrets.FTP_LIVE_PASSWORD || secrets.FTP_PASSWORD }}
+          username: ${{ secrets.FTP_LIVE_USERNAME }}
+          password: ${{ secrets.FTP_LIVE_PASSWORD }}
           local-dir: ./dist/
           server-dir: ./
           timeout: 60000

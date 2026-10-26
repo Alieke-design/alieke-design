@@ -1,0 +1,196 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Instellingen van het beheerscherm (Sveltia CMS) op alieke.design/admin.
+# Elke wijziging die je daar opslaat wordt een commit op GitHub; GitHub Actions zet de site
+# daarna automatisch live op Hostinger (dat duurt een paar minuten).
+
+backend:
+  name: github
+  repo: Alieke-design/alieke-design
+  branch: main
+  # Inloggen via GitHub loopt via een klein hulpje (sveltia-cms-auth) op Cloudflare Workers.
+  base_url: https://sveltia-cms-auth.mail-fc0.workers.dev
+  commit_messages:
+    create: 'Beheer: {{slug}} toegevoegd'
+    update: 'Beheer: {{slug}} aangepast'
+    delete: 'Beheer: {{slug}} verwijderd'
+    uploadMedia: 'Beheer: bestand {{path}} toegevoegd'
+    deleteMedia: 'Beheer: bestand {{path}} verwijderd'
+
+site_url: https://alieke.design
+display_url: https://alieke.design
+logo:
+  src: /favicon-192x192.png
+
+# Standaardmap voor losse uploads. Afbeeldingen van projecten, aanbevelingen en het portret
+# gaan naar src/assets/img (zie per veld), zodat Astro er automatisch kleine webp-versies van maakt.
+media_folder: public/img/uploads
+public_folder: /img/uploads
+
+singletons:
+  - name: algemeen
+    label: Algemeen
+    icon: home
+    file: src/content/algemeen.yaml
+    fields:
+      - name: hero
+        label: Bovenaan (Hi! 👋)
+        widget: object
+        fields:
+          - { name: label, label: Label, widget: string, hint: 'Het gele/blauwe labeltje boven de titel.' }
+          - { name: title, label: Titel, widget: string }
+          - { name: subtitle, label: Ondertitel, widget: string }
+          - name: quote
+            label: Kernzin
+            widget: string
+            hint: 'Zet *sterretjes* om een woord voor een gele cirkel, bijvoorbeeld *intuïtief*.'
+          - name: bullets
+            label: Opsomming
+            label_singular: Punt
+            widget: list
+            min: 1
+          - { name: buttonText, label: Knoptekst, widget: string }
+          - name: portrait
+            label: Portretfoto
+            widget: image
+            media_folder: /src/assets/img
+            public_folder: /src/assets/img
+          - { name: portraitAlt, label: Alt-tekst portret, widget: string, hint: 'Beschrijving van de foto voor schermlezers.' }
+      - name: contact
+        label: Contact
+        widget: object
+        fields:
+          - { name: text, label: Contacttekst, widget: text }
+          - { name: menuNote, label: Tekst in het mobiele menu, widget: string }
+      - name: gegevens
+        label: Bedrijfsgegevens (footer)
+        widget: object
+        fields:
+          - { name: email, label: E-mailadres, widget: string }
+          - { name: linkedin, label: LinkedIn-profiel (URL), widget: string }
+          - { name: kvk, label: KvK-nummer, widget: string }
+          - { name: adres, label: Adres, widget: string }
+      - name: seo
+        label: Google en social media (SEO)
+        widget: object
+        collapsed: true
+        fields:
+          - { name: title, label: Paginatitel, widget: string, hint: 'Staat in het browsertabblad en in Google.' }
+          - { name: description, label: Omschrijving, widget: text, hint: 'De tekst onder de titel in Google, maximaal ongeveer 155 tekens.' }
+          - { name: ogImageAlt, label: Alt-tekst deelafbeelding, widget: string }
+
+  - name: projecten
+    label: Projecten (Werk)
+    icon: work
+    file: src/content/projecten.yaml
+    fields:
+      - name: items
+        label: Projecten
+        label_singular: Project
+        widget: list
+        summary: '{{fields.title}}'
+        collapsed: true
+        hint: 'Sleep om de volgorde te veranderen.'
+        fields:
+          - { name: title, label: Titel, widget: string }
+          - { name: intro, label: Intro, widget: text, hint: 'Eén zin. HTML mag, bijvoorbeeld voor een link.' }
+          - name: image
+            label: Afbeelding
+            widget: image
+            media_folder: /src/assets/img
+            public_folder: /src/assets/img
+            hint: 'Liefst minimaal 1324 pixels breed.'
+          - { name: imageAlt, label: Alt-tekst afbeelding, widget: string }
+          - name: logo
+            label: Logo
+            widget: image
+            media_folder: /public/img/logos
+            public_folder: /img/logos
+            hint: 'Bij voorkeur een svg.'
+          - { name: logoAlt, label: Alt-tekst logo, widget: string }
+          - name: deliverables
+            label: Wat ik deed
+            label_singular: Onderdeel
+            widget: list
+            hint: 'Korte steekwoorden. <br> mag voor een regeleinde.'
+
+  - name: aanbevelingen
+    label: Aanbevelingen
+    icon: reviews
+    file: src/content/aanbevelingen.yaml
+    fields:
+      - name: linkUrl
+        label: Link naar al je aanbevelingen op LinkedIn
+        widget: string
+        hint: 'Hier gaan bezoekers heen als er bij een aanbeveling geen eigen LinkedIn-profiel is ingevuld.'
+      - name: items
+        label: Aanbevelingen
+        label_singular: Aanbeveling
+        widget: list
+        summary: '{{fields.name}} – {{fields.role}}'
+        collapsed: true
+        hint: 'Sleep om de volgorde te veranderen.'
+        fields:
+          - { name: name, label: Naam, widget: string }
+          - { name: role, label: Functie @ bedrijf, widget: string }
+          - name: photo
+            label: Foto (vierkant)
+            widget: image
+            media_folder: /src/assets/img/aanbevelingen
+            public_folder: /src/assets/img/aanbevelingen
+          - name: lang
+            label: Taal van de tekst
+            widget: select
+            options:
+              - { label: Nederlands, value: nl }
+              - { label: Engels, value: en }
+            default: nl
+          - { name: linkedin, label: LinkedIn-profiel van deze persoon (URL), widget: string, required: false, hint: 'Leeg laten mag.' }
+          - { name: text, label: Tekst, widget: text, hint: 'Lege regel = nieuwe alinea.' }
+
+  - name: skills
+    label: Skills
+    icon: school
+    file: src/content/skills.yaml
+    fields:
+      - name: ervaring
+        label: Ervaring
+        label_singular: Regel
+        widget: list
+        summary: '{{fields.jaar}} – {{fields.omschrijving}}'
+        fields:
+          - { name: jaar, label: Periode, widget: string }
+          - { name: omschrijving, label: Omschrijving, widget: string }
+      - name: opleiding
+        label: Opleiding
+        label_singular: Regel
+        widget: list
+        summary: '{{fields.jaar}} – {{fields.omschrijving}}'
+        fields:
+          - { name: jaar, label: Jaar, widget: string }
+          - { name: omschrijving, label: Omschrijving, widget: string }
+      - name: tools
+        label: Tools
+        label_singular: Tool
+        widget: list
+        summary: '{{fields.name}}'
+        fields:
+          - { name: name, label: Naam, widget: string }
+          - name: logo
+            label: Logo
+            widget: image
+            media_folder: /public/img/logos
+            public_folder: /img/logos
+          - { name: alt, label: Alt-tekst logo, widget: string }
+
+  - name: over-mij
+    label: Over mij
+    icon: person
+    file: src/content/over-mij.yaml
+    fields:
+      - { name: werkwijze, label: Werkwijze, label_singular: Punt, widget: list }
+      - name: resultaat
+        label: Resultaat
+        label_singular: Punt
+        widget: list
+        hint: 'Zet <b> en </b> om woorden die vet moeten.'
+      - { name: voorWie, label: Voor wie, label_singular: Punt, widget: list }

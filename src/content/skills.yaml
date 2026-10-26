@@ -1,0 +1,50 @@
+# Sectie "Skills": ervaring, opleiding en tools. Aanpassen via alieke.design/admin (of hier).
+ervaring:
+  - jaar: Sinds 2018
+    omschrijving: Freelance UX/UI designer
+  - jaar: 2015-2017
+    omschrijving: Co-owner start-up Timelapp
+  - jaar: 2010-2018
+    omschrijving: Co-owner webbureau Imago
+
+opleiding:
+  - jaar: "2025"
+    omschrijving: Opleiding WCAG Specialist (toegankelijkheid)
+  - jaar: "2024"
+    omschrijving: Product Psychology Masterclass
+  - jaar: "2023"
+    omschrijving: Training Design Thinking
+  - jaar: "2018"
+    omschrijving: Post-Master UX design
+  - jaar: "2017"
+    omschrijving: Training Usability, Experience & Conversie
+  - jaar: "2013"
+    omschrijving: Master Communicatie- en Informatiewetenschappen
+  - jaar: "2010"
+    omschrijving: Bachelor Communicatie, Multimedia & Design
+
+tools:
+  - name: Figma
+    logo: /img/logos/Logo-Figma.svg
+    alt: Logo van de tool Figma
+  - name: Claude
+    logo: /img/logos/logo-claude.svg
+    alt: Logo van de AI tool Claude
+  - name: Lovable
+    logo: /img/logos/logo-lovable.svg
+    alt: Logo van de AI tool Lovable
+  - name: Base44
+    logo: /img/logos/logo-base44.svg
+    alt: Logo van de AI tool Base44
+  - name: Slack
+    logo: /img/logos/logo-slack.svg
+    alt: Logo van de tool Slack
+  - name: Notion
+    logo: /img/logos/logo-notion.svg
+    alt: Logo van de tool Notion
+  - name: Miro
+    logo: /img/logos/Logo-Miro.svg
+    alt: Logo van de tool Miro
+  - name: Adobe Creative Suite
+    logo: /img/logos/logo-adobe-creative-suite.svg
+    alt: "Adobe Creative Suite: Photoshop, Illustrator, Indesign"
