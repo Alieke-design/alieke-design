@@ -605,7 +605,17 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
   pointer-events: none;
   translate: 0 4px;
   scale: 0.94;
-  transition: opacity 0.1s ease-in, translate 0.1s ease-in, scale 0.1s ease-in, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+  /* Verdwijnt pas na een korte pauze, zodat je er met de muis naartoe kunt (WCAG 1.4.13) */
+  transition: opacity 0.15s ease-in 0.4s, translate 0.15s ease-in 0.4s, scale 0.15s ease-in 0.4s, box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+/* Onzichtbare brug tussen illustratie en knop: de muis blijft 'binnen' op weg naar de knop */
+.has-pause::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 96px;
+  height: 64px;
 }
 .has-pause:hover .pause-btn,
 .pause-btn:focus-visible,
