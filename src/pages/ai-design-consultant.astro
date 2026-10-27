@@ -506,8 +506,9 @@ const nav = [
 @media (min-width:1100px){.oneline span{white-space:nowrap}}
 .steps-mobile{display:none}
 .flow-base{fill:none;stroke:#0049dc;stroke-opacity:.16;stroke-width:2;stroke-linecap:round}
-.flow-draw{fill:none;stroke:#0049dc;stroke-width:2;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;animation:flow-draw 4s cubic-bezier(.65,0,.35,1) 1s infinite}
-.flow-draw--2{animation-delay:1.2s}.flow-draw--3{animation-delay:1.4s}
+.flow-draw{fill:none;stroke:#0049dc;stroke-width:2;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1;opacity:0}
+.flow-run .flow-draw{animation:flow-draw 4s cubic-bezier(.65,0,.35,1) both}
+.flow-run .flow-draw--2{animation-delay:.2s}.flow-run .flow-draw--3{animation-delay:.4s}
 @keyframes flow-draw{0%{stroke-dashoffset:1;opacity:1}45%{stroke-dashoffset:0;opacity:1}75%{stroke-dashoffset:0;opacity:1}90%,100%{stroke-dashoffset:0;opacity:0}}
 .res-tl{position:relative;list-style:none;margin:32px 0 0;padding:0 0 0 44px;font-size:18px;line-height:1.6;color:#0d0064}
 .res-tl>li{position:relative}
@@ -529,7 +530,7 @@ const nav = [
 .res-sub:hover .res-sub__plus,.res-sub:focus-visible .res-sub__plus{background:#0049dc;color:#ffffff;transform:rotate(90deg)}
 @media (max-width:600px){.res-tl{padding-left:40px;font-size:17px}.res-tl__dot{left:-40px}.res-tl>li:not(:last-child)::after{left:-27px}}
 @media (max-width:860px){.flow-wrap{display:none}.scan-result{margin-top:56px !important;padding:44px 24px 32px !important}}
-@media (prefers-reduced-motion:reduce){.flow-draw{animation:none;stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.flow-draw{animation:none!important;stroke-dashoffset:0;opacity:1}}
 .steplink { display: inline-flex; align-items: center; gap: 8px; margin: 0 2px; padding: 4px 10px 4px 5px; border: 0; border-radius: 48px; background: #e3f0ff; color: #0d0064; font-family: Poppins, sans-serif; font-size: 17px; font-weight: 600; line-height: 1.3; vertical-align: middle; position: relative; top: -1px; cursor: pointer; white-space: nowrap; transition: background .25s ease, color .25s ease; }
 .steplink__num { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 13px; font-weight: 600; line-height: 1; transition: background .25s ease, color .25s ease, box-shadow .25s ease; }
 .steplink__num--y { background: #ffc518; color: #232323; }
@@ -830,6 +831,24 @@ const nav = [
       first = false;
     }), { threshold: 0.6 });
     lio.observe(loop);
+  }
+
+  // Lijnen bij De scan: lopen af en toe naar het resultaat, net als de stip bij stap 4-5.
+  const flowWrap = document.querySelector<HTMLElement>('.flow-wrap');
+  if (flowWrap && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let ftimer = 0, ffirst = true;
+    const run = () => {
+      if (document.documentElement.classList.contains('motion-paused') || document.hidden) return;
+      flowWrap.classList.remove('flow-run'); void flowWrap.offsetWidth; flowWrap.classList.add('flow-run');
+    };
+    flowWrap.addEventListener('animationend', (e) => { if ((e.target as Element).classList.contains('flow-draw--3')) flowWrap.classList.remove('flow-run'); });
+    const nextFlow = () => { ftimer = window.setTimeout(() => { run(); nextFlow(); }, 4400 + 6000 + Math.random() * 6000); };
+    new IntersectionObserver((entries) => entries.forEach((e) => {
+      window.clearTimeout(ftimer);
+      if (!e.isIntersecting) return;
+      ftimer = window.setTimeout(() => { run(); nextFlow(); }, ffirst ? 900 : 600);
+      ffirst = false;
+    }), { threshold: 0.6 }).observe(flowWrap);
   }
 
   // De lichtblauwe hero loopt door tot achter de (witte) header, zonder witte strook ertussen.
