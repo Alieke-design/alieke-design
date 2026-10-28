@@ -1,9 +1,3 @@
-# Algemene teksten en gegevens van de site. Aanpassen via alieke.design/admin (of hier).
-seo:
-  title: Alieke Zelhorst - Freelance UX/UI designer en WCAG specialist uit Utrecht
-  description: Hi! Ik ben Alieke uit Utrecht. Senior UX/UI designer en specialist in digitale toegankelijkheid (WCAG). Benieuwd wat ik voor je kan doen?
-  ogImageAlt: "Alieke Zelhorst, freelance UX/UI designer: Ik maak complexe apps en tools intuïtief en toegankelijk."
-
 hero:
   label: Hi! 👋
   title: Freelance UX/UI designer
@@ -11,18 +5,20 @@ hero:
   quote: Ik maak complexe apps en tools *intuïtief* en *toegankelijk*.
   bullets:
     - Senior UX/UI designer met 15 jaar ervaring
-    - Gediplomeerd WCAG specialist
+    - Gediplomeerd WCAG-specialist
     - Bedreven in het verbeteren van AI producten
   buttonText: Bekijk werk
   portrait: /src/assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
   portraitAlt: Foto van Alieke Zelhorst, freelance UX/UI designer uit Utrecht
-
 contact:
   text: Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.
   menuNote: Ik reageer binnen een werkdag.
-
 gegevens:
   email: mail@alieke.design
   linkedin: https://linkedin.com/in/aliekezelhorst
-  kvk: "72899107"
+  kvk: '72899107'
   adres: Hooghiemstraplein 67, Utrecht
+seo:
+  title: Alieke Zelhorst - Freelance UX/UI designer en WCAG specialist uit Utrecht
+  description: Hi! Ik ben Alieke uit Utrecht. Senior UX/UI designer en specialist in digitale toegankelijkheid (WCAG). Benieuwd wat ik voor je kan doen?
+  ogImageAlt: 'Alieke Zelhorst, freelance UX/UI designer: Ik maak complexe apps en tools intuïtief en toegankelijk.'
