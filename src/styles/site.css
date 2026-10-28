@@ -666,5 +666,5 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 
 /* Hero-titel op mobiel: iets meer regelafstand (was 1) */
 @media only screen and (max-width: 750px) {
-  .text-image__text h1.large-heading { line-height: 1.12; }
+  .text-image__text h1.large-heading { line-height: 1.25; }
 }
