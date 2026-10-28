@@ -24,3 +24,7 @@ export async function getSkills() {
 export async function getOverMij() {
   return (await getEntry('overMij', 'data'))!.data;
 }
+
+export async function getConsultant() {
+  return (await getEntry('consultant', 'data'))!.data;
+}

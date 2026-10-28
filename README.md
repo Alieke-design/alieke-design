@@ -15,10 +15,11 @@ Onder water staan de teksten in `src/content/`:
 | Aanbevelingen | `src/content/aanbevelingen.yaml` |
 | Ervaring, opleiding, tools | `src/content/skills.yaml` |
 | Werkwijze, resultaat, voor wie | `src/content/over-mij.yaml` |
+| Pagina AI Design Consultant | `src/content/consultant.yaml` |
 
 Je kunt die bestanden ook rechtstreeks bewerken. Let op: het CMS schrijft de bestanden opnieuw bij het opslaan, dus commentaarregels in de YAML verdwijnen dan.
 
-Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/` (het CMS zet ze daar vanzelf); Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`. De pagina AI Design Consultancy (`src/pages/ai-design-consultancy.astro`) zit nog niet in het CMS.
+Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/` (het CMS zet ze daar vanzelf); Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`. Van de pagina AI Design Consultant staan de teksten in het CMS; de pop-ups achter de stappen (nu uitgeschakeld) en de illustraties nog niet. Het aantal stappen en pakketten ligt vast in de vormgeving.
 
 ### CMS instellen (eenmalig)
 

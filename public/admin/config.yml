@@ -203,3 +203,145 @@ singletons:
         widget: list
         hint: 'Zet <b> en </b> om woorden die vet moeten.'
       - { name: voorWie, label: Voor wie, label_singular: Punt, widget: list }
+
+  - name: consultant
+    label: AI Design Consultant (pagina)
+    icon: rocket_launch
+    file: src/content/consultant.yaml
+    fields:
+      - name: hero
+        label: Bovenaan
+        widget: object
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel (eerste deel), widget: string }
+          - { name: titelAccent, label: Titel (tweede deel), widget: string, hint: 'Dit deel breekt nooit af over twee regels.' }
+          - { name: intro, label: Inleidende zin, widget: string }
+          - name: punten
+            label: Opsomming
+            label_singular: Punt
+            widget: list
+            summary: '{{fields.vet}} {{fields.tekst}}'
+            fields:
+              - { name: vet, label: Vetgedrukt begin, widget: string }
+              - { name: tekst, label: Rest van de zin, widget: string }
+          - { name: knop, label: Knoptekst, widget: string }
+      - name: waarom
+        label: Waarom
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: ondertitel, label: Ondertitel, widget: string }
+          - { name: tekst, label: Tekst, widget: text }
+          - { name: kernzin, label: Kernzin, widget: text, hint: 'Zet *sterretjes* om woorden voor een gele cirkel.' }
+      - name: aanpak
+        label: Aanpak (vijf stappen)
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: ondertitel, label: Ondertitel, widget: string }
+          - name: stappen
+            label: Stappen
+            label_singular: Stap
+            widget: list
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            summary: '{{fields.titel}} ({{fields.frequentie}})'
+            hint: 'Het aantal stappen ligt vast in de vormgeving. Een stap erbij of eraf? Vraag Claude.'
+            fields:
+              - { name: titel, label: Naam van de stap, widget: string }
+              - { name: frequentie, label: Eenmalig of doorlopend, widget: string }
+              - { name: tekst, label: Tekst, widget: text }
+      - name: resultaat
+        label: Resultaat
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: ondertitel, label: Ondertitel, widget: string, hint: 'Zet *sterretjes* om woorden voor een gele cirkel.' }
+          - { name: tip, label: Tekst in het info-ballonnetje, widget: text, hint: 'Nieuwe regel = regeleinde in het ballonnetje.' }
+          - name: punten
+            label: Punten
+            label_singular: Punt
+            widget: list
+            summary: '{{fields.titel}}'
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: tekst, label: Tekst, widget: string }
+              - { name: optioneel, label: Label 'Optioneel' tonen, widget: boolean, default: false }
+      - name: scan
+        label: Stap 1 – De scan
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: intro, label: Inleiding, widget: text }
+          - name: pakketten
+            label: Pakketten
+            label_singular: Pakket
+            widget: list
+            allow_add: false
+            allow_remove: false
+            allow_reorder: false
+            summary: '{{fields.naam}} – {{fields.prijs}}'
+            hint: 'Het aantal pakketten ligt vast in de vormgeving.'
+            fields:
+              - { name: naam, label: Naam, widget: string }
+              - { name: doelgroep, label: Voor wie, widget: string }
+              - { name: prijsLabel, label: Tekst boven de prijs, widget: string, hint: 'Bijvoorbeeld "vaste prijs" of "vanaf".' }
+              - { name: prijs, label: Prijs, widget: string, hint: 'Met €-teken, bijvoorbeeld € 1.250. "excl. btw" staat er vanzelf achter.' }
+              - { name: gesprek, label: Gesprekken, widget: string }
+              - { name: producten, label: Websites en apps, widget: string }
+              - { name: tools, label: Uitingen en tools, widget: string, hint: 'Het info-ballonnetje erachter komt uit "Tekst bij tools" hieronder.' }
+              - { name: wcagPrijs, label: Prijs toegankelijkheidsscan, widget: string, hint: 'Met €-teken. Het "+" staat er vanzelf voor.' }
+              - { name: wcagVanaf, label: '"vanaf" voor de prijs van de toegankelijkheidsscan', widget: boolean, default: false }
+          - { name: toolsTip, label: Tekst bij tools (info-ballonnetje), widget: text }
+          - { name: wcagTitel, label: Naam toegankelijkheidsscan, widget: string }
+          - { name: wcagTip, label: Tekst bij toegankelijkheidsscan (info-ballonnetje), widget: text }
+          - name: resultaat
+            label: Resultaat van de scan
+            widget: object
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: titel, label: Titel, widget: string }
+              - { name: rapportVet, label: Rapport – vetgedrukt, widget: string }
+              - { name: rapportTekst, label: Rapport – rest van de zin, widget: string }
+              - { name: planVet, label: Plan – vetgedrukt, widget: string }
+              - { name: planTekst, label: Plan – rest van de zin, widget: string, hint: 'Daaronder staan vanzelf stap 2 en 3, met de namen uit Aanpak.' }
+      - name: wie
+        label: Wie er komt
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: naam, label: Naam, widget: string }
+          - { name: punten, label: Opsomming, label_singular: Punt, widget: list }
+          - { name: quote, label: Quote, widget: text, hint: 'Zonder aanhalingstekens, die staan er vanzelf omheen. *Sterretjes* = gele cirkel. De quote staat als Engels gemarkeerd voor schermlezers.' }
+          - { name: quoteNaam, label: Naam bij de quote, widget: string }
+          - { name: quoteRol, label: Functie bij de quote, widget: string }
+          - { name: knop, label: Knoptekst, widget: string }
+      - name: contact
+        label: Contact
+        widget: object
+        collapsed: true
+        fields:
+          - { name: label, label: Label, widget: string }
+          - { name: titel, label: Titel, widget: string }
+          - { name: tekst, label: Tekst, widget: text }
+          - { name: punten, label: Opsomming, label_singular: Punt, widget: list }
+          - { name: menuNote, label: Tekst in het mobiele menu, widget: string }
+      - name: seo
+        label: Google en social media (SEO)
+        widget: object
+        collapsed: true
+        fields:
+          - { name: title, label: Paginatitel, widget: string }
+          - { name: description, label: Omschrijving, widget: text, hint: 'Maximaal ongeveer 155 tekens.' }
+          - { name: ogImageAlt, label: Alt-tekst deelafbeelding, widget: string }

@@ -100,4 +100,43 @@ const overMij = defineCollection({
   }),
 });
 
-export const collections = { algemeen, projecten, aanbevelingen, aanbevelingenInfo, skills, overMij };
+const str = z.string();
+const consultant = defineCollection({
+  loader: single('src/content/consultant.yaml'),
+  schema: z.object({
+    seo: z.object({ title: str, description: str, ogImageAlt: str }),
+    hero: z.object({
+      label: str, titel: str, titelAccent: str, intro: str,
+      punten: z.array(z.object({ vet: str, tekst: str })),
+      knop: str,
+    }),
+    waarom: z.object({ label: str, titel: str, ondertitel: str, tekst: str, kernzin: str }),
+    aanpak: z.object({
+      label: str, titel: str, ondertitel: str,
+      stappen: z.array(z.object({ titel: str, frequentie: str, tekst: str })).length(5),
+    }),
+    resultaat: z.object({
+      label: str, titel: str, ondertitel: str, tip: str,
+      punten: z.array(z.object({ titel: str, tekst: str, optioneel: z.boolean().default(false) })),
+    }),
+    scan: z.object({
+      label: str, titel: str, intro: str, toolsTip: str, wcagTitel: str, wcagTip: str,
+      pakketten: z
+        .array(
+          z.object({
+            naam: str, doelgroep: str, prijsLabel: str, prijs: z.coerce.string(),
+            gesprek: str, producten: str, tools: str,
+            wcagPrijs: z.coerce.string(), wcagVanaf: z.boolean().default(false),
+          }),
+        )
+        .length(3),
+      resultaat: z.object({ label: str, titel: str, rapportVet: str, rapportTekst: str, planVet: str, planTekst: str }),
+    }),
+    wie: z.object({
+      label: str, naam: str, punten: z.array(str), quote: str, quoteNaam: str, quoteRol: str, knop: str,
+    }),
+    contact: z.object({ label: str, titel: str, tekst: str, punten: z.array(str), menuNote: str }),
+  }),
+});
+
+export const collections = { algemeen, projecten, aanbevelingen, aanbevelingenInfo, skills, overMij, consultant };
