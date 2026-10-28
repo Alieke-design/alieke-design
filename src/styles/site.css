@@ -658,3 +658,8 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 @media (prefers-reduced-motion: reduce) {
   .pause-btn { transition: none; }
 }
+
+/* Nieuw-blok in de hero (NieuwBlok.astro): op mobiel staat het boven de foto */
+@media only screen and (max-width: 750px) {
+  .text-image__media.has-nieuw { margin-top: 10rem; }
+}

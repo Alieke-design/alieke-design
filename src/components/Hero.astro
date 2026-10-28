@@ -2,8 +2,13 @@
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
 import Quote from './Quote.astro';
+import NieuwBlok from './NieuwBlok.astro';
 import { getAlgemeen } from '../lib/content';
-const { hero } = await getAlgemeen();
+const { hero, nieuw } = await getAlgemeen();
+// toonNieuw: forceert het Nieuw-blok (voor de voorbeeldpagina); anders telt nieuw.aan uit het CMS.
+interface Props { toonNieuw?: boolean }
+const { toonNieuw } = Astro.props;
+const metNieuw = Boolean(nieuw && (toonNieuw ?? nieuw.aan));
 ---
 <section class="text-image" data-scroll-var data-start="top top" id="hi">
   <div class="text-image__inner">
@@ -22,7 +27,7 @@ const { hero } = await getAlgemeen();
         <span class="button__icon is-arrow-down"><Icon name="arrow-down" /></span>
       </a>
     </div>
-    <div class="text-image__media" style="--ratio: 514/408">
+    <div class:list={["text-image__media", { "has-nieuw": metNieuw }]} style="--ratio: 514/408">
       <svg class="clippie" style="--ratio: 408/514" viewBox="0 0 408 514" aria-hidden="true">
         <clipPath clipPathUnits="objectBoundingBox" id="image-shape">
           <path d="M0,0 L408,0 L408,310 C408,422.666089 316.666089,514 204,514 C91.333911,514 0,422.666089 0,310 L0,0 Z" fill="#000000"></path>
@@ -37,6 +42,7 @@ const { hero } = await getAlgemeen();
         fetchpriority="high"
         style="--ratio:1"
       />
+      {metNieuw && nieuw && <NieuwBlok label={nieuw.label} titel={nieuw.titel} tekst={nieuw.tekst} link={nieuw.link} />}
     </div>
   </div>
 </section>

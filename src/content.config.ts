@@ -34,6 +34,9 @@ const algemeen = defineCollection({
         portrait: image(),
         portraitAlt: z.string(),
       }),
+      nieuw: z
+        .object({ aan: z.boolean().default(false), label: z.string(), titel: z.string(), tekst: z.string(), link: z.string() })
+        .optional(),
       contact: z.object({ text: z.string(), menuNote: z.string() }),
       gegevens: z.object({ email: z.string(), linkedin: z.string(), kvk: z.coerce.string(), adres: z.string() }),
     }),

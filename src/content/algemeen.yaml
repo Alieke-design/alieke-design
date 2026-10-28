@@ -10,6 +10,12 @@ hero:
   buttonText: Bekijk werk
   portrait: /src/assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
   portraitAlt: Foto van Alieke Zelhorst, freelance UX/UI designer uit Utrecht
+nieuw:
+  aan: false
+  label: Nieuw
+  titel: AI Design Consultant
+  tekst: Je designproces, klaar voor AI
+  link: /ai-design-consultant
 contact:
   text: Ik ben benieuwd wie jij bent en wat ik voor je kan betekenen. Ik reageer binnen een werkdag.
   menuNote: Ik reageer binnen een werkdag.

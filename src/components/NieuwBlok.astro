@@ -1,0 +1,119 @@
+---
+// Nieuw-blok in de hero: een kaartje met een geel label "Nieuw" dat naar een
+// nieuwe pagina verwijst. Desktop: zwevend over de onderkant van het portret.
+// Mobiel: tussen de opsomming en de foto. Teksten staan in algemeen.yaml (nieuw).
+import Icon from './Icon.astro';
+
+interface Props { label: string; titel: string; tekst: string; link: string }
+const { label, link } = Astro.props;
+// Nooit één woord alleen op de laatste regel: koppel de laatste twee woorden.
+const koppel = (t: string) => t.replace(/ (\S+)$/, '\u00a0$1');
+const titel = koppel(Astro.props.titel);
+const tekst = koppel(Astro.props.tekst);
+---
+<a class="nieuw" href={link}>
+  <span class="nieuw__label">{label}</span>
+  <span class="nieuw__card">
+    <span class="nieuw__text">
+      <span class="nieuw__title">{titel}</span>
+      <span class="nieuw__sub">{tekst}</span>
+    </span>
+    <span class="nieuw__arrow" aria-hidden="true"><span class="nieuw__icon"><Icon name="arrow-right" /></span></span>
+  </span>
+</a>
+
+<style>
+  .nieuw {
+    position: absolute;
+    z-index: 3;
+    left: -4.5rem;
+    bottom: -3.5rem;
+    width: 22rem;
+    max-width: calc(100vw - 2rem);
+    display: block;
+    padding-top: 15px;
+    color: var(--ink);
+    text-decoration: none;
+    /* Iets meer diepte dan de foto als de muis beweegt (zie portret in main.ts) */
+    translate: calc(var(--hx2, 0px) * 2) calc(var(--hy2, 0px) * 2);
+    animation: nieuw-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both;
+  }
+  .nieuw__label {
+    position: absolute;
+    z-index: 1;
+    left: 22px;
+    top: 0;
+    padding: 3px 12px;
+    border: 2px solid var(--brand-navy);
+    border-radius: 48px;
+    background: var(--brand-yellow);
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+    transform-origin: 50% 100%;
+    animation: nieuw-drop 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) 1.65s both;
+  }
+  .nieuw__card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 26px 18px 18px 22px;
+    border: 2px solid var(--brand-navy);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 3.5px -3.5px 0 0 var(--brand-navy);
+  }
+  .nieuw__text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+  .nieuw__title { font-size: 20px; font-weight: 600; line-height: 1.25; color: var(--brand-navy); }
+  .nieuw__sub { font-size: 15px; line-height: 1.4; color: var(--ink); }
+  /* Zelfde vorm en beweging als de knoppen (Bekijk werk, menuknop) */
+  .nieuw__arrow {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--brand-blue);
+    color: #fff;
+    box-shadow: 3px -3px 0 0 var(--ink);
+    transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+  }
+  .nieuw__icon { display: block; width: 14px; height: 16px; transition: transform 0.3s ease-out; animation: nieuw-nudge 0.9s ease-in-out 2.4s backwards; }
+  .nieuw__icon :global(svg) { display: block; width: 100%; height: 100%; fill: currentColor; }
+  .nieuw:hover .nieuw__arrow { box-shadow: 1.6px -1.6px 0 0 var(--ink); transform: translate(1.6px, -1.6px); }
+  .nieuw:hover .nieuw__icon { transform: translateX(0.2em); }
+  .nieuw:focus-visible { outline: none; }
+  .nieuw:focus-visible .nieuw__card { outline: 3px solid var(--focus-ring); outline-offset: 5px; }
+
+  /* Tablet: portret is smaller, blok iets minder ver naar links */
+  @media (max-width: 1024px) {
+    .nieuw { left: -3rem; width: 21rem; }
+  }
+  /* Mobiel: boven de foto, over de volle breedte van de tekstkolom */
+  @media (max-width: 750px) {
+    .nieuw {
+      left: calc(1rem - 50px);
+      right: auto;
+      bottom: calc(100% + 2rem);
+      width: calc(100vw - 2rem);
+      max-width: none;
+      translate: none;
+    }
+  }
+
+  @keyframes nieuw-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes nieuw-drop {
+    0% { opacity: 0; transform: translateY(-16px) rotate(-10deg) scale(0.7); }
+    55% { opacity: 1; transform: translateY(2px) rotate(4deg) scale(1.08); }
+    80% { transform: translateY(0) rotate(-2deg) scale(0.98); }
+    100% { opacity: 1; transform: none; }
+  }
+  @keyframes nieuw-nudge { 0%, 100% { transform: none; } 30% { transform: translateX(6px); } 55% { transform: none; } 75% { transform: translateX(3px); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nieuw, .nieuw__label, .nieuw__icon { animation: none; }
+    .nieuw { translate: none; }
+  }
+</style>
