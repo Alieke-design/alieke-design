@@ -644,6 +644,9 @@ const nav = [
 .stepdialog__inner > :not(.slides-scroll) { flex: none; }
 .slides-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; margin: 24px -8px 0; padding: 2px 8px 12px; }
 .slides { position: relative; min-height: 200px; }
+.slides-scroll { scrollbar-width: none; }
+.slides-scroll::-webkit-scrollbar { display: none; }
+.slides-scroll.has-more { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 72px), transparent); }
 .slide { min-width: 0; }
 .slide[hidden] { display: none; }
 .slide.is-leaving { position: absolute; left: 0; right: 0; top: 0; pointer-events: none; }
@@ -733,6 +736,11 @@ const nav = [
     const track = dialog.querySelector<HTMLElement>('[data-slides-track]');
     const scroller = dialog.querySelector<HTMLElement>('.slides-scroll');
     const total = slides.length;
+    // Geen scrollbalk: onderaan vervaagt de tekst zolang er nog meer staat.
+    const fade = () => { if (!scroller) return; scroller.classList.toggle('has-more', scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 4); };
+    scroller?.addEventListener('scroll', fade, { passive: true });
+    if (track && 'ResizeObserver' in window) new ResizeObserver(fade).observe(track);
+    window.addEventListener('resize', fade);
     const stepNo = Number(dialog.id.replace('step-', ''));
     const prevDialog = document.querySelector<HTMLDialogElement>(`#step-${stepNo - 1}`);
     const prevName = prevDialog?.querySelector('h3')?.textContent?.trim();
