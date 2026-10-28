@@ -1,7 +1,7 @@
 ---
 // Nieuw-blok in de hero: een kaartje met een geel label "Nieuw" dat naar een
 // nieuwe pagina verwijst. Desktop: zwevend over de onderkant van het portret.
-// Mobiel: tussen de opsomming en de foto. Teksten staan in algemeen.yaml (nieuw).
+// Mobiel: ook over de onderkant van de foto, over de volle breedte. Teksten staan in algemeen.yaml (nieuw).
 import Icon from './Icon.astro';
 
 interface Props { label: string; titel: string; tekst: string; link: string }
@@ -92,12 +92,12 @@ const tekst = koppel(Astro.props.tekst);
   @media (max-width: 1024px) {
     .nieuw { left: -3rem; width: 21rem; }
   }
-  /* Mobiel: boven de foto, over de volle breedte van de tekstkolom */
+  /* Mobiel: over de onderkant van de foto, over de volle breedte van de tekstkolom */
   @media (max-width: 750px) {
     .nieuw {
       left: calc(1rem - 50px);
       right: auto;
-      bottom: calc(100% + 2rem);
+      bottom: -3.5rem;
       width: calc(100vw - 2rem);
       max-width: none;
       translate: none;
