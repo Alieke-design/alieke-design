@@ -59,7 +59,7 @@ singletons:
         label: Nieuw-blok in de hero
         widget: object
         fields:
-          - { name: aan, label: Tonen op de homepage, widget: boolean, default: false, hint: 'Uit = alleen zichtbaar op alieke.design/nieuw.' }
+          - { name: aan, label: Tonen op de homepage, widget: boolean, default: false, hint: 'Uit = alleen zichtbaar op alieke.design/preview.' }
           - { name: label, label: Label, widget: string }
           - { name: titel, label: Titel, widget: string }
           - { name: tekst, label: Tekst, widget: string }
