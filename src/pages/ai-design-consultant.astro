@@ -611,7 +611,7 @@ const nav = [
 .info-tip .tip__bubble { width: auto; padding: 10px 14px; border-radius: 8px; font-family: Poppins, sans-serif; font-size: 14px; line-height: 1.5; white-space: nowrap; text-align: left; }
 .info-tip:focus .tip__bubble { opacity: 1; visibility: visible; pointer-events: auto; translate: 0 0; scale: 1; }
 @media (max-width: 600px) { .info-tip .tip__bubble { left: auto; right: -12px; transform: none; transform-origin: 100% 100%; } }
-.stepdialog { width: min(100% - 32px, 760px); max-height: calc(100dvh - 48px); margin: 24px auto; padding: 0; overflow: hidden; border: 0; border-radius: 8px; background: #ffffff; color: #232323; font-family: Poppins, sans-serif; letter-spacing: normal; }
+.stepdialog { width: min(100% - 32px, 760px); height: min(720px, 100dvh - 48px); max-height: calc(100dvh - 48px); margin: 24px auto; padding: 0; overflow: hidden; border: 0; border-radius: 8px; background: #ffffff; color: #232323; font-family: Poppins, sans-serif; letter-spacing: normal; }
 /* --- Pop-up als presentatie: tabs bovenaan, dia's die zacht doorschuiven, pijlen onderaan --- */
 .stepdialog { width: min(100% - 32px, 880px); }
 .slidenav { display: inline-flex; align-self: flex-start; gap: 4px; margin: 28px 0 0; padding: 5px; border-radius: 48px; background: #e3f0ff; }
@@ -641,13 +641,13 @@ const nav = [
 .pb__opt { display: inline-block; margin: 0 0 6px; padding: 1px 10px; border-radius: 48px; background: #0d0064; color: #ffffff; font-size: 12px; font-weight: 600; line-height: 1.7; }
 @media (max-width: 600px) { .pb { flex-direction: column; align-items: flex-start; gap: 12px; } .pop-tl li { grid-template-columns: 32px 1fr; column-gap: 14px; } .pop-tl__n { width: 32px; height: 32px; font-size: 14px; } .pop-tl li:not(:last-child)::after { left: 15px; top: 38px; } }
 .stepdialog__inner { display: flex; flex-direction: column; overflow: hidden; }
-.stepdialog__inner > * { flex: none; }
-.slides-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; margin: 28px -8px 0; padding: 2px 8px 8px; }
+.stepdialog__inner > :not(.slides-scroll) { flex: none; }
+.slides-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; margin: 28px -8px 0; padding: 2px 8px 24px; }
 .slides { position: relative; min-height: 200px; }
 .slide { min-width: 0; }
 .slide[hidden] { display: none; }
 .slide.is-leaving { position: absolute; left: 0; right: 0; top: 0; pointer-events: none; }
-.slidefoot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 32px; padding-top: 24px; border-top: 2px solid #e3f0ff; }
+.slidefoot { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: auto; padding-top: 24px; padding-top: 24px; border-top: 2px solid #e3f0ff; }
 .slidefoot > :last-child, .slidefoot .slidebtn--next { justify-self: end; }
 .slidefoot .slidebtn--prev { justify-self: start; }
 .slidecount { text-align: center; font-size: 15px; font-weight: 600; color: #0d0064; opacity: .7; font-variant-numeric: tabular-nums; }
@@ -675,7 +675,7 @@ const nav = [
   .slidebtn--done { font-size: 15px; padding: 0 14px; }
 }
 .stepdialog::backdrop { background: rgba(13, 0, 100, 0.55); }
-.stepdialog__inner { position: relative; max-height: calc(100dvh - 48px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: clamp(28px, 4vw, 48px); }
+.stepdialog__inner { position: relative; box-sizing: border-box; height: 100%; padding: clamp(28px, 4vw, 48px); }
 .stepdialog h3, .stepdialog h4, .stepdialog p, .stepdialog ul { letter-spacing: normal; }
 @media (prefers-reduced-motion: no-preference) {
   .stepdialog[open] { animation: dialog-in 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
