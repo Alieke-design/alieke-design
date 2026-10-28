@@ -11,12 +11,13 @@ const koppel = (t: string) => t.replace(/ (\S+)$/, '\u00a0$1');
 const titel = koppel(Astro.props.titel);
 const tekst = koppel(Astro.props.tekst);
 ---
-<a class="nieuw" href={link}>
+<a class="nieuw" href={link} target="_blank" rel="noopener">
   <span class="nieuw__label">{label}</span>
   <span class="nieuw__card">
     <span class="nieuw__text">
       <span class="nieuw__title">{titel}</span>
       <span class="nieuw__sub">{tekst}</span>
+      <span class="visually-hidden">(opent in nieuw venster)</span>
     </span>
     <span class="nieuw__arrow" aria-hidden="true"><span class="nieuw__icon"><Icon name="arrow-right" /></span></span>
   </span>
