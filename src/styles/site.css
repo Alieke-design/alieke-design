@@ -668,3 +668,15 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 @media only screen and (max-width: 750px) {
   .text-image__text h1.large-heading { line-height: 1.25; }
 }
+
+/* Mobiel: lopende tekst iets groter en luchtiger (was 16px/1.4), zodat de
+   homepage net zo prettig leest als de consultant-pagina (WCAG 1.4.4/1.4.12) */
+@media only screen and (max-width: 750px) {
+  .default-body,
+  .review__text,
+  .mobile-menu__contact p { font-size: 17px; line-height: 1.55; }
+  .text-image__subtitle.xsmall-heading { line-height: 1.2; }
+  .review__role, .review__badge { font-size: 0.8125rem; }
+  /* Portret: blauwe ring nooit buiten het scherm */
+  .text-image__media { max-width: calc(100% - 24px); }
+}
