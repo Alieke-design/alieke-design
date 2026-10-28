@@ -661,5 +661,10 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
 
 /* Nieuw-blok in de hero (NieuwBlok.astro): op mobiel hangt het onder de foto, dus ruimte eronder */
 @media only screen and (max-width: 750px) {
-  .text-image__media.has-nieuw { margin-bottom: 4.5rem; }
+  .text-image__media.has-nieuw { margin-top: -16px; margin-bottom: 4.5rem; }
+}
+
+/* Hero-titel op mobiel: iets meer regelafstand (was 1) */
+@media only screen and (max-width: 750px) {
+  .text-image__text h1.large-heading { line-height: 1.12; }
 }
