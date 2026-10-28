@@ -680,3 +680,20 @@ html.js .description-list.has-timeline .row.is-lit { opacity: 1; translate: 0 0;
   /* Portret: blauwe ring nooit buiten het scherm */
   .text-image__media { max-width: calc(100% - 24px); }
 }
+
+/* Tablet (751 t/m 1023px): dezelfde leesbaarheid als mobiel, ruimere marges,
+   projecten gestapeld (foto boven, tekst eronder) in plaats van overlappend */
+@media only screen and (min-width: 751px) and (max-width: 1023px) {
+  main .default-body, .review__text { font-size: 17px; line-height: 1.55; }
+  .header .header__list { gap: 0; }
+  .header .header__link { padding: 10px 8px; font-size: 15px; }
+  .projects__inner, .widget-block__inner, .form__inner { padding-left: 2rem !important; padding-right: 2rem !important; }
+  .text-image__media { margin-right: 28px; }
+  .text-image__inner { padding: 2.5rem 2rem 0; gap: 2rem 2.5rem; }
+  .text-image__text { max-width: none; flex: 1 1 320px; }
+  .text-image__text .p { padding-right: 0; }
+  .project__media { width: 100%; max-width: none; height: auto; max-height: none; aspect-ratio: 1800 / 1220; border-radius: 0.5rem 0.5rem 0 0; margin-left: 0 !important; }
+  .project__text { width: 100%; max-width: 100%; margin: 0 !important; transform: none !important; border-radius: 0 0 0.5rem 0.5rem; }
+  .project:nth-of-type(even) { flex-direction: row; }
+  .project + .project { margin-top: 3.5rem; }
+}
