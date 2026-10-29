@@ -820,7 +820,10 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 
 <script>
   // Pop-ups uit: triggers worden gewone, niet-klikbare elementen.
-  if (document.querySelector('.consultancy')?.getAttribute('data-popups') === 'off') {
+  // Verborgen voorbeeld: met ?popups in het adres werken de pop-ups wel.
+  const popupPreview = new URLSearchParams(location.search).has('popups');
+  if (popupPreview) document.querySelector('.consultancy')?.classList.remove('no-popups');
+  if (!popupPreview && document.querySelector('.consultancy')?.getAttribute('data-popups') === 'off') {
     document.querySelectorAll<HTMLElement>('[data-step-open]').forEach((b) => {
       // Knop vervangen door een gewone div (geen rol of tabstop meer, wel dezelfde opmaak), zodat de HTML klopt.
       const d = document.createElement('div');
