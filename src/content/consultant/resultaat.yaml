@@ -1,0 +1,17 @@
+# AI Design Consultant, resultaat. Aanpassen via alieke.design/admin. *Sterretjes* = gele cirkel.
+label: Resultaat
+titel: Dit staat er straks
+ondertitel: Gebouwd op wat er al is, *geen rebranding*
+tip: 'Behoefte aan een nieuwe branding?
+
+  Laten we het erover hebben.'
+punten:
+- titel: Eén design system
+  tekst: De bron van waarheid waar mens én AI uit werken.
+  optioneel: false
+- titel: Een team dat zelf aan de slag kan
+  tekst: Snel, on-brand en met heldere afspraken.
+  optioneel: false
+- titel: Een beheer- en reviewproces
+  tekst: Kwaliteit op senior niveau, ook als tools en mensen veranderen.
+  optioneel: true

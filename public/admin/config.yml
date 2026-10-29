@@ -10,9 +10,9 @@ backend:
   # Inloggen via GitHub loopt via een klein hulpje (sveltia-cms-auth) op Cloudflare Workers.
   base_url: https://sveltia-cms-auth.mail-fc0.workers.dev
   commit_messages:
-    create: 'Beheer: {{slug}} toegevoegd'
-    update: 'Beheer: {{slug}} aangepast'
-    delete: 'Beheer: {{slug}} verwijderd'
+    create: 'Beheer: {{collection}} – {{slug}} toegevoegd'
+    update: 'Beheer: {{collection}} – {{slug}} aangepast'
+    delete: 'Beheer: {{collection}} – {{slug}} verwijderd'
     uploadMedia: 'Beheer: bestand {{path}} toegevoegd'
     deleteMedia: 'Beheer: bestand {{path}} verwijderd'
 
@@ -26,322 +26,535 @@ logo:
 media_folder: public/img/uploads
 public_folder: /img/uploads
 
-singletons:
-  - name: algemeen
-    label: Algemeen
-    icon: home
-    file: src/content/algemeen.yaml
+# Indeling: per pagina een groep, met de secties in de volgorde van de pagina.
+# Elke sectie is één bestand in src/content/home/, src/content/consultant/ of src/content/site/.
+collections:
+- name: homepage
+  label: Homepage
+  icon: home
+  description: alieke.design – secties in de volgorde van de pagina.
+  files:
+  - name: bovenaan
+    label: Bovenaan (Hi! 👋)
+    file: src/content/home/bovenaan.yaml
     fields:
-      - name: hero
-        label: Bovenaan (Hi! 👋)
-        widget: object
-        fields:
-          - { name: label, label: Label, widget: string, hint: 'Het gele/blauwe labeltje boven de titel.' }
-          - { name: title, label: Titel, widget: string }
-          - { name: subtitle, label: Ondertitel, widget: string }
-          - name: quote
-            label: Kernzin
-            widget: string
-            hint: 'Zet *sterretjes* om een woord voor een gele cirkel, bijvoorbeeld *intuïtief*.'
-          - name: bullets
-            label: Opsomming
-            label_singular: Punt
-            widget: list
-            min: 1
-          - { name: buttonText, label: Knoptekst, widget: string }
-          - name: portrait
-            label: Portretfoto
-            widget: image
-            media_folder: /src/assets/img
-            public_folder: /src/assets/img
-          - { name: portraitAlt, label: Alt-tekst portret, widget: string, hint: 'Beschrijving van de foto voor schermlezers.' }
-      - name: nieuw
-        label: Nieuw-blok in de hero
-        widget: object
-        fields:
-          - { name: aan, label: Tonen op de homepage, widget: boolean, default: false, hint: 'Uit = alleen zichtbaar op alieke.design/preview.' }
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: tekst, label: Tekst, widget: string }
-          - { name: link, label: Link, widget: string, hint: 'Bijvoorbeeld /ai-design-consultant' }
-      - name: contact
-        label: Contact
-        widget: object
-        fields:
-          - { name: text, label: Contacttekst, widget: text }
-          - { name: menuNote, label: Tekst in het mobiele menu, widget: string }
-      - name: gegevens
-        label: Bedrijfsgegevens (footer)
-        widget: object
-        fields:
-          - { name: email, label: E-mailadres, widget: string }
-          - { name: linkedin, label: LinkedIn-profiel (URL), widget: string }
-          - { name: kvk, label: KvK-nummer, widget: string }
-          - { name: adres, label: Adres, widget: string }
-      - name: seo
-        label: Google en social media (SEO)
-        widget: object
-        collapsed: true
-        fields:
-          - { name: title, label: Paginatitel, widget: string, hint: 'Staat in het browsertabblad en in Google.' }
-          - { name: description, label: Omschrijving, widget: text, hint: 'De tekst onder de titel in Google, maximaal ongeveer 155 tekens.' }
-          - { name: ogImageAlt, label: Alt-tekst deelafbeelding, widget: string }
-
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gele/blauwe labeltje boven de titel.
+    - name: title
+      label: Titel
+      widget: string
+    - name: subtitle
+      label: Ondertitel
+      widget: string
+    - name: quote
+      label: Kernzin
+      widget: string
+      hint: Zet *sterretjes* om een woord voor een gele cirkel, bijvoorbeeld *intuïtief*.
+    - name: bullets
+      label: Opsomming
+      label_singular: Punt
+      widget: list
+      min: 1
+    - name: buttonText
+      label: Knoptekst
+      widget: string
+    - name: portrait
+      label: Portretfoto
+      widget: image
+      media_folder: /src/assets/img
+      public_folder: /src/assets/img
+    - name: portraitAlt
+      label: Alt-tekst portret
+      widget: string
+      hint: Beschrijving van de foto voor schermlezers.
+    - name: nieuw
+      label: Nieuw-blok in de hero
+      widget: object
+      fields:
+      - name: aan
+        label: Tonen op de homepage
+        widget: boolean
+        default: false
+        hint: Uit = alleen zichtbaar op alieke.design/preview.
+      - name: label
+        label: Label
+        widget: string
+      - name: titel
+        label: Titel
+        widget: string
+      - name: tekst
+        label: Tekst
+        widget: string
+      - name: link
+        label: Link
+        widget: string
+        hint: Bijvoorbeeld /ai-design-consultant
+      collapsed: true
   - name: projecten
     label: Projecten (Werk)
-    icon: work
-    file: src/content/projecten.yaml
+    file: src/content/home/projecten.yaml
     fields:
-      - name: items
-        label: Projecten
-        label_singular: Project
-        widget: list
-        summary: '{{fields.title}}'
-        collapsed: true
-        hint: 'Sleep om de volgorde te veranderen.'
-        fields:
-          - { name: title, label: Titel, widget: string }
-          - { name: intro, label: Intro, widget: text, hint: 'Eén zin. HTML mag, bijvoorbeeld voor een link.' }
-          - name: image
-            label: Afbeelding
-            widget: image
-            media_folder: /src/assets/img
-            public_folder: /src/assets/img
-            hint: 'Liefst minimaal 1324 pixels breed.'
-          - { name: imageAlt, label: Alt-tekst afbeelding, widget: string }
-          - name: logo
-            label: Logo
-            widget: image
-            media_folder: /public/img/logos
-            public_folder: /img/logos
-            hint: 'Bij voorkeur een svg.'
-          - { name: logoAlt, label: Alt-tekst logo, widget: string }
-          - name: deliverables
-            label: Wat ik deed
-            label_singular: Onderdeel
-            widget: list
-            hint: 'Korte steekwoorden. <br> mag voor een regeleinde.'
-
-  - name: aanbevelingen
-    label: Aanbevelingen
-    icon: reviews
-    file: src/content/aanbevelingen.yaml
-    fields:
-      - name: linkUrl
-        label: Link naar al je aanbevelingen op LinkedIn
+    - name: items
+      label: Projecten
+      label_singular: Project
+      widget: list
+      summary: '{{fields.title}}'
+      collapsed: true
+      hint: Sleep om de volgorde te veranderen.
+      fields:
+      - name: title
+        label: Titel
         widget: string
-        hint: 'Hier gaan bezoekers heen als er bij een aanbeveling geen eigen LinkedIn-profiel is ingevuld.'
-      - name: items
-        label: Aanbevelingen
-        label_singular: Aanbeveling
+      - name: intro
+        label: Intro
+        widget: text
+        hint: Eén zin. HTML mag, bijvoorbeeld voor een link.
+      - name: image
+        label: Afbeelding
+        widget: image
+        media_folder: /src/assets/img
+        public_folder: /src/assets/img
+        hint: Liefst minimaal 1324 pixels breed.
+      - name: imageAlt
+        label: Alt-tekst afbeelding
+        widget: string
+      - name: logo
+        label: Logo
+        widget: image
+        media_folder: /public/img/logos
+        public_folder: /img/logos
+        hint: Bij voorkeur een svg.
+      - name: logoAlt
+        label: Alt-tekst logo
+        widget: string
+      - name: deliverables
+        label: Wat ik deed
+        label_singular: Onderdeel
         widget: list
-        summary: '{{fields.name}} – {{fields.role}}'
-        collapsed: true
-        hint: 'Sleep om de volgorde te veranderen.'
-        fields:
-          - { name: name, label: Naam, widget: string }
-          - { name: role, label: Functie @ bedrijf, widget: string }
-          - name: photo
-            label: Foto (vierkant)
-            widget: image
-            media_folder: /src/assets/img/aanbevelingen
-            public_folder: /src/assets/img/aanbevelingen
-          - name: lang
-            label: Taal van de tekst
-            widget: select
-            options:
-              - { label: Nederlands, value: nl }
-              - { label: Engels, value: en }
-            default: nl
-          - { name: linkedin, label: LinkedIn-profiel van deze persoon (URL), widget: string, required: false, hint: 'Leeg laten mag.' }
-          - { name: text, label: Tekst, widget: text, hint: 'Lege regel = nieuwe alinea.' }
-
+        hint: Korte steekwoorden. <br> mag voor een regeleinde.
   - name: skills
     label: Skills
-    icon: school
-    file: src/content/skills.yaml
+    file: src/content/home/skills.yaml
     fields:
-      - name: ervaring
-        label: Ervaring
-        label_singular: Regel
-        widget: list
-        summary: '{{fields.jaar}} – {{fields.omschrijving}}'
-        fields:
-          - { name: jaar, label: Periode, widget: string }
-          - { name: omschrijving, label: Omschrijving, widget: string }
-      - name: opleiding
-        label: Opleiding
-        label_singular: Regel
-        widget: list
-        summary: '{{fields.jaar}} – {{fields.omschrijving}}'
-        fields:
-          - { name: jaar, label: Jaar, widget: string }
-          - { name: omschrijving, label: Omschrijving, widget: string }
-      - name: tools
-        label: Tools
-        label_singular: Tool
-        widget: list
-        summary: '{{fields.name}}'
-        fields:
-          - { name: name, label: Naam, widget: string }
-          - name: logo
-            label: Logo
-            widget: image
-            media_folder: /public/img/logos
-            public_folder: /img/logos
-          - { name: alt, label: Alt-tekst logo, widget: string }
-
+    - name: ervaring
+      label: Ervaring
+      label_singular: Regel
+      widget: list
+      summary: '{{fields.jaar}} – {{fields.omschrijving}}'
+      fields:
+      - name: jaar
+        label: Periode
+        widget: string
+      - name: omschrijving
+        label: Omschrijving
+        widget: string
+    - name: opleiding
+      label: Opleiding
+      label_singular: Regel
+      widget: list
+      summary: '{{fields.jaar}} – {{fields.omschrijving}}'
+      fields:
+      - name: jaar
+        label: Jaar
+        widget: string
+      - name: omschrijving
+        label: Omschrijving
+        widget: string
+    - name: tools
+      label: Tools
+      label_singular: Tool
+      widget: list
+      summary: '{{fields.name}}'
+      fields:
+      - name: name
+        label: Naam
+        widget: string
+      - name: logo
+        label: Logo
+        widget: image
+        media_folder: /public/img/logos
+        public_folder: /img/logos
+      - name: alt
+        label: Alt-tekst logo
+        widget: string
+  - name: aanbevelingen
+    label: Aanbevelingen
+    file: src/content/home/aanbevelingen.yaml
+    fields:
+    - name: linkUrl
+      label: Link naar al je aanbevelingen op LinkedIn
+      widget: string
+      hint: Hier gaan bezoekers heen als er bij een aanbeveling geen eigen LinkedIn-profiel is ingevuld.
+    - name: items
+      label: Aanbevelingen
+      label_singular: Aanbeveling
+      widget: list
+      summary: '{{fields.name}} – {{fields.role}}'
+      collapsed: true
+      hint: Sleep om de volgorde te veranderen.
+      fields:
+      - name: name
+        label: Naam
+        widget: string
+      - name: role
+        label: Functie @ bedrijf
+        widget: string
+      - name: photo
+        label: Foto (vierkant)
+        widget: image
+        media_folder: /src/assets/img/aanbevelingen
+        public_folder: /src/assets/img/aanbevelingen
+      - name: lang
+        label: Taal van de tekst
+        widget: select
+        options:
+        - label: Nederlands
+          value: nl
+        - label: Engels
+          value: en
+        default: nl
+      - name: linkedin
+        label: LinkedIn-profiel van deze persoon (URL)
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: text
+        label: Tekst
+        widget: text
+        hint: Lege regel = nieuwe alinea.
   - name: over-mij
     label: Over mij
-    icon: person
-    file: src/content/over-mij.yaml
+    file: src/content/home/over-mij.yaml
     fields:
-      - { name: werkwijze, label: Werkwijze, label_singular: Punt, widget: list }
-      - name: resultaat
-        label: Resultaat
-        label_singular: Punt
-        widget: list
-        hint: 'Zet <b> en </b> om woorden die vet moeten.'
-      - { name: voorWie, label: Voor wie, label_singular: Punt, widget: list }
-
-  - name: consultant
-    label: AI Design Consultant (pagina)
-    icon: rocket_launch
-    file: src/content/consultant.yaml
+    - name: werkwijze
+      label: Werkwijze
+      label_singular: Punt
+      widget: list
+    - name: resultaat
+      label: Resultaat
+      label_singular: Punt
+      widget: list
+      hint: Zet <b> en </b> om woorden die vet moeten.
+    - name: voorWie
+      label: Voor wie
+      label_singular: Punt
+      widget: list
+  - name: contact
+    label: Contact
+    file: src/content/home/contact.yaml
     fields:
-      - name: hero
-        label: Bovenaan
-        widget: object
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel (eerste deel), widget: string }
-          - { name: titelAccent, label: Titel (tweede deel), widget: string, hint: 'Dit deel breekt nooit af over twee regels.' }
-          - { name: intro, label: Inleidende zin, widget: string }
-          - name: punten
-            label: Opsomming
-            label_singular: Punt
-            widget: list
-            summary: '{{fields.vet}} {{fields.tekst}}'
-            fields:
-              - { name: vet, label: Vetgedrukt begin, widget: string }
-              - { name: tekst, label: Rest van de zin, widget: string }
-          - { name: knop, label: Knoptekst, widget: string }
-      - name: waarom
-        label: Waarom
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: ondertitel, label: Ondertitel, widget: string }
-          - { name: tekst, label: Tekst, widget: text }
-          - { name: kernzin, label: Kernzin, widget: text, hint: 'Zet *sterretjes* om woorden voor een gele cirkel.' }
-      - name: aanpak
-        label: Aanpak (vijf stappen)
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: ondertitel, label: Ondertitel, widget: string }
-          - name: stappen
-            label: Stappen
-            label_singular: Stap
-            widget: list
-            allow_add: false
-            allow_remove: false
-            allow_reorder: false
-            summary: '{{fields.titel}} ({{fields.frequentie}})'
-            hint: 'Het aantal stappen ligt vast in de vormgeving. Een stap erbij of eraf? Vraag Claude.'
-            fields:
-              - { name: titel, label: Naam van de stap, widget: string }
-              - { name: frequentie, label: Eenmalig of doorlopend, widget: string }
-              - { name: tekst, label: Tekst, widget: text }
-      - name: resultaat
-        label: Resultaat
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: ondertitel, label: Ondertitel, widget: string, hint: 'Zet *sterretjes* om woorden voor een gele cirkel.' }
-          - { name: tip, label: Tekst in het info-ballonnetje, widget: text, hint: 'Nieuwe regel = regeleinde in het ballonnetje.' }
-          - name: punten
-            label: Punten
-            label_singular: Punt
-            widget: list
-            summary: '{{fields.titel}}'
-            fields:
-              - { name: titel, label: Titel, widget: string }
-              - { name: tekst, label: Tekst, widget: string }
-              - { name: optioneel, label: Label 'Optioneel' tonen, widget: boolean, default: false }
-      - name: scan
-        label: Stap 1 – De scan
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: intro, label: Inleiding, widget: text }
-          - name: pakketten
-            label: Pakketten
-            label_singular: Pakket
-            widget: list
-            allow_add: false
-            allow_remove: false
-            allow_reorder: false
-            summary: '{{fields.naam}} – {{fields.prijs}}'
-            hint: 'Het aantal pakketten ligt vast in de vormgeving.'
-            fields:
-              - { name: naam, label: Naam, widget: string }
-              - { name: doelgroep, label: Voor wie, widget: string }
-              - { name: prijsLabel, label: Tekst boven de prijs, widget: string, hint: 'Bijvoorbeeld "vaste prijs" of "vanaf".' }
-              - { name: prijs, label: Prijs, widget: string, hint: 'Met €-teken, bijvoorbeeld € 1.250. "excl. btw" staat er vanzelf achter.' }
-              - { name: gesprek, label: Gesprekken, widget: string }
-              - { name: producten, label: Websites en apps, widget: string }
-              - { name: tools, label: Uitingen en tools, widget: string, hint: 'Het info-ballonnetje erachter komt uit "Tekst bij tools" hieronder.' }
-              - { name: wcagPrijs, label: Prijs toegankelijkheidsscan, widget: string, hint: 'Met €-teken. Het "+" staat er vanzelf voor.' }
-              - { name: wcagVanaf, label: '"vanaf" voor de prijs van de toegankelijkheidsscan', widget: boolean, default: false }
-          - { name: toolsTip, label: Tekst bij tools (info-ballonnetje), widget: text }
-          - { name: wcagTitel, label: Naam toegankelijkheidsscan, widget: string }
-          - { name: wcagTip, label: Tekst bij toegankelijkheidsscan (info-ballonnetje), widget: text }
-          - name: resultaat
-            label: Resultaat van de scan
-            widget: object
-            fields:
-              - { name: label, label: Label, widget: string }
-              - { name: titel, label: Titel, widget: string }
-              - { name: rapportVet, label: Rapport – vetgedrukt, widget: string }
-              - { name: rapportTekst, label: Rapport – rest van de zin, widget: string }
-              - { name: planVet, label: Plan – vetgedrukt, widget: string }
-              - { name: planTekst, label: Plan – rest van de zin, widget: string, hint: 'Daaronder staan vanzelf stap 2 en 3, met de namen uit Aanpak.' }
-      - name: wie
-        label: Wie er komt
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: naam, label: Naam, widget: string }
-          - { name: punten, label: Opsomming, label_singular: Punt, widget: list }
-          - { name: quote, label: Quote, widget: text, hint: 'Zonder aanhalingstekens, die staan er vanzelf omheen. *Sterretjes* = gele cirkel. De quote staat als Engels gemarkeerd voor schermlezers.' }
-          - { name: quoteNaam, label: Naam bij de quote, widget: string }
-          - { name: quoteRol, label: Functie bij de quote, widget: string }
-          - { name: knop, label: Knoptekst, widget: string }
-      - name: contact
-        label: Contact
-        widget: object
-        collapsed: true
-        fields:
-          - { name: label, label: Label, widget: string }
-          - { name: titel, label: Titel, widget: string }
-          - { name: tekst, label: Tekst, widget: text }
-          - { name: punten, label: Opsomming, label_singular: Punt, widget: list }
-          - { name: menuNote, label: Tekst in het mobiele menu, widget: string }
-      - name: seo
-        label: Google en social media (SEO)
-        widget: object
-        collapsed: true
-        fields:
-          - { name: title, label: Paginatitel, widget: string }
-          - { name: description, label: Omschrijving, widget: text, hint: 'Maximaal ongeveer 155 tekens.' }
-          - { name: ogImageAlt, label: Alt-tekst deelafbeelding, widget: string }
+    - name: text
+      label: Contacttekst
+      widget: text
+    - name: menuNote
+      label: Tekst in het mobiele menu
+      widget: string
+  - name: seo
+    label: Google en social media
+    file: src/content/home/seo.yaml
+    fields:
+    - name: title
+      label: Paginatitel
+      widget: string
+      hint: Staat in het browsertabblad en in Google.
+    - name: description
+      label: Omschrijving
+      widget: text
+      hint: De tekst onder de titel in Google, maximaal ongeveer 155 tekens.
+    - name: ogImageAlt
+      label: Alt-tekst deelafbeelding
+      widget: string
+- name: consultant
+  label: AI Design Consultant
+  icon: rocket_launch
+  description: alieke.design/ai-design-consultant – secties in de volgorde van de pagina.
+  files:
+  - name: bovenaan
+    label: Bovenaan
+    file: src/content/consultant/bovenaan.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel (eerste deel)
+      widget: string
+    - name: titelAccent
+      label: Titel (tweede deel)
+      widget: string
+      hint: Dit deel breekt nooit af over twee regels.
+    - name: intro
+      label: Inleidende zin
+      widget: string
+    - name: punten
+      label: Opsomming
+      label_singular: Punt
+      widget: list
+      summary: '{{fields.vet}} {{fields.tekst}}'
+      fields:
+      - name: vet
+        label: Vetgedrukt begin
+        widget: string
+      - name: tekst
+        label: Rest van de zin
+        widget: string
+    - name: knop
+      label: Knoptekst
+      widget: string
+  - name: waarom
+    label: Waarom
+    file: src/content/consultant/waarom.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel
+      widget: string
+    - name: ondertitel
+      label: Ondertitel
+      widget: string
+    - name: tekst
+      label: Tekst
+      widget: text
+    - name: kernzin
+      label: Kernzin
+      widget: text
+      hint: Zet *sterretjes* om woorden voor een gele cirkel.
+  - name: aanpak
+    label: Aanpak
+    file: src/content/consultant/aanpak.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel
+      widget: string
+    - name: ondertitel
+      label: Ondertitel
+      widget: string
+    - name: stappen
+      label: Stappen
+      label_singular: Stap
+      widget: list
+      allow_add: false
+      allow_remove: false
+      allow_reorder: false
+      summary: '{{fields.titel}} ({{fields.frequentie}})'
+      hint: Het aantal stappen ligt vast in de vormgeving. Een stap erbij of eraf? Vraag Claude.
+      fields:
+      - name: titel
+        label: Naam van de stap
+        widget: string
+      - name: frequentie
+        label: Eenmalig of doorlopend
+        widget: string
+      - name: tekst
+        label: Tekst
+        widget: text
+  - name: resultaat
+    label: Resultaat
+    file: src/content/consultant/resultaat.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel
+      widget: string
+    - name: ondertitel
+      label: Ondertitel
+      widget: string
+      hint: Zet *sterretjes* om woorden voor een gele cirkel.
+    - name: tip
+      label: Tekst in het info-ballonnetje
+      widget: text
+      hint: Nieuwe regel = regeleinde in het ballonnetje.
+    - name: punten
+      label: Punten
+      label_singular: Punt
+      widget: list
+      summary: '{{fields.titel}}'
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: tekst
+        label: Tekst
+        widget: string
+      - name: optioneel
+        label: Label 'Optioneel' tonen
+        widget: boolean
+        default: false
+  - name: scan
+    label: De scan (stap 1)
+    file: src/content/consultant/scan.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel
+      widget: string
+    - name: intro
+      label: Inleiding
+      widget: text
+    - name: pakketten
+      label: Pakketten
+      label_singular: Pakket
+      widget: list
+      allow_add: false
+      allow_remove: false
+      allow_reorder: false
+      summary: '{{fields.naam}} – {{fields.prijs}}'
+      hint: Het aantal pakketten ligt vast in de vormgeving.
+      fields:
+      - name: naam
+        label: Naam
+        widget: string
+      - name: doelgroep
+        label: Voor wie
+        widget: string
+      - name: prijsLabel
+        label: Tekst boven de prijs
+        widget: string
+        hint: Bijvoorbeeld "vaste prijs" of "vanaf".
+      - name: prijs
+        label: Prijs
+        widget: string
+        hint: Met €-teken, bijvoorbeeld € 1.250. "excl. btw" staat er vanzelf achter.
+      - name: gesprek
+        label: Gesprekken
+        widget: string
+      - name: producten
+        label: Websites en apps
+        widget: string
+      - name: tools
+        label: Uitingen en tools
+        widget: string
+        hint: Het info-ballonnetje erachter komt uit "Tekst bij tools" hieronder.
+      - name: wcagPrijs
+        label: Prijs toegankelijkheidsscan
+        widget: string
+        hint: Met €-teken. Het "+" staat er vanzelf voor.
+      - name: wcagVanaf
+        label: '"vanaf" voor de prijs van de toegankelijkheidsscan'
+        widget: boolean
+        default: false
+    - name: toolsTip
+      label: Tekst bij tools (info-ballonnetje)
+      widget: text
+    - name: wcagTitel
+      label: Naam toegankelijkheidsscan
+      widget: string
+    - name: wcagTip
+      label: Tekst bij toegankelijkheidsscan (info-ballonnetje)
+      widget: text
+    - name: resultaat
+      label: Resultaat van de scan
+      widget: object
+      fields:
+      - name: label
+        label: Label
+        widget: string
+      - name: titel
+        label: Titel
+        widget: string
+      - name: rapportVet
+        label: Rapport – vetgedrukt
+        widget: string
+      - name: rapportTekst
+        label: Rapport – rest van de zin
+        widget: string
+      - name: planVet
+        label: Plan – vetgedrukt
+        widget: string
+      - name: planTekst
+        label: Plan – rest van de zin
+        widget: string
+        hint: Daaronder staan vanzelf stap 2 en 3, met de namen uit Aanpak.
+  - name: wie
+    label: Wie er komt
+    file: src/content/consultant/wie.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: naam
+      label: Naam
+      widget: string
+    - name: punten
+      label: Opsomming
+      label_singular: Punt
+      widget: list
+    - name: quote
+      label: Quote
+      widget: text
+      hint: Zonder aanhalingstekens, die staan er vanzelf omheen. *Sterretjes* = gele cirkel. De quote staat als Engels gemarkeerd voor schermlezers.
+    - name: quoteNaam
+      label: Naam bij de quote
+      widget: string
+    - name: quoteRol
+      label: Functie bij de quote
+      widget: string
+    - name: knop
+      label: Knoptekst
+      widget: string
+  - name: contact
+    label: Contact
+    file: src/content/consultant/contact.yaml
+    fields:
+    - name: label
+      label: Label
+      widget: string
+    - name: titel
+      label: Titel
+      widget: string
+    - name: tekst
+      label: Tekst
+      widget: text
+    - name: punten
+      label: Opsomming
+      label_singular: Punt
+      widget: list
+    - name: menuNote
+      label: Tekst in het mobiele menu
+      widget: string
+  - name: seo
+    label: Google en social media
+    file: src/content/consultant/seo.yaml
+    fields:
+    - name: title
+      label: Paginatitel
+      widget: string
+    - name: description
+      label: Omschrijving
+      widget: text
+      hint: Maximaal ongeveer 155 tekens.
+    - name: ogImageAlt
+      label: Alt-tekst deelafbeelding
+      widget: string
+- name: site
+  label: Hele site
+  icon: settings
+  description: Gegevens die op elke pagina staan, zoals in de footer.
+  files:
+  - name: gegevens
+    label: Bedrijfsgegevens
+    file: src/content/site/gegevens.yaml
+    fields:
+    - name: email
+      label: E-mailadres
+      widget: string
+    - name: linkedin
+      label: LinkedIn-profiel (URL)
+      widget: string
+    - name: kvk
+      label: KvK-nummer
+      widget: string
+    - name: adres
+      label: Adres
+      widget: string
