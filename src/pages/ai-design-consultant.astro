@@ -720,7 +720,8 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 @media (prefers-reduced-motion: reduce) { .slidenav.is-ready .slidenav__bar, .slidedots.is-ready .slidedots__bar, .slidedots span { transition: none; } }
 /* --- Pop-up v3: alles onder elkaar, scrollen; tabs tonen waar je bent --- */
 .slide[hidden] { display: block; }
-.slide + .slide { margin-top: 56px; }
+.slide + .slide { margin-top: 80px; }
+.slides > .slide:first-child { padding-top: 20px; }
 .pop-sec { display: inline-block; margin: 0 0 20px; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; line-height: 1.4; font-weight: 600; }
 .stepdialog, .stepdialog * { scrollbar-width: none !important; }
 .slidenav [aria-current="true"] { color: #ffffff; }
@@ -739,7 +740,7 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 /* Lopende tekst overal gelijk: 17px, 1.6, ink */
 .pop-lead, .pop-tl p, .pop-res li, .pb { font-size: 17px; line-height: 1.6; color: #232323; }
 .pop-res strong { color: #0d0064; }
-.pop-quote { font-size: clamp(20px, 2vw, 26px); line-height: 1.4; }
+.pop-quote { font-size: clamp(18px, 1.5vw, 20px); line-height: 1.5; padding-left: 20px; }
 /* Breed scherm: vorige en volgende staan naast de pop-up, in het midden van het scherm (de pop-up staat zelf in het midden, dus 50% is altijd dezelfde plek). */
 /* ==========================================================================
    Mobiel (tot 860px): lucht tussen secties, illustraties binnen het scherm,
