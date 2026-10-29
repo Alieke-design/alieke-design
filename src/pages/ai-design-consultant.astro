@@ -11,7 +11,7 @@ const nav = [
   { href: '#waarom', label: 'Waarom' },
   { href: '#aanpak', label: 'Aanpak' },
   { href: '#wat-je-krijgt', label: 'Resultaat' },
-  { href: '#scan', label: 'Stap 1' },
+  { href: '#analyse', label: 'Stap 1' },
   { href: '#contact', label: 'Contact' },
 ];
 // Pop-ups achter de stappen tijdelijk uit (nog niet af). Zet op true om ze weer aan te zetten.
@@ -220,7 +220,7 @@ const popupsOn = false;
 
 
 
-  <section id="scan" style="background: #e3f0ff;">
+  <section id="analyse" style="background: #e3f0ff;">
    <div style="max-width: var(--wrap); margin: 0 auto; padding: clamp(64px, 8vw, 117px) var(--gut);">
     <p data-rv style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; font-weight: 600; line-height: 1.4;">{c.scan.label}</p>
     <h2 data-rv style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0049dc;">{c.scan.titel}</h2>
@@ -741,7 +741,7 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
    (WCAG 1.4.10), klikdoelen minimaal 24px (2.5.8), tekst schaalbaar.
    ========================================================================== */
 /* Geen horizontale scrollbalk door verborgen tooltips of uitstekende tekeningen (WCAG 1.4.10) */
-#scan, #wat-je-krijgt, #wie { overflow-x: clip; }
+#analyse, #wat-je-krijgt, #wie { overflow-x: clip; }
 .scan-card .info-tip .tip__bubble { left: auto; right: -12px; transform: none; transform-origin: 100% 100%; }
 /* Hero-tekening: rechts ruimte voor het Review-kaartje dat uit de tekening steekt (anders valt het buiten beeld) */
 .hero-ill-wrap { padding-right: 10%; box-sizing: border-box; }
@@ -783,13 +783,13 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 }
 @media (max-width: 1023px) {
   /* Scan-pakketten onder elkaar (drie kaarten passen niet naast elkaar, en 2+1 oogt scheef) */
-  #scan ul.scan-grid { grid-template-columns: minmax(0, 1fr) !important; max-width: 600px; }
+  #analyse ul.scan-grid { grid-template-columns: minmax(0, 1fr) !important; max-width: 600px; }
   .why-wrap { margin: 0 auto !important; }
   /* Minder lege ruimte boven en onder de driehoekjes */
   #waarom > div { padding-bottom: calc(clamp(96px, 10vw, 140px) + 16px) !important; }
   #aanpak > div { padding-top: 112px !important; padding-bottom: 72px !important; }
   #wat-je-krijgt > div { padding-top: 80px !important; padding-bottom: 80px !important; }
-  #scan > div { padding-top: 72px !important; padding-bottom: 80px !important; }
+  #analyse > div { padding-top: 72px !important; padding-bottom: 80px !important; }
   #contact > div { padding-top: 120px !important; }
   .tri { width: 160px !important; bottom: -57px !important; }
   #wie > div { padding-top: 64px !important; }
