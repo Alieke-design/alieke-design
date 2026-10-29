@@ -9,10 +9,11 @@ const cirkels = [
   'M120 6 C 60 2, 8 14, 6 36 C 4 58, 70 66, 120 64 C 175 62, 216 50, 214 32 C 212 12, 160 4, 100 8',
 ];
 
-/** Tekst met *sterretjes* → woorden met een gele cirkel eromheen (class "qk"). Geeft HTML terug. */
-export function kring(text: string): string {
+/** Tekst met *sterretjes* → woorden met een gele cirkel eromheen (class "qk"). Geeft HTML terug.
+ *  regeleinde: waarmee een nieuwe regel in de tekst wordt vervangen (standaard een spatie). */
+export function kring(text: string, regeleinde = ' '): string {
   let k = 0;
-  return esc(text).replace(/\*(.+?)\*/g, (_, woord) => {
+  return esc(text).replace(/\r?\n/g, regeleinde).replace(/\*(.+?)\*/g, (_, woord) => {
     const d = cirkels[k++ % cirkels.length];
     return `<span class="qk">${woord}<svg viewBox="0 0 220 70" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="${d}"></path></svg></span>`;
   });

@@ -1,0 +1,39 @@
+# AI Design Consultant, pop-up bij stap 4. Aanpassen via alieke.design/admin.
+# *Sterretjes* = gele cirkel. In de kernzin: nieuwe regel = regeleinde op grote schermen.
+waarom:
+  titel: Eén vast punt
+  ondertitel: Voor elke wijziging
+  tekst: 'Op orde brengen is één keer werk. Op orde houden is doorlopend werk. Een bron leeft: er komen bouwstenen bij, tools veranderen, mensen wisselen. Iemand moet bewaken dat het blijft kloppen.'
+  kernzin: ''
+  kader:
+    illustratie: eigen-beheer
+    optioneel: false
+    vet: Eigen beheer
+    tekst: Liever een eigen designer als vast punt? Dat kan natuurlijk ook. Dan draag ik het beheer over en stap ik uit het traject.
+aanpak:
+  titel: Van aanpassen tot meegroeien
+  ondertitel: ''
+  stappen:
+  - titel: Aanvragen
+    tekst: Nieuw component of sjabloon nodig? Elk team meldt het bij één vast punt.
+  - titel: Beoordelen
+    tekst: Past het bij wat er is, of is er al iets voor?
+  - titel: Doorvoeren
+    tekst: Een senior designer verwerkt het in de bron en breidt hem uit.
+  - titel: Meegroeien
+    tekst: Nieuwe tools of kanalen? De bron groeit mee.
+resultaat:
+  titel: Groei zonder wildgroei
+  ondertitel: ''
+  punten:
+  - vet: Een bron die blijft kloppen,
+    tekst: ook als tools en mensen veranderen.
+  - vet: Nieuwe bouwstenen
+    tekst: komen er gecontroleerd bij.
+  - vet: Een vast bedrag per maand,
+    tekst: opzegbaar.
+  kader:
+    illustratie: samen
+    optioneel: false
+    vet: Samen met Review
+    tekst: Beheer en Review horen bij elkaar. Wat in reviews opvalt, gaat de bron in. Zonder review geen overzicht, dus geen beheer zonder review.
