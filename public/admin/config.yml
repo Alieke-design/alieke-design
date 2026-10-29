@@ -336,6 +336,12 @@ collections:
     - name: ondertitel
       label: Ondertitel
       widget: string
+    - name: designersTitel
+      label: Blok eigen designers, titel
+      widget: string
+    - name: designersTekst
+      label: Blok eigen designers, tekst
+      widget: text
     - name: stappen
       label: Stappen
       label_singular: Stap

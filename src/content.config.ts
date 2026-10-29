@@ -140,6 +140,7 @@ const cAanpak = defineCollection({
   schema: z.object({
     label: str, titel: str, ondertitel: str,
     stappen: z.array(z.object({ titel: str, frequentie: str, tekst: str })).length(5),
+    designersTitel: str, designersTekst: str,
   }),
 });
 
