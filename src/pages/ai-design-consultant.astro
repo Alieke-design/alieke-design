@@ -749,6 +749,8 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 @media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
   html.js .steps.is-revealed ~ .aanpak-designers.is-revealed { transition-delay: 1.5s !important; }
 }
+/* Kaartteksten lopen gewoon door tot de rand (geen vroege afbreking door text-wrap: pretty); de laatste twee woorden blijven wel bij elkaar */
+.stepcard p, .aanpak-designers p, .scan-card p, .scan-card li, .scan-result li { text-wrap: wrap; }
 .aanpak-designers strong { display: block; margin-bottom: 2px; font-size: 19px; font-weight: 600; color: #0d0064; }
 .aanpak-designers__ill { flex: none; width: 64px; height: 64px; }
 .aanpak-designers__ill svg { display: block; width: 64px; height: 64px; overflow: visible; }
