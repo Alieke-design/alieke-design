@@ -361,6 +361,918 @@ collections:
       - name: tekst
         label: Tekst
         widget: text
+    - name: popupTabs
+      label: Tabbladen in de pop-ups
+      label_singular: Tabblad
+      widget: list
+      hint: Dezelfde drie tabbladen staan in elke pop-up. Het zijn er altijd drie.
+      min: 3
+      max: 3
+  - name: popup-1
+    label: Pop-up stap 1
+    file: src/content/consultant/popup-1.yaml
+    fields:
+    - name: waarom
+      label: Tabblad 1 (Waarom)
+      widget: object
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: tekst
+        label: Tekst
+        widget: text
+      - name: kernzin
+        label: Kernzin
+        widget: text
+        required: false
+        hint: '*Sterretjes* = gele cirkel. Nieuwe regel = regeleinde op grote schermen. Leeg laten mag.'
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+    - name: aanpak
+      label: Tabblad 2 (Aanpak)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: stappen
+        label: Stappen
+        label_singular: Stap
+        widget: list
+        summary: '{{fields.titel}}'
+        collapsed: true
+        hint: Genummerd in deze volgorde. Sleep om te verplaatsen.
+        fields:
+        - name: titel
+          label: Titel
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+        - name: kader
+          label: Kader bij deze stap
+          widget: object
+          required: false
+          collapsed: true
+          hint: Het blok met een illustratie. Leeg laten = geen kader.
+          fields:
+          - name: illustratie
+            label: Illustratie
+            widget: select
+            options:
+            - label: Designers (twee personen)
+              value: designers
+            - label: Tekstschrijver
+              value: tekstschrijver
+            - label: Toegankelijkheid
+              value: toegankelijkheid
+            - label: Afspraken
+              value: afspraken
+            - label: Eigen beheer
+              value: eigen-beheer
+            - label: Samen (beheer en review)
+              value: samen
+            - label: Credits
+              value: credits
+          - name: optioneel
+            label: Label 'Optioneel' tonen
+            widget: boolean
+            default: false
+          - name: vet
+            label: Vetgedrukte kop
+            widget: string
+          - name: tekst
+            label: Tekst
+            widget: text
+    - name: resultaat
+      label: Tabblad 3 (Resultaat)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: punten
+        label: Punten met vinkje
+        label_singular: Punt
+        widget: list
+        summary: '{{fields.vet}} {{fields.tekst}}'
+        fields:
+        - name: vet
+          label: Vetgedrukt begin
+          widget: string
+        - name: tekst
+          label: Rest van de zin
+          widget: string
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+  - name: popup-2
+    label: Pop-up stap 2
+    file: src/content/consultant/popup-2.yaml
+    fields:
+    - name: waarom
+      label: Tabblad 1 (Waarom)
+      widget: object
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: tekst
+        label: Tekst
+        widget: text
+      - name: kernzin
+        label: Kernzin
+        widget: text
+        required: false
+        hint: '*Sterretjes* = gele cirkel. Nieuwe regel = regeleinde op grote schermen. Leeg laten mag.'
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+    - name: aanpak
+      label: Tabblad 2 (Aanpak)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: stappen
+        label: Stappen
+        label_singular: Stap
+        widget: list
+        summary: '{{fields.titel}}'
+        collapsed: true
+        hint: Genummerd in deze volgorde. Sleep om te verplaatsen.
+        fields:
+        - name: titel
+          label: Titel
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+        - name: kader
+          label: Kader bij deze stap
+          widget: object
+          required: false
+          collapsed: true
+          hint: Het blok met een illustratie. Leeg laten = geen kader.
+          fields:
+          - name: illustratie
+            label: Illustratie
+            widget: select
+            options:
+            - label: Designers (twee personen)
+              value: designers
+            - label: Tekstschrijver
+              value: tekstschrijver
+            - label: Toegankelijkheid
+              value: toegankelijkheid
+            - label: Afspraken
+              value: afspraken
+            - label: Eigen beheer
+              value: eigen-beheer
+            - label: Samen (beheer en review)
+              value: samen
+            - label: Credits
+              value: credits
+          - name: optioneel
+            label: Label 'Optioneel' tonen
+            widget: boolean
+            default: false
+          - name: vet
+            label: Vetgedrukte kop
+            widget: string
+          - name: tekst
+            label: Tekst
+            widget: text
+    - name: resultaat
+      label: Tabblad 3 (Resultaat)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: punten
+        label: Punten met vinkje
+        label_singular: Punt
+        widget: list
+        summary: '{{fields.vet}} {{fields.tekst}}'
+        fields:
+        - name: vet
+          label: Vetgedrukt begin
+          widget: string
+        - name: tekst
+          label: Rest van de zin
+          widget: string
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+  - name: popup-3
+    label: Pop-up stap 3
+    file: src/content/consultant/popup-3.yaml
+    fields:
+    - name: waarom
+      label: Tabblad 1 (Waarom)
+      widget: object
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: tekst
+        label: Tekst
+        widget: text
+      - name: kernzin
+        label: Kernzin
+        widget: text
+        required: false
+        hint: '*Sterretjes* = gele cirkel. Nieuwe regel = regeleinde op grote schermen. Leeg laten mag.'
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+    - name: aanpak
+      label: Tabblad 2 (Aanpak)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: stappen
+        label: Stappen
+        label_singular: Stap
+        widget: list
+        summary: '{{fields.titel}}'
+        collapsed: true
+        hint: Genummerd in deze volgorde. Sleep om te verplaatsen.
+        fields:
+        - name: titel
+          label: Titel
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+        - name: kader
+          label: Kader bij deze stap
+          widget: object
+          required: false
+          collapsed: true
+          hint: Het blok met een illustratie. Leeg laten = geen kader.
+          fields:
+          - name: illustratie
+            label: Illustratie
+            widget: select
+            options:
+            - label: Designers (twee personen)
+              value: designers
+            - label: Tekstschrijver
+              value: tekstschrijver
+            - label: Toegankelijkheid
+              value: toegankelijkheid
+            - label: Afspraken
+              value: afspraken
+            - label: Eigen beheer
+              value: eigen-beheer
+            - label: Samen (beheer en review)
+              value: samen
+            - label: Credits
+              value: credits
+          - name: optioneel
+            label: Label 'Optioneel' tonen
+            widget: boolean
+            default: false
+          - name: vet
+            label: Vetgedrukte kop
+            widget: string
+          - name: tekst
+            label: Tekst
+            widget: text
+    - name: resultaat
+      label: Tabblad 3 (Resultaat)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: punten
+        label: Punten met vinkje
+        label_singular: Punt
+        widget: list
+        summary: '{{fields.vet}} {{fields.tekst}}'
+        fields:
+        - name: vet
+          label: Vetgedrukt begin
+          widget: string
+        - name: tekst
+          label: Rest van de zin
+          widget: string
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+  - name: popup-4
+    label: Pop-up stap 4
+    file: src/content/consultant/popup-4.yaml
+    fields:
+    - name: waarom
+      label: Tabblad 1 (Waarom)
+      widget: object
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: tekst
+        label: Tekst
+        widget: text
+      - name: kernzin
+        label: Kernzin
+        widget: text
+        required: false
+        hint: '*Sterretjes* = gele cirkel. Nieuwe regel = regeleinde op grote schermen. Leeg laten mag.'
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+    - name: aanpak
+      label: Tabblad 2 (Aanpak)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: stappen
+        label: Stappen
+        label_singular: Stap
+        widget: list
+        summary: '{{fields.titel}}'
+        collapsed: true
+        hint: Genummerd in deze volgorde. Sleep om te verplaatsen.
+        fields:
+        - name: titel
+          label: Titel
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+        - name: kader
+          label: Kader bij deze stap
+          widget: object
+          required: false
+          collapsed: true
+          hint: Het blok met een illustratie. Leeg laten = geen kader.
+          fields:
+          - name: illustratie
+            label: Illustratie
+            widget: select
+            options:
+            - label: Designers (twee personen)
+              value: designers
+            - label: Tekstschrijver
+              value: tekstschrijver
+            - label: Toegankelijkheid
+              value: toegankelijkheid
+            - label: Afspraken
+              value: afspraken
+            - label: Eigen beheer
+              value: eigen-beheer
+            - label: Samen (beheer en review)
+              value: samen
+            - label: Credits
+              value: credits
+          - name: optioneel
+            label: Label 'Optioneel' tonen
+            widget: boolean
+            default: false
+          - name: vet
+            label: Vetgedrukte kop
+            widget: string
+          - name: tekst
+            label: Tekst
+            widget: text
+    - name: resultaat
+      label: Tabblad 3 (Resultaat)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: punten
+        label: Punten met vinkje
+        label_singular: Punt
+        widget: list
+        summary: '{{fields.vet}} {{fields.tekst}}'
+        fields:
+        - name: vet
+          label: Vetgedrukt begin
+          widget: string
+        - name: tekst
+          label: Rest van de zin
+          widget: string
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+  - name: popup-5
+    label: Pop-up stap 5
+    file: src/content/consultant/popup-5.yaml
+    fields:
+    - name: waarom
+      label: Tabblad 1 (Waarom)
+      widget: object
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: tekst
+        label: Tekst
+        widget: text
+      - name: kernzin
+        label: Kernzin
+        widget: text
+        required: false
+        hint: '*Sterretjes* = gele cirkel. Nieuwe regel = regeleinde op grote schermen. Leeg laten mag.'
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+    - name: aanpak
+      label: Tabblad 2 (Aanpak)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: stappen
+        label: Stappen
+        label_singular: Stap
+        widget: list
+        summary: '{{fields.titel}}'
+        collapsed: true
+        hint: Genummerd in deze volgorde. Sleep om te verplaatsen.
+        fields:
+        - name: titel
+          label: Titel
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
+        - name: kader
+          label: Kader bij deze stap
+          widget: object
+          required: false
+          collapsed: true
+          hint: Het blok met een illustratie. Leeg laten = geen kader.
+          fields:
+          - name: illustratie
+            label: Illustratie
+            widget: select
+            options:
+            - label: Designers (twee personen)
+              value: designers
+            - label: Tekstschrijver
+              value: tekstschrijver
+            - label: Toegankelijkheid
+              value: toegankelijkheid
+            - label: Afspraken
+              value: afspraken
+            - label: Eigen beheer
+              value: eigen-beheer
+            - label: Samen (beheer en review)
+              value: samen
+            - label: Credits
+              value: credits
+          - name: optioneel
+            label: Label 'Optioneel' tonen
+            widget: boolean
+            default: false
+          - name: vet
+            label: Vetgedrukte kop
+            widget: string
+          - name: tekst
+            label: Tekst
+            widget: text
+    - name: resultaat
+      label: Tabblad 3 (Resultaat)
+      widget: object
+      collapsed: true
+      fields:
+      - name: titel
+        label: Titel
+        widget: string
+      - name: ondertitel
+        label: Ondertitel
+        widget: string
+        required: false
+        hint: Leeg laten mag.
+      - name: punten
+        label: Punten met vinkje
+        label_singular: Punt
+        widget: list
+        summary: '{{fields.vet}} {{fields.tekst}}'
+        fields:
+        - name: vet
+          label: Vetgedrukt begin
+          widget: string
+        - name: tekst
+          label: Rest van de zin
+          widget: string
+      - name: kader
+        label: Kader
+        widget: object
+        required: false
+        collapsed: true
+        hint: Het blok met een illustratie. Leeg laten = geen kader.
+        fields:
+        - name: illustratie
+          label: Illustratie
+          widget: select
+          options:
+          - label: Designers (twee personen)
+            value: designers
+          - label: Tekstschrijver
+            value: tekstschrijver
+          - label: Toegankelijkheid
+            value: toegankelijkheid
+          - label: Afspraken
+            value: afspraken
+          - label: Eigen beheer
+            value: eigen-beheer
+          - label: Samen (beheer en review)
+            value: samen
+          - label: Credits
+            value: credits
+        - name: optioneel
+          label: Label 'Optioneel' tonen
+          widget: boolean
+          default: false
+        - name: vet
+          label: Vetgedrukte kop
+          widget: string
+        - name: tekst
+          label: Tekst
+          widget: text
   - name: resultaat
     label: Resultaat
     file: src/content/consultant/resultaat.yaml

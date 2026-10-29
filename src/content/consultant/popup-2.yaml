@@ -1,0 +1,50 @@
+# AI Design Consultant, pop-up bij stap 2. Aanpassen via alieke.design/admin.
+# *Sterretjes* = gele cirkel. In de kernzin: nieuwe regel = regeleinde op grote schermen.
+waarom:
+  titel: Context is alles
+  ondertitel: Dat is wat AI nodig heeft
+  tekst: Eén bron van waarheid waar iedereen uit put, mens én AI. Omdat elk team in de analyse input heeft gegeven, is dit niet mijn fundament maar dat van jullie. Dat is wat het laat werken.
+  kernzin: 'AI is zo goed als de context die het krijgt.
+
+    Het *fundament* is die context.'
+aanpak:
+  titel: Van keuzes tot templates
+  ondertitel: ''
+  stappen:
+  - titel: Keuzes maken
+    tekst: 'Uit alles wat de analyse opleverde kiezen we wat de basis wordt: logo, kleuren, typografie, iconen en andere design tokens die alles consistent houden.'
+    kader:
+      illustratie: designers
+      optioneel: false
+      vet: Designers in huis?
+      tekst: Dan zijn zij mijn eerste gesprekspartner. Zij weten waarom iets is zoals het is, en dat is precies wat het fundament nodig heeft.
+  - titel: Componenten
+    tekst: 'Uit alle websites en apps kiezen we per component de beste versie. Die leggen we vast in een bibliotheek: hoe het eruitziet én hoe het werkt.'
+  - titel: Uitingen
+    tekst: 'Hetzelfde voor jullie uitingen, zoals social posts, banners, presentaties en nieuwsbrieven: we kiezen de beste en leggen ze vast in de bibliotheek.'
+  - titel: Tone of voice
+    tekst: Ligt jullie tone of voice vast? Dan maken we er regels van waar AI mee kan werken.
+    kader:
+      illustratie: tekstschrijver
+      optioneel: false
+      vet: Nog geen tone of voice?
+      tekst: Ik ben geen tekstschrijver. Die bepalen jullie met een eigen tekstschrijver. Geen in huis? Dan weet ik een goede.
+  - titel: Templates
+    tekst: Eén uitgewerkt voorbeeld per uiting. Denk aan een pagina voor de website, een scherm voor de app, een slide voor de PowerPoint en een template voor de nieuwsbrief. Daar bouwen jullie en AI op voort.
+resultaat:
+  titel: Eén bron van waarheid
+  ondertitel: Voor mens én AI
+  punten:
+  - vet: Eén design system
+    tekst: met alle keuzes, componenten en uitingen.
+  - vet: Eén template per uiting,
+    tekst: om op voort te bouwen.
+  - vet: Documentatie met alle ontwerpregels,
+    tekst: waar mens én AI hun werk op baseren.
+  - vet: Draagvlak,
+    tekst: want elk team is gehoord.
+  kader:
+    illustratie: toegankelijkheid
+    optioneel: true
+    vet: Toegankelijk volgens WCAG
+    tekst: Achteraf repareren is duur. In het fundament is het één keer werk, getoetst door een gecertificeerd specialist.

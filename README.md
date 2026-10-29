@@ -11,14 +11,14 @@ Onder water staan de teksten in `src/content/`, ingedeeld zoals in het beheersch
 | Groep in het CMS | Map | Bestanden (in de volgorde van de pagina) |
 |---|---|---|
 | Homepage | `src/content/home/` | `bovenaan` (incl. Nieuw-blok), `projecten`, `skills`, `aanbevelingen`, `over-mij`, `contact`, `seo` |
-| AI Design Consultant | `src/content/consultant/` | `bovenaan`, `waarom`, `aanpak`, `resultaat`, `scan`, `wie`, `contact`, `seo` |
+| AI Design Consultant | `src/content/consultant/` | `bovenaan`, `waarom`, `aanpak`, `popup-1` t/m `popup-5`, `resultaat`, `scan`, `wie`, `contact`, `seo` |
 | Hele site | `src/content/site/` | `gegevens` (e-mail, KvK, adres, LinkedIn) |
 
 Een nieuwe pagina krijgt een eigen map en een eigen groep in `public/admin/config.yml`. `src/lib/content.ts` voegt de bestanden per pagina weer samen voor de componenten.
 
 Je kunt die bestanden ook rechtstreeks bewerken. Let op: het CMS schrijft de bestanden opnieuw bij het opslaan, dus commentaarregels in de YAML verdwijnen dan.
 
-Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/` (het CMS zet ze daar vanzelf); Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`. Van de pagina AI Design Consultant staan de teksten in het CMS; de pop-ups achter de stappen (nu uitgeschakeld) en de illustraties nog niet. Het aantal stappen en pakketten ligt vast in de vormgeving.
+Afbeeldingen voor projecten en aanbevelingen gaan in `src/assets/img/` (het CMS zet ze daar vanzelf); Astro maakt er bij het bouwen automatisch kleine webp-versies van. Logo's staan in `public/img/logos/`. Van de pagina AI Design Consultant staan alle teksten in het CMS, ook die van de pop-ups achter de stappen. De opmaak van de pop-ups zit in `src/components/StapPopup.astro`, de illustraties in de kaders in `src/lib/popup-illustraties.ts`. Het aantal stappen, pakketten en tabbladen ligt vast in de vormgeving.
 
 ### CMS instellen (eenmalig)
 

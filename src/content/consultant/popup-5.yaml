@@ -1,0 +1,34 @@
+# AI Design Consultant, pop-up bij stap 5. Aanpassen via alieke.design/admin.
+# *Sterretjes* = gele cirkel. In de kernzin: nieuwe regel = regeleinde op grote schermen.
+waarom:
+  titel: Snel is niet altijd goed genoeg
+  ondertitel: ''
+  tekst: 'AI maakt snel iets dat er goed uitziet. Of het ook goed werkt voor de gebruiker, op UI en UX, weet een senior. Review is die check, voordat het live gaat. Jij bepaalt zelf wat die check krijgt: een post in een bestaand sjabloon niet, een nieuwe flow of een formulier wel. Daar kijk ik naar wat AI niet ziet: is het logisch, gebruiksvriendelijk en toegankelijk?'
+  kernzin: AI maakt een 7,5. Een senior maakt er een *9,5* van.
+aanpak:
+  titel: Jullie kiezen wat ik check
+  ondertitel: ''
+  stappen:
+  - titel: Je team maakt
+    tekst: Elk team ontwerpt met AI, vanuit de bron.
+  - titel: Jij kiest
+    tekst: 'Wat een senior check krijgt: een nieuwe flow wel, een post in een bestaand sjabloon niet.'
+  - titel: Senior check
+    tekst: Op UI en UX, voordat het live gaat. Concreet en direct toepasbaar.
+  - titel: Terug in de bron
+    tekst: Wat in reviews opvalt, wordt in het fundament verwerkt.
+resultaat:
+  titel: Kwaliteit
+  ondertitel: Op senior niveau
+  punten:
+  - vet: Een senior check,
+    tekst: precies waar het ertoe doet.
+  - vet: Een senior in je team,
+    tekst: zonder iemand aan te nemen.
+  - vet: Een bron die steeds beter wordt
+    tekst: van wat elk team maakt.
+  kader:
+    illustratie: credits
+    optioneel: false
+    vet: Werkt met credits
+    tekst: 'Je koopt credits en zet ze in per review. Zo betaal je alleen voor wat je echt laat checken. Alleen samen met Beheer: wat in reviews opvalt, gaat de bron in.'

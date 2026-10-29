@@ -5,7 +5,8 @@ import { getCollection, getEntry } from 'astro:content';
 
 type Single =
   | 'siteGegevens' | 'homeBovenaan' | 'skills' | 'overMij' | 'homeContact' | 'homeSeo'
-  | 'cBovenaan' | 'cWaarom' | 'cAanpak' | 'cResultaat' | 'cScan' | 'cWie' | 'cContact' | 'cSeo';
+  | 'cBovenaan' | 'cWaarom' | 'cAanpak' | 'cResultaat' | 'cScan' | 'cWie' | 'cContact' | 'cSeo'
+  | 'cPopup1' | 'cPopup2' | 'cPopup3' | 'cPopup4' | 'cPopup5';
 
 const one = async <C extends Single>(c: C) => (await getEntry(c, 'data'))!.data;
 
@@ -52,5 +53,6 @@ export async function getConsultant() {
     wie: await one('cWie'),
     contact: await one('cContact'),
     seo: await one('cSeo'),
+    popups: [await one('cPopup1'), await one('cPopup2'), await one('cPopup3'), await one('cPopup4'), await one('cPopup5')],
   };
 }

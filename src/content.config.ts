@@ -141,6 +141,7 @@ const cAanpak = defineCollection({
     label: str, titel: str, ondertitel: str,
     stappen: z.array(z.object({ titel: str, frequentie: str, tekst: str })).length(5),
     designersTitel: str, designersTekst: str,
+    popupTabs: z.array(str).length(3),
   }),
 });
 
@@ -186,8 +187,22 @@ const cSeo = defineCollection({
   schema: z.object({ title: str, description: str, ogImageAlt: str }),
 });
 
+const kader = z.object({ illustratie: str, optioneel: z.boolean().default(false), vet: str, tekst: str }).nullish();
+const kop = { titel: str, ondertitel: str.nullish().transform((v) => v ?? '') };
+const popup = (n: number) =>
+  defineCollection({
+    loader: single(`src/content/consultant/popup-${n}.yaml`),
+    schema: z.object({
+      waarom: z.object({ ...kop, tekst: str, kernzin: str.nullish().transform((v) => v ?? ''), kader }),
+      aanpak: z.object({ ...kop, stappen: z.array(z.object({ titel: str, tekst: str, kader })) }),
+      resultaat: z.object({ ...kop, punten: z.array(z.object({ vet: str, tekst: str })), kader }),
+    }),
+  });
+const cPopup1 = popup(1), cPopup2 = popup(2), cPopup3 = popup(3), cPopup4 = popup(4), cPopup5 = popup(5);
+
 export const collections = {
   siteGegevens,
   homeBovenaan, projecten, aanbevelingen, aanbevelingenInfo, skills, overMij, homeContact, homeSeo,
   cBovenaan, cWaarom, cAanpak, cResultaat, cScan, cWie, cContact, cSeo,
+  cPopup1, cPopup2, cPopup3, cPopup4, cPopup5,
 };

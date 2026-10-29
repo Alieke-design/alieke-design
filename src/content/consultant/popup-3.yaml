@@ -1,0 +1,36 @@
+# AI Design Consultant, pop-up bij stap 3. Aanpassen via alieke.design/admin.
+# *Sterretjes* = gele cirkel. In de kernzin: nieuwe regel = regeleinde op grote schermen.
+waarom:
+  titel: Zelf maken
+  ondertitel: Snel en on-brand
+  tekst: Zelf kunnen maken is de winst van dit hele traject. Snelheid komt van AI, maar alleen als je team weet hoe het de bron gebruikt.
+  kernzin: ''
+aanpak:
+  titel: Leren door te doen
+  ondertitel: ''
+  stappen:
+  - titel: Klaar voor AI
+    tekst: De bron in een vorm die AI-tools kunnen lezen. Het technische koppelen doet jullie IT; ik zeg wat er nodig is.
+  - titel: Per team
+    tekst: Ik laat zien hoe de bron werkt in jullie AI-tools, aan de mensen die ermee gaan werken.
+  - titel: Aan echt werk
+    tekst: Geen cursus. We maken samen de eerste pagina’s, posts of flows.
+  - titel: Op maat
+    tekst: Veel kennis in huis? Korte overdracht. Weinig? Meer sessies.
+  - titel: Afspraken
+    tekst: Wie mag wat wijzigen, wat gaat langs review en wie de bron beheert. Zwart op wit.
+    kader:
+      illustratie: afspraken
+      optioneel: false
+      vet: Geen beheer en review bij mij?
+      tekst: Dan leggen we vast wie het beheer wél doet, zodat de bron blijft kloppen.
+resultaat:
+  titel: Op eigen kracht
+  ondertitel: ''
+  punten:
+  - vet: Elk team ontwerpt zelf,
+    tekst: snel en on-brand met AI.
+  - vet: Heldere afspraken
+    tekst: over wie wat wijzigt en wat gereviewd wordt.
+  - vet: De bron is van jullie,
+    tekst: niet van mij.

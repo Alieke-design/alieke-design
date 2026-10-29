@@ -1,0 +1,36 @@
+# AI Design Consultant, pop-up bij stap 1. Aanpassen via alieke.design/admin.
+# *Sterretjes* = gele cirkel. In de kernzin: nieuwe regel = regeleinde op grote schermen.
+waarom:
+  titel: Er ligt al veel
+  ondertitel: Daar is over nagedacht
+  tekst: 'Alleen ligt het verspreid over teams, tools en bestanden. Voordat het fundament er kan komen, breng ik alles in kaart: wat er ligt, wat klopt, wat dubbel is en wat ontbreekt.'
+  kernzin: 'Jullie branding, jullie keuzes.
+
+    Ik begin met *vragen*, *luisteren* en *kijken*.'
+aanpak:
+  titel: Van gesprek tot plan
+  ondertitel: ''
+  stappen:
+  - titel: Toegang
+    tekst: Ik krijg leestoegang tot jullie tools en bestanden.
+  - titel: Gesprekken
+    tekst: Met de verantwoordelijke van elk team. Waar staan jullie achter en waar lopen jullie tegenaan?
+    kader:
+      illustratie: designers
+      optioneel: false
+      vet: Designers in huis? Juist fijn.
+      tekst: Zij weten het beste waar ze tegenaan lopen, dus hen heb ik nodig.
+  - titel: In kaart brengen
+    tekst: 'Ik leg alles naast elkaar: wat klopt, wat dubbel is, wat ontbreekt. Met korte lijntjes naar de verantwoordelijken voor vragen.'
+  - titel: Rapport
+    tekst: Je ontvangt een helder rapport van wat er ligt. Bij een grote analyse presenteer ik het, zodat iedereen het in één keer hoort.
+  - titel: Plan en prijs
+    tekst: 'Met een vaste prijs voor de vervolgstappen: Fundament en Overdracht.'
+resultaat:
+  titel: Weten waar je staat
+  ondertitel: ''
+  punten:
+  - vet: Een helder rapport
+    tekst: van wat er ligt.
+  - vet: Een plan met vaste prijs
+    tekst: 'voor de vervolgstappen: Fundament en Overdracht.'

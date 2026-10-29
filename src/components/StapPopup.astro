@@ -1,0 +1,59 @@
+---
+// Pop-up achter een stap op de pagina AI Design Consultant. Teksten uit src/content/consultant/popup-N.yaml.
+import { kring } from '../lib/kring';
+import { illustraties } from '../lib/popup-illustraties';
+interface Kader { illustratie: string; optioneel?: boolean; vet: string; tekst: string }
+type MaybeKader = Kader | null | undefined;
+interface Props {
+  n: number;
+  stappen: { titel: string; frequentie: string }[];
+  tabs: string[];
+  popup: {
+    waarom: { titel: string; ondertitel?: string; tekst: string; kernzin?: string; kader?: MaybeKader };
+    aanpak: { titel: string; ondertitel?: string; stappen: { titel: string; tekst: string; kader?: MaybeKader }[] };
+    resultaat: { titel: string; ondertitel?: string; punten: { vet: string; tekst: string }[]; kader?: MaybeKader };
+  };
+}
+const { n, stappen, tabs, popup } = Astro.props;
+const stap = stappen[n - 1];
+const vorige = stappen[n - 2];
+const volgende = stappen[n];
+const id = `step${n}`;
+const close = "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2.5\" stroke-linecap=\"round\" aria-hidden=\"true\" style=\"width: 20px; height: 20px;\"><path d=\"M6 6l12 12M18 6L6 18\"></path></svg>";
+const check = "<svg viewBox=\"0 0 18 14\" aria-hidden=\"true\"><path d=\"M17.4375 1.02344C17.8281 1.41406 17.8281 2 17.4375 2.35156L7.125 12.6641C6.77344 13.0547 6.1875 13.0547 5.83594 12.6641L0.523438 7.35156C0.132812 7 0.132812 6.41406 0.523438 6.02344C0.875 5.67188 1.46094 5.67188 1.8125 6.02344L6.5 10.7109L16.1484 1.02344C16.5 0.671875 17.0859 0.671875 17.4375 1.02344Z\"></path></svg>";
+const pijl = "<svg viewBox=\"0 0 14 15\" aria-hidden=\"true\" style=\"width: 14px; height: 15px; fill: currentColor;\"><path d=\"M13.7188 6.28125L8.71875 1.28125C8.34375 0.875 7.6875 0.875 7.3125 1.28125C6.90625 1.65625 6.90625 2.3125 7.3125 2.6875L10.5938 6H1C0.46875 6 0 6.4375 0 7C0 7.53125 0.46875 8 1 8H10.5938L7.3125 11.2812C6.90625 11.6562 6.90625 12.3125 7.3125 12.6875C7.6875 13.0938 8.34375 13.0938 8.71875 12.6875L13.7188 7.6875C14.125 7.3125 14.125 6.65625 13.7188 6.28125Z\"></path></svg>";
+const pijlTerug = "<svg viewBox=\"0 0 14 15\" aria-hidden=\"true\" style=\"width: 14px; height: 15px; fill: currentColor; transform: scaleX(-1);\"><path d=\"M13.7188 6.28125L8.71875 1.28125C8.34375 0.875 7.6875 0.875 7.3125 1.28125C6.90625 1.65625 6.90625 2.3125 7.3125 2.6875L10.5938 6H1C0.46875 6 0 6.4375 0 7C0 7.53125 0.46875 8 1 8H10.5938L7.3125 11.2812C6.90625 11.6562 6.90625 12.3125 7.3125 12.6875C7.6875 13.0938 8.34375 13.0938 8.71875 12.6875L13.7188 7.6875C14.125 7.3125 14.125 6.65625 13.7188 6.28125Z\"></path></svg>";
+const kaderHtml = (k?: MaybeKader) =>
+  k
+    ? `<div class="pb"><span class="pb__ill">${illustraties[k.illustratie] ?? ''}</span><div>${k.optioneel ? '<span class="pb__opt">Optioneel</span>' : ''}<strong>${esc(k.vet)}</strong>${esc(k.tekst)}</div></div>`
+    : '';
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const kop = (s: { titel: string; ondertitel?: string }) =>
+  `<div class="pop-head"><h4 class="pop-title">${esc(s.titel)}</h4>${s.ondertitel ? `<p class="pop-subtitle">${esc(s.ondertitel)}</p>` : ''}</div>`;
+const { waarom: w, aanpak: a, resultaat: r } = popup;
+const slides = [
+  kop(w) + `<p class="pop-lead">${esc(w.tekst)}</p>` + (w.kernzin ? `<p class="pop-quote">${kring(w.kernzin, '<br class="br-desk"> ')}</p>` : '') + kaderHtml(w.kader),
+  kop(a) + `<ol class="pop-tl">` + a.stappen.map((s, i) => `<li><span class="pop-tl__n" aria-hidden="true">${i + 1}</span><h4>${esc(s.titel)}</h4><p>${esc(s.tekst)}</p>${kaderHtml(s.kader)}</li>`).join('') + `</ol>`,
+  kop(r) + `<ul class="pop-res">` + r.punten.map((p) => `<li><span class="pop-res__ck">${check}</span><span><strong>${esc(p.vet)}</strong> ${esc(p.tekst)}</span></li>`).join('') + `</ul>` + kaderHtml(r.kader),
+];
+const nav = tabs.map((t, i) => `<button type="button" id="${id}-tab-${i}" aria-controls="${id}-slide-${i}"${i === 0 ? ' aria-current="true"' : ''} data-slide-tab="${i}">${esc(t)}</button>`).join('');
+const track = slides.map((h, i) => `<section id="${id}-slide-${i}" aria-labelledby="${id}-tab-${i}" class="slide is-active" data-slide="${i}">${h}</section>`).join('');
+---
+<dialog class="stepdialog" data-lenis-prevent id={`step-${n}`} aria-labelledby={`${id}-title`} data-slides="3">
+    <button type="button" data-step-close aria-label="Sluiten" style="position: absolute; z-index: 2; right: 20px; top: 20px; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 12px; background: #0049dc; color: #ffffff; box-shadow: 3px -3px 0 0 #232323; cursor: pointer;"><Fragment set:html={close} /></button>
+    <div class="stepdialog__inner">
+      <div style="display: flex; align-items: center; gap: 16px; padding-right: 64px;">
+        <span aria-hidden="true" style="flex: none; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: #ffc518; color: #232323; font-size: 24px; font-weight: 600;">{n}</span>
+        <div>
+          <p style="display: inline-block; margin: 0 0 6px; padding: 2px 10px; border-radius: 48px; background: #e3f0ff; color: #0049dc; font-size: 14px; font-weight: 600; line-height: 1.4;">{stap.frequentie}</p>
+          <h3 id={`${id}-title`} style="margin: 0; font-size: clamp(26px, 2.2vw, 32px); line-height: 1.15; font-weight: 600; color: #0d0064;">{stap.titel}</h3>
+        </div>
+      </div>
+      <div class="slidenav" aria-label={`Onderdelen van ${stap.titel}`}><span class="slidenav__bar" aria-hidden="true"></span><Fragment set:html={nav} /></div>
+      <div class="slides-scroll" data-lenis-prevent><div class="slides" data-slides-track><Fragment set:html={track} /></div></div>
+      <div class="slidefoot">
+        {vorige ? <button type="button" class="slidebtn slidebtn--prev" data-step-goto={n - 1}><Fragment set:html={pijlTerug} />Stap {n - 1}: {vorige.titel}</button> : <span></span>}
+        {volgende ? <button type="button" class="slidebtn slidebtn--done" data-step-goto={n + 1}>Stap {n + 1}: {volgende.titel}<Fragment set:html={pijl} /></button> : <span></span>}
+      </div>
+    </div>
+</dialog>
