@@ -720,8 +720,8 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 @media (prefers-reduced-motion: reduce) { .slidenav.is-ready .slidenav__bar, .slidedots.is-ready .slidedots__bar, .slidedots span { transition: none; } }
 /* --- Pop-up v3: alles onder elkaar, scrollen; tabs tonen waar je bent --- */
 .slide[hidden] { display: block; }
-.slide + .slide { margin-top: 56px; padding-top: 48px; border-top: 2px solid #e3f0ff; }
-.pop-sec { margin: 0 0 24px; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.15; font-weight: 600; color: #0049dc; }
+.slide + .slide { margin-top: 56px; }
+.pop-sec { display: inline-block; margin: 0 0 20px; padding: 4px 12px; border-radius: 48px; background: #ffc518; color: #232323; font-size: 16px; line-height: 1.4; font-weight: 600; }
 .stepdialog, .stepdialog * { scrollbar-width: none !important; }
 .slidenav [aria-current="true"] { color: #ffffff; }
 .slidefoot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; padding-top: 20px; border-top: 0; }
