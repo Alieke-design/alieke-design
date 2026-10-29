@@ -1,38 +1,37 @@
-# AI Design Consultant, analyse. Aanpassen via alieke.design/admin. *Sterretjes* = gele cirkel.
 label: Stap 1
-titel: De analyse
+titel: Analyse
 intro: Alle andere stappen bouwen op de analyse. Daarom begint het hier.
+pakketten:
+  - naam: Klein
+    doelgroep: Eén team
+    prijsLabel: vaste prijs
+    prijs: € 1.250
+    gesprek: Gesprek online
+    producten: 1 website of app
+    tools: Uitingen uit 1 tot 2 tools
+    wcagPrijs: € 500
+    wcagVanaf: false
+  - naam: Midden
+    doelgroep: Meerdere teams
+    prijsLabel: vaste prijs
+    prijs: € 2.750
+    gesprek: Gesprekken online of op locatie
+    producten: 1 tot 2 websites of apps
+    tools: Uitingen uit 2 tot 3 tools
+    wcagPrijs: € 1.000
+    wcagVanaf: false
+  - naam: Groot
+    doelgroep: Meerdere teams of afdelingen
+    prijsLabel: vanaf
+    prijs: € 4.500
+    gesprek: Gesprekken op locatie
+    producten: Meerdere websites of apps
+    tools: Uitingen uit meerdere tools
+    wcagPrijs: € 1.500
+    wcagVanaf: true
 toolsTip: 'Tools zoals Canva, PowerPoint, Mailchimp, Adobe of ChatGPT. Ik bekijk alles wat erin ontworpen wordt, van social post tot poster: logo, kleur, lettertype, vormen en opbouw.'
 wcagTitel: Toegankelijkheidsanalyse
 wcagTip: Ik toets alle designs op contrast, leesbaarheid, klikdoelen, focus en formulieren. Geen technische audit van de code.
-pakketten:
-- naam: Klein
-  doelgroep: Eén team
-  prijsLabel: vaste prijs
-  prijs: € 1.250
-  gesprek: Gesprek online
-  producten: 1 website of app
-  tools: Uitingen uit 1 tot 2 tools
-  wcagPrijs: € 500
-  wcagVanaf: false
-- naam: Midden
-  doelgroep: Meerdere teams
-  prijsLabel: vaste prijs
-  prijs: € 2.750
-  gesprek: Gesprekken online of op locatie
-  producten: 1 tot 2 websites of apps
-  tools: Uitingen uit 2 tot 3 tools
-  wcagPrijs: € 1.000
-  wcagVanaf: false
-- naam: Groot
-  doelgroep: Meerdere teams of afdelingen
-  prijsLabel: vanaf
-  prijs: € 4.500
-  gesprek: Gesprekken op locatie
-  producten: Meerdere websites of apps
-  tools: Uitingen uit meerdere tools
-  wcagPrijs: € 1.500
-  wcagVanaf: true
 resultaat:
   label: Resultaat
   titel: Na de analyse heb je dit in handen
