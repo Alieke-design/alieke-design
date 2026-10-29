@@ -737,7 +737,9 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 .pop-lead + .pop-quote { margin-top: 40px; }
 .pop-lead + .pb { margin-top: 24px; }
 .aanpak-designers { display: flex; gap: 22px; align-items: center; max-width: 720px; margin: 48px auto 0; padding: 20px 28px; border-radius: 8px; background: #ffffff; font-size: 17px; line-height: 1.55; color: #232323; }
-@media (min-width: 1024px) { .aanpak-designers { max-width: none; width: fit-content; } .aanpak-designers p { white-space: nowrap; } }
+/* Desktop: even breed als drie stapkaarten (5 kolommen, 24px tussenruimte), in het midden */
+@media (min-width: 761px) { .aanpak-designers { box-sizing: border-box; max-width: none; width: calc((100% - 96px) / 5 * 3 + 48px); gap: 16px; padding: 18px 24px 18px 20px; } }
+@media (min-width: 1280px) { .aanpak-designers p { white-space: nowrap; } }
 .aanpak-designers strong { display: block; margin-bottom: 2px; font-size: 19px; font-weight: 600; color: #0d0064; }
 .aanpak-designers__ill { flex: none; width: 64px; height: 64px; }
 .aanpak-designers__ill svg { display: block; width: 64px; height: 64px; overflow: visible; }
