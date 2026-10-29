@@ -785,6 +785,10 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
   /* Scan-pakketten onder elkaar (drie kaarten passen niet naast elkaar, en 2+1 oogt scheef) */
   #analyse ul.scan-grid { grid-template-columns: minmax(0, 1fr) !important; max-width: 600px; }
   .why-wrap { margin: 0 auto !important; }
+}
+/* Resultaat-tekening: op een telefoon kleiner, zodat de losse stukjes tijdens de animatie binnen beeld blijven */
+@media (max-width: 600px) {
+  .why-wrap { max-width: 220px !important; }
   /* Minder lege ruimte boven en onder de driehoekjes */
   #waarom > div { padding-bottom: calc(clamp(96px, 10vw, 140px) + 16px) !important; }
   #aanpak > div { padding-top: 112px !important; padding-bottom: 72px !important; }
