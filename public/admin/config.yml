@@ -390,7 +390,7 @@ collections:
         widget: boolean
         default: false
   - name: scan
-    label: De scan (stap 1)
+    label: De analyse (stap 1)
     file: src/content/consultant/scan.yaml
     fields:
     - name: label
@@ -437,24 +437,24 @@ collections:
         widget: string
         hint: Het info-ballonnetje erachter komt uit "Tekst bij tools" hieronder.
       - name: wcagPrijs
-        label: Prijs toegankelijkheidsscan
+        label: Prijs toegankelijkheidsanalyse
         widget: string
         hint: Met €-teken. Het "+" staat er vanzelf voor.
       - name: wcagVanaf
-        label: '"vanaf" voor de prijs van de toegankelijkheidsscan'
+        label: '"vanaf" voor de prijs van de toegankelijkheidsanalyse'
         widget: boolean
         default: false
     - name: toolsTip
       label: Tekst bij tools (info-ballonnetje)
       widget: text
     - name: wcagTitel
-      label: Naam toegankelijkheidsscan
+      label: Naam toegankelijkheidsanalyse
       widget: string
     - name: wcagTip
-      label: Tekst bij toegankelijkheidsscan (info-ballonnetje)
+      label: Tekst bij toegankelijkheidsanalyse (info-ballonnetje)
       widget: text
     - name: resultaat
-      label: Resultaat van de scan
+      label: Resultaat van de analyse
       widget: object
       fields:
       - name: label

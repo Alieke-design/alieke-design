@@ -1,9 +1,9 @@
-# AI Design Consultant, scan. Aanpassen via alieke.design/admin. *Sterretjes* = gele cirkel.
+# AI Design Consultant, analyse. Aanpassen via alieke.design/admin. *Sterretjes* = gele cirkel.
 label: Stap 1
-titel: De scan
-intro: Alle andere stappen bouwen op de scan. Daarom begint het hier.
+titel: De analyse
+intro: Alle andere stappen bouwen op de analyse. Daarom begint het hier.
 toolsTip: 'Tools zoals Canva, PowerPoint, Mailchimp, Adobe of ChatGPT. Ik bekijk alles wat erin ontworpen wordt, van social post tot poster: logo, kleur, lettertype, vormen en opbouw.'
-wcagTitel: Toegankelijkheidsscan
+wcagTitel: Toegankelijkheidsanalyse
 wcagTip: Ik toets alle designs op contrast, leesbaarheid, klikdoelen, focus en formulieren. Geen technische audit van de code.
 pakketten:
 - naam: Klein
@@ -35,7 +35,7 @@ pakketten:
   wcagVanaf: true
 resultaat:
   label: Resultaat
-  titel: Na de scan heb je dit in handen
+  titel: Na de analyse heb je dit in handen
   rapportVet: 'Een helder rapport:'
   rapportTekst: in kaart gebracht wat er ligt.
   planVet: Een plan met vaste prijs
