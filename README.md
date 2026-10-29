@@ -6,16 +6,15 @@ De website van Alieke Zelhorst, gebouwd met [Astro](https://astro.build) als sta
 
 De makkelijkste manier: ga naar **https://alieke.design/admin** en log in met GitHub. Daar pas je projecten, aanbevelingen, skills, "Over mij" en de algemene teksten aan. Opslaan maakt een commit op `main`; een paar minuten later staat het live.
 
-Onder water staan de teksten in `src/content/`:
+Onder water staan de teksten in `src/content/`, ingedeeld zoals in het beheerscherm: per pagina een map, per sectie een bestand.
 
-| Wat | Bestand |
-|---|---|
-| Hero (Hi! 👋), contacttekst, e-mail, KvK, adres, LinkedIn, SEO | `src/content/algemeen.yaml` |
-| Projecten (Werk) | `src/content/projecten.yaml` |
-| Aanbevelingen | `src/content/aanbevelingen.yaml` |
-| Ervaring, opleiding, tools | `src/content/skills.yaml` |
-| Werkwijze, resultaat, voor wie | `src/content/over-mij.yaml` |
-| Pagina AI Design Consultant | `src/content/consultant.yaml` |
+| Groep in het CMS | Map | Bestanden (in de volgorde van de pagina) |
+|---|---|---|
+| Homepage | `src/content/home/` | `bovenaan` (incl. Nieuw-blok), `projecten`, `skills`, `aanbevelingen`, `over-mij`, `contact`, `seo` |
+| AI Design Consultant | `src/content/consultant/` | `bovenaan`, `waarom`, `aanpak`, `resultaat`, `scan`, `wie`, `contact`, `seo` |
+| Hele site | `src/content/site/` | `gegevens` (e-mail, KvK, adres, LinkedIn) |
+
+Een nieuwe pagina krijgt een eigen map en een eigen groep in `public/admin/config.yml`. `src/lib/content.ts` voegt de bestanden per pagina weer samen voor de componenten.
 
 Je kunt die bestanden ook rechtstreeks bewerken. Let op: het CMS schrijft de bestanden opnieuw bij het opslaan, dus commentaarregels in de YAML verdwijnen dan.
 

@@ -1,0 +1,20 @@
+# AI Design Consultant, aanpak. Aanpassen via alieke.design/admin. *Sterretjes* = gele cirkel.
+label: Aanpak
+titel: In vijf stappen
+ondertitel: Naar efficiëntie en kwaliteit
+stappen:
+- titel: Scan
+  frequentie: Eenmalig
+  tekst: Wat er ligt, wat klopt, wat dubbel is, wat ontbreekt.
+- titel: Fundament
+  frequentie: Eenmalig
+  tekst: Eén design system als bron van waarheid, klaar voor AI-tools.
+- titel: Overdracht
+  frequentie: Eenmalig
+  tekst: Je team gaat zelf aan de slag met de basis en AI.
+- titel: Beheer
+  frequentie: Doorlopend
+  tekst: Eén vast punt voor wijzigingen, zodat de bron blijft kloppen.
+- titel: Review
+  frequentie: Doorlopend
+  tekst: Een senior designer checkt wat AI maakt voor het live gaat.

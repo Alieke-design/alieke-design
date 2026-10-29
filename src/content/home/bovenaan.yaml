@@ -1,0 +1,18 @@
+# Homepage, bovenaan (Hi! 👋) en het Nieuw-blok. Aanpassen via alieke.design/admin.
+label: Hi! 👋
+title: Freelance UX/UI designer
+subtitle: Alieke Zelhorst
+quote: Ik maak complexe apps en tools *intuïtief* en *toegankelijk*.
+bullets:
+- Senior UX/UI designer met 15 jaar ervaring
+- Gediplomeerd WCAG-specialist
+- Bedreven in het verbeteren van AI producten
+buttonText: Bekijk werk
+portrait: /src/assets/img/Alieke-Zelhorst-freelance-UX-UI-designer.png
+portraitAlt: Foto van Alieke Zelhorst, freelance UX/UI designer uit Utrecht
+nieuw:
+  aan: false
+  label: Nieuw
+  titel: AI Design Consultant
+  tekst: Je designproces, klaar voor AI
+  link: /ai-design-consultant
