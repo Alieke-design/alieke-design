@@ -1,14 +1,14 @@
 ---
 import DoubleArrows from './DoubleArrows.astro';
 import { getSkills } from '../lib/content';
-const { ervaring, opleiding, tools } = await getSkills();
+const { label, titelErvaring, titelOpleiding, titelTools, ervaring, opleiding, tools } = await getSkills();
 ---
 <section class="content-repeater" data-scroll-var data-start="top bottom" id="skills">
   <div class="content-repeater__inner">
     <DoubleArrows />
     <div class="content-repeater__content">
-      <p class="label background--dyellow font-semibold">Skills</p>
-      <h2 class="large-heading color--dblue">Ervaring</h2>
+      <p class="label background--dyellow font-semibold">{label}</p>
+      <h2 class="large-heading color--dblue">{titelErvaring}</h2>
       <div class="default-body p description-list">
         {ervaring.map(({ jaar, omschrijving }) => (
           <p class="row"><span class="description-label color--dblue">{jaar}</span> <span class="description-value">{omschrijving}</span></p>
@@ -16,7 +16,7 @@ const { ervaring, opleiding, tools } = await getSkills();
       </div>
     </div>
     <div class="content-repeater__content">
-      <h2 class="large-heading color--dblue">Opleiding</h2>
+      <h2 class="large-heading color--dblue">{titelOpleiding}</h2>
       <div class="default-body p description-list">
         {opleiding.map(({ jaar, omschrijving }) => (
           <p class="row"><span class="description-label color--dblue">{jaar}</span> <span class="description-value">{omschrijving}</span></p>
@@ -24,7 +24,7 @@ const { ervaring, opleiding, tools } = await getSkills();
       </div>
     </div>
     <div class="content-repeater__content">
-      <h2 class="large-heading color--dblue">Tools</h2>
+      <h2 class="large-heading color--dblue">{titelTools}</h2>
       <div class="logos">
         {tools.map((tool) => (
           <span class="tip tool-logo">

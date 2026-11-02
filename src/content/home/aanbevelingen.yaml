@@ -1,6 +1,10 @@
 # Aanbevelingen (overgenomen van LinkedIn). Volgorde hier = volgorde op de site.
 # Aanpassen via alieke.design/admin (of hier). Foto's (vierkant) staan in src/assets/img/aanbevelingen.
 # Lege regel in de tekst = nieuwe alinea. linkedin leeg laten = link naar jouw aanbevelingen op LinkedIn.
+label: Aanbevelingen
+menu: ''
+titel: Opdrachtgevers
+ondertitel: Over mij
 linkUrl: https://www.linkedin.com/in/aliekezelhorst/details/recommendations/
 items:
   - name: Rik van Duijn

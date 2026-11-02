@@ -1,4 +1,9 @@
 # Sectie "Skills": ervaring, opleiding en tools. Aanpassen via alieke.design/admin (of hier).
+label: Skills
+menu: ''
+titelErvaring: Ervaring
+titelOpleiding: Opleiding
+titelTools: Tools
 ervaring:
   - jaar: Sinds 2018
     omschrijving: Freelance UX/UI designer

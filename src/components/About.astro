@@ -2,11 +2,11 @@
 import DoubleArrows from './DoubleArrows.astro';
 import Icon from './Icon.astro';
 import { getOverMij } from '../lib/content';
-const { werkwijze, resultaat, voorWie } = await getOverMij();
+const o = await getOverMij();
 const blocks = [
-  { title: 'Werkwijze', items: werkwijze, icon: 'arrow-right' as const, label: 'Over mij' },
-  { title: 'Resultaat', items: resultaat, icon: 'check' as const },
-  { title: 'Voor wie', items: voorWie, icon: 'arrow-right' as const },
+  { title: o.titelWerkwijze, items: o.werkwijze, icon: 'arrow-right' as const, label: o.label },
+  { title: o.titelResultaat, items: o.resultaat, icon: 'check' as const },
+  { title: o.titelVoorWie, items: o.voorWie, icon: 'arrow-right' as const },
 ];
 ---
 <section class="content-repeater" data-scroll-var data-start="top bottom" id="over-mij">

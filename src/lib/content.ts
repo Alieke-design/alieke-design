@@ -30,8 +30,48 @@ export async function getAanbevelingen() {
   return (await getCollection('aanbevelingen')).sort((a, b) => a.id.localeCompare(b.id)).map((e) => e.data);
 }
 
+export async function getAanbevelingenInfo() {
+  return (await getEntry('aanbevelingenInfo', 'data'))!.data;
+}
+
 export async function getAanbevelingenLink() {
-  return (await getEntry('aanbevelingenInfo', 'data'))!.data.linkUrl;
+  return (await getAanbevelingenInfo()).linkUrl;
+}
+
+export async function getProjectenInfo() {
+  return (await getEntry('projectenInfo', 'data'))!.data;
+}
+
+// ---------- Menu
+// Elk menu-item heeft dezelfde tekst als de badge (label) van zijn sectie, tenzij er in het
+// CMS een eigen 'Naam in het menu' is ingevuld. Volgorde en ankers liggen hier vast.
+
+type NavItem = { href: string; label: string };
+const naam = (s: { label: string; menu?: string }) => s.menu?.trim() || s.label;
+
+/** Menu van de homepage. prefix '/' laat de links vanaf een andere pagina naar de homepage wijzen. */
+export async function getHomeNav(prefix = ''): Promise<NavItem[]> {
+  const { hero, contact } = await getAlgemeen();
+  return [
+    { href: `${prefix}#hi`, label: naam(hero) },
+    { href: `${prefix}#werk`, label: naam(await getProjectenInfo()) },
+    { href: `${prefix}#skills`, label: naam(await getSkills()) },
+    { href: `${prefix}#aanbevelingen`, label: naam(await getAanbevelingenInfo()) },
+    { href: `${prefix}#over-mij`, label: naam(await getOverMij()) },
+    { href: `${prefix}#contact`, label: naam(contact) },
+  ];
+}
+
+/** Menu van de pagina AI Design Consultant. */
+export async function getConsultantNav(): Promise<NavItem[]> {
+  const c = await getConsultant();
+  return [
+    { href: '#waarom', label: naam(c.waarom) },
+    { href: '#aanpak', label: naam(c.aanpak) },
+    { href: '#wat-je-krijgt', label: naam(c.resultaat) },
+    { href: '#analyse', label: naam(c.scan) },
+    { href: '#contact', label: naam(c.contact) },
+  ];
 }
 
 export async function getSkills() {

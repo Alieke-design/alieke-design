@@ -14,6 +14,8 @@ Onder water staan de teksten in `src/content/`, ingedeeld zoals in het beheersch
 | AI Design Consultant | `src/content/consultant/` | `bovenaan`, `waarom`, `aanpak`, `popup-1` t/m `popup-5`, `resultaat`, `scan`, `wie`, `contact`, `seo` |
 | Hele site | `src/content/site/` | `gegevens` (e-mail, KvK, adres, LinkedIn) |
 
+**Menu:** elk menu-item heeft dezelfde tekst als het label (de badge) van zijn sectie. Wil je in het menu een andere naam, vul dan in het CMS bij die sectie "Naam in het menu" in. Welke secties in het menu staan en in welke volgorde, staat in `src/lib/content.ts` (`getHomeNav`, `getConsultantNav`).
+
 Een nieuwe pagina krijgt een eigen map en een eigen groep in `public/admin/config.yml`. `src/lib/content.ts` voegt de bestanden per pagina weer samen voor de componenten.
 
 Je kunt die bestanden ook rechtstreeks bewerken. Let op: het CMS schrijft de bestanden opnieuw bij het opslaan, dus commentaarregels in de YAML verdwijnen dan.

@@ -41,7 +41,12 @@ collections:
     - name: label
       label: Label
       widget: string
-      hint: Het gele/blauwe labeltje boven de titel.
+      hint: Het gele/blauwe labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: title
       label: Titel
       widget: string
@@ -96,6 +101,21 @@ collections:
     label: Projecten (Werk)
     file: src/content/home/projecten.yaml
     fields:
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gekleurde labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
+    - name: titel
+      label: Titel
+      widget: string
+    - name: ondertitel
+      label: Ondertitel
+      widget: string
     - name: items
       label: Projecten
       label_singular: Project
@@ -138,6 +158,24 @@ collections:
     label: Skills
     file: src/content/home/skills.yaml
     fields:
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gekleurde labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
+    - name: titelErvaring
+      label: Titel boven ervaring
+      widget: string
+    - name: titelOpleiding
+      label: Titel boven opleiding
+      widget: string
+    - name: titelTools
+      label: Titel boven tools
+      widget: string
     - name: ervaring
       label: Ervaring
       label_singular: Regel
@@ -183,6 +221,21 @@ collections:
     label: Aanbevelingen
     file: src/content/home/aanbevelingen.yaml
     fields:
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gekleurde labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
+    - name: titel
+      label: Titel
+      widget: string
+    - name: ondertitel
+      label: Ondertitel
+      widget: string
     - name: linkUrl
       label: Link naar al je aanbevelingen op LinkedIn
       widget: string
@@ -228,6 +281,24 @@ collections:
     label: Over mij
     file: src/content/home/over-mij.yaml
     fields:
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gekleurde labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
+    - name: titelWerkwijze
+      label: Titel boven werkwijze
+      widget: string
+    - name: titelResultaat
+      label: Titel boven resultaat
+      widget: string
+    - name: titelVoorWie
+      label: Titel boven voor wie
+      widget: string
     - name: werkwijze
       label: Werkwijze
       label_singular: Punt
@@ -245,6 +316,18 @@ collections:
     label: Contact
     file: src/content/home/contact.yaml
     fields:
+    - name: label
+      label: Label
+      widget: string
+      hint: Het gekleurde labeltje boven de titel. Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
+    - name: titel
+      label: Titel
+      widget: string
     - name: text
       label: Contacttekst
       widget: text
@@ -310,6 +393,12 @@ collections:
     - name: label
       label: Label
       widget: string
+      hint: Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: titel
       label: Titel
       widget: string
@@ -330,6 +419,12 @@ collections:
     - name: label
       label: Label
       widget: string
+      hint: Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: titel
       label: Titel
       widget: string
@@ -1280,6 +1375,12 @@ collections:
     - name: label
       label: Label
       widget: string
+      hint: Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: titel
       label: Titel
       widget: string
@@ -1314,6 +1415,12 @@ collections:
     - name: label
       label: Label
       widget: string
+      hint: Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: titel
       label: Titel
       widget: string
@@ -1428,6 +1535,12 @@ collections:
     - name: label
       label: Label
       widget: string
+      hint: Staat ook in het menu bovenaan.
+    - name: menu
+      label: Naam in het menu
+      widget: string
+      required: false
+      hint: Leeg laten = dezelfde tekst als het label hierboven. Vul alleen iets in als het menu een andere (kortere) naam moet krijgen.
     - name: titel
       label: Titel
       widget: string

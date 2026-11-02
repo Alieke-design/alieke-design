@@ -1,5 +1,9 @@
 # Projecten in de sectie "Werk". Volgorde hier = volgorde op de site.
 # Aanpassen via alieke.design/admin (of hier). Afbeeldingen staan in src/assets/img, logo's in public/img/logos.
+label: Werk
+menu: ''
+titel: Projecten
+ondertitel: Een selectie
 items:
   - title: Sneller passende zorg door heldere flows
     intro: Redesign van publieke platform en beheersysteem
