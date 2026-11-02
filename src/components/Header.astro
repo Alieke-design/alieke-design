@@ -1,18 +1,11 @@
 ---
 import { site } from '../config';
-import { getAlgemeen } from '../lib/content';
+import { getAlgemeen, getHomeNav } from '../lib/content';
 import Logo from './Logo.astro';
 const { contact } = await getAlgemeen();
 
 interface Props { items?: { href: string; label: string }[]; menuNote?: string }
-const defaultItems = [
-  { href: '#hi', label: 'Hi 👋' },
-  { href: '#werk', label: 'Werk' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#aanbevelingen', label: 'Aanbevelingen' },
-  { href: '#over-mij', label: 'Over mij' },
-  { href: '#contact', label: 'Contact' },
-];
+const defaultItems = await getHomeNav();
 const { items = defaultItems, menuNote = contact.menuNote } = Astro.props;
 
 const copyIcon =

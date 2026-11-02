@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import DotGrid from './DotGrid.astro';
-import { getProjecten } from '../lib/content';
+import { getProjecten, getProjectenInfo } from '../lib/content';
 const projects = await getProjecten();
+const sectie = await getProjectenInfo();
 ---
 <section class="projects background--dlightblue" id="werk">
   <div class="projects__inner">
@@ -10,9 +11,9 @@ const projects = await getProjecten();
       <DotGrid />
     </div>
     <div class="projects__text">
-      <p class="label background--dyellow font-semibold">Werk</p>
-      <h2 class="large-heading color--dblue">Projecten</h2>
-      <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">Een selectie</p>
+      <p class="label background--dyellow font-semibold">{sectie.label}</p>
+      <h2 class="large-heading color--dblue">{sectie.titel}</h2>
+      <p class="text-image__subtitle xsmall-heading font-regular color--ddarkblue">{sectie.ondertitel}</p>
     </div>
     <div class="projects__list">
       {projects.map((project) => (

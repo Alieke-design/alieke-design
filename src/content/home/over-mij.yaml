@@ -1,5 +1,10 @@
 # Sectie "Over mij": drie lijsten. Aanpassen via alieke.design/admin (of hier).
 # Gebruik <b>…</b> voor vetgedrukte woorden.
+label: Over mij
+menu: ''
+titelWerkwijze: Werkwijze
+titelResultaat: Resultaat
+titelVoorWie: Voor wie
 werkwijze:
   - Door de spil te zijn tussen stakeholders en developers
   - Door usertests te organiseren, uitvoeren en analyseren

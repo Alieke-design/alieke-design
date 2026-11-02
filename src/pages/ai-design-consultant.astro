@@ -2,19 +2,13 @@
 import Base from '../layouts/Base.astro';
 import PauseButton from '../components/PauseButton.astro';
 import { site } from '../config';
-import { getConsultant } from '../lib/content';
+import { getConsultant, getConsultantNav } from '../lib/content';
 import StapPopup from '../components/StapPopup.astro';
 import { kring, regels } from '../lib/kring';
 const c = await getConsultant();
 const st = c.aanpak.stappen;
 
-const nav = [
-  { href: '#waarom', label: 'Waarom' },
-  { href: '#aanpak', label: 'Aanpak' },
-  { href: '#wat-je-krijgt', label: 'Resultaat' },
-  { href: '#analyse', label: 'Stap 1' },
-  { href: '#contact', label: 'Contact' },
-];
+const nav = await getConsultantNav();
 // Pop-ups achter de stappen tijdelijk uit (nog niet af). Zet op true om ze weer aan te zetten.
 const popupsOn = false;
 ---

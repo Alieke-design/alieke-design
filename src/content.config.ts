@@ -23,6 +23,8 @@ const list = (path: string) =>
   });
 
 const str = z.string();
+// Optionele naam in het menu; leeg = de badge (label) van de sectie.
+const menu = str.nullish().transform((v) => v ?? '');
 
 // ---------- Hele site
 
@@ -38,6 +40,7 @@ const homeBovenaan = defineCollection({
   schema: ({ image }) =>
     z.object({
       label: str,
+      menu,
       title: str,
       subtitle: str,
       quote: str,
@@ -78,15 +81,25 @@ const aanbevelingen = defineCollection({
     }),
 });
 
-// De algemene LinkedIn-link staat bovenin aanbevelingen.yaml, buiten de lijst.
-const aanbevelingenInfo = defineCollection({
-  loader: file('src/content/home/aanbevelingen.yaml', {
+/** De sectie-gegevens (label, titel ...) bovenin een lijstbestand, alles behalve `items`. */
+const info = (path: string) =>
+  file(path, {
     parser: (text) => {
-      const { linkUrl } = yaml.load(text) as { linkUrl: string };
-      return { data: { linkUrl } };
+      const { items: _items, ...rest } = yaml.load(text) as Record<string, unknown>;
+      return { data: rest };
     },
-  }),
-  schema: z.object({ linkUrl: str }),
+  });
+const sectie = { label: str, menu, titel: str, ondertitel: str };
+
+const projectenInfo = defineCollection({
+  loader: info('src/content/home/projecten.yaml'),
+  schema: z.object(sectie),
+});
+
+// Bovenin aanbevelingen.yaml: sectie-gegevens en de algemene LinkedIn-link.
+const aanbevelingenInfo = defineCollection({
+  loader: info('src/content/home/aanbevelingen.yaml'),
+  schema: z.object({ ...sectie, linkUrl: str }),
 });
 
 const rij = z.object({ jaar: z.coerce.string(), omschrijving: str });
@@ -94,6 +107,7 @@ const rij = z.object({ jaar: z.coerce.string(), omschrijving: str });
 const skills = defineCollection({
   loader: single('src/content/home/skills.yaml'),
   schema: z.object({
+    label: str, menu, titelErvaring: str, titelOpleiding: str, titelTools: str,
     ervaring: z.array(rij),
     opleiding: z.array(rij),
     tools: z.array(z.object({ name: str, logo: str, alt: str })),
@@ -103,6 +117,7 @@ const skills = defineCollection({
 const overMij = defineCollection({
   loader: single('src/content/home/over-mij.yaml'),
   schema: z.object({
+    label: str, menu, titelWerkwijze: str, titelResultaat: str, titelVoorWie: str,
     werkwijze: z.array(str),
     resultaat: z.array(str),
     voorWie: z.array(str),
@@ -111,7 +126,7 @@ const overMij = defineCollection({
 
 const homeContact = defineCollection({
   loader: single('src/content/home/contact.yaml'),
-  schema: z.object({ text: str, menuNote: str }),
+  schema: z.object({ label: str, menu, titel: str, text: str, menuNote: str }),
 });
 
 const homeSeo = defineCollection({
@@ -132,13 +147,13 @@ const cBovenaan = defineCollection({
 
 const cWaarom = defineCollection({
   loader: single('src/content/consultant/waarom.yaml'),
-  schema: z.object({ label: str, titel: str, ondertitel: str, tekst: str, kernzin: str }),
+  schema: z.object({ label: str, menu, titel: str, ondertitel: str, tekst: str, kernzin: str }),
 });
 
 const cAanpak = defineCollection({
   loader: single('src/content/consultant/aanpak.yaml'),
   schema: z.object({
-    label: str, titel: str, ondertitel: str,
+    label: str, menu, titel: str, ondertitel: str,
     stappen: z.array(z.object({ titel: str, frequentie: str, tekst: str })).length(5),
     designersTitel: str, designersTekst: str,
     popupTabs: z.array(str).length(3),
@@ -148,7 +163,7 @@ const cAanpak = defineCollection({
 const cResultaat = defineCollection({
   loader: single('src/content/consultant/resultaat.yaml'),
   schema: z.object({
-    label: str, titel: str, ondertitel: str, tip: str,
+    label: str, menu, titel: str, ondertitel: str, tip: str,
     punten: z.array(z.object({ titel: str, tekst: str, optioneel: z.boolean().default(false) })),
   }),
 });
@@ -156,7 +171,7 @@ const cResultaat = defineCollection({
 const cScan = defineCollection({
   loader: single('src/content/consultant/scan.yaml'),
   schema: z.object({
-    label: str, titel: str, intro: str, toolsTip: str, wcagTitel: str, wcagTip: str,
+    label: str, menu, titel: str, intro: str, toolsTip: str, wcagTitel: str, wcagTip: str,
     pakketten: z
       .array(
         z.object({
@@ -179,7 +194,7 @@ const cWie = defineCollection({
 
 const cContact = defineCollection({
   loader: single('src/content/consultant/contact.yaml'),
-  schema: z.object({ label: str, titel: str, tekst: str, punten: z.array(str), menuNote: str }),
+  schema: z.object({ label: str, menu, titel: str, tekst: str, punten: z.array(str), menuNote: str }),
 });
 
 const cSeo = defineCollection({
@@ -202,7 +217,7 @@ const cPopup1 = popup(1), cPopup2 = popup(2), cPopup3 = popup(3), cPopup4 = popu
 
 export const collections = {
   siteGegevens,
-  homeBovenaan, projecten, aanbevelingen, aanbevelingenInfo, skills, overMij, homeContact, homeSeo,
+  homeBovenaan, projecten, projectenInfo, aanbevelingen, aanbevelingenInfo, skills, overMij, homeContact, homeSeo,
   cBovenaan, cWaarom, cAanpak, cResultaat, cScan, cWie, cContact, cSeo,
   cPopup1, cPopup2, cPopup3, cPopup4, cPopup5,
 };

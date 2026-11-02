@@ -1,14 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import { getAanbevelingen, getAanbevelingenLink } from '../lib/content';
+import { getAanbevelingen, getAanbevelingenInfo } from '../lib/content';
 const aanbevelingen = await getAanbevelingen();
-const recommendationsUrl = await getAanbevelingenLink();
+const sectie = await getAanbevelingenInfo();
+const recommendationsUrl = sectie.linkUrl;
 ---
 <section class="widget-block background--dlightblue" data-scroll-var data-start="top bottom" id="aanbevelingen">
   <div class="widget-block__inner">
-    <p class="label background--dblue font-semibold">Aanbevelingen</p>
-    <h2 class="large-heading color--ddarkblue">Opdrachtgevers</h2>
-    <p class="text-image__subtitle xsmall-heading font-regular color--dblue">Over mij</p>
+    <p class="label background--dblue font-semibold">{sectie.label}</p>
+    <h2 class="large-heading color--ddarkblue">{sectie.titel}</h2>
+    <p class="text-image__subtitle xsmall-heading font-regular color--dblue">{sectie.ondertitel}</p>
     <ul class="reviews" role="list" aria-label="Aanbevelingen van opdrachtgevers">
       {aanbevelingen.map((review, i) => {
         const href = review.linkedin || recommendationsUrl;
