@@ -175,7 +175,7 @@ const cScan = defineCollection({
     pakketten: z
       .array(
         z.object({
-          naam: str, doelgroep: str, prijsLabel: str, prijs: z.coerce.string(),
+          naam: str, doelgroep: str, prijsLabel: str.nullish().transform((v) => v ?? ""), prijs: z.coerce.string(),
           gesprek: str, producten: str, tools: str,
           wcagPrijs: z.coerce.string(), wcagVanaf: z.boolean().default(false),
         }),

@@ -1446,7 +1446,8 @@ collections:
       - name: prijsLabel
         label: Tekst boven de prijs
         widget: string
-        hint: Bijvoorbeeld "vaste prijs" of "vanaf".
+        required: false
+        hint: Bijvoorbeeld "vaste prijs" of "vanaf". Leeg laten mag; de prijs blijft dan op dezelfde hoogte als bij de andere pakketten.
       - name: prijs
         label: Prijs
         widget: string
