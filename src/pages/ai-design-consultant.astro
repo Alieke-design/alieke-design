@@ -111,13 +111,13 @@ const popupsOn = false;
   <section id="waarom" style="background: #ffffff; position: relative;">
     <div style="max-width: var(--wrap); margin: 0 auto; padding: calc(clamp(64px, 8vw, 117px) + 40px) var(--gut) calc(clamp(96px, 10vw, 140px) + 80px); position: relative;">
 
-      <div style="max-width: 630px; margin: 0 auto;">
+      <div class="why-col" style="max-width: 630px; margin: 0 auto;">
       <p data-rv style="display: inline-block; margin: 0; padding: 4px 12px; border-radius: 48px; background: #0049dc; color: #ffffff; font-size: 16px; font-weight: 600; line-height: 1.4;">{c.waarom.label}</p>
       <h2 data-rv style="margin: 12px 0 0; font-size: clamp(40px, 3.125vw, 45px); line-height: 1; font-weight: 600; color: #0d0064;">{c.waarom.titel}</h2>
       <p data-rv style="margin: 12px 0 0; font-size: clamp(24px, 1.875vw, 27px); line-height: 1.1; font-weight: 400; color: #0049dc;">{c.waarom.ondertitel}</p>
-      <div style="max-width: 630px; margin-top: 40px; font-size: 18px; line-height: 1.6; display: grid; gap: 18px;">
+      <div class="why-col__body" style="max-width: 630px; margin-top: 40px; font-size: 18px; line-height: 1.6; display: grid; gap: 18px;">
         <p data-rv style="margin: 0;">{c.waarom.tekst}</p>
-        <p data-rv style="margin: 16px 0 0; padding: 0 0 0 24px; border-left: 4px solid #ffc518; max-width: 630px; font-size: clamp(20px, 1.6vw, 23px); line-height: 1.4; font-weight: 600; color: #0d0064;"><Fragment set:html={kring(c.waarom.kernzin)} /></p>
+        <p data-rv style="margin: 16px 0 0; padding: 0 0 0 24px; border-left: 4px solid #ffc518; max-width: none; font-size: clamp(20px, 1.6vw, 23px); line-height: 1.4; font-weight: 600; color: #0d0064;"><Fragment set:html={kring(c.waarom.kernzin)} /></p>
       </div>
       </div>
     </div>
@@ -661,6 +661,7 @@ dialog .info-tip.tip--from-left .tip__bubble { left: -12px; right: auto; transfo
 .aanpak-designers__ill { flex: none; width: 64px; height: 64px; }
 .aanpak-designers__ill svg { display: block; width: 64px; height: 64px; overflow: visible; }
 @media (max-width: 600px) { .aanpak-designers { align-items: flex-start; gap: 16px; padding: 18px 20px; } .aanpak-designers__ill, .aanpak-designers__ill svg { width: 52px; height: 52px; } }
+@media (min-width: 1024px) { .why-col, .why-col__body { max-width: var(--why-w, 720px) !important; } }
 .vh { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .slidebtn--done { white-space: nowrap; }
 /* Lopende tekst overal gelijk: 17px, 1.6, ink */
